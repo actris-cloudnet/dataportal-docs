@@ -6,7 +6,7 @@
   * [Calibration](api/calibration.md)
 
 * Cloudnet sites
-  * Hyytiälä
+  * [Hyytiälä](sites/hyytiala.md)
     
 * Resources
 
