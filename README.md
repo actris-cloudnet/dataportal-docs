@@ -1,9 +1,9 @@
 * Overview
 
 * API reference
-  * Data portal
-  * Data submission
-  * Calibration
+  * [Data portal](api/data-portal.md)
+  * [Data submission](api/data-upload.md)
+  * [Calibration](api/calibration.md)
 
 * Cloudnet sites
   * Hyytiälä
