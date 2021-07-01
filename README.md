@@ -1,13 +1,6 @@
-* Overview
+Welcome! This is the documentation of the [Cloudnet data portal](https://cloudnet.fmi.fi).
 
-* API reference
-  * [Data portal](api/data-portal.md)
-  * [Data submission](api/data-upload.md)
-  * [Calibration](api/calibration.md)
-
-* Cloudnet sites
-  * [Hyytiälä](sites/hyytiala.md)
-    
-* Resources
-
-* Contact
+* [Overview](overview.md)
+* [API reference](apis.md)
+* [Cloudnet sites](sites.md)
+* [Contact](contact.md)
