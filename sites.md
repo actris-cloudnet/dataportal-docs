@@ -1,4 +1,4 @@
-# Sites
+# Measurement sites
 
 ## Cloudnet sites
 

@@ -1,9 +1,9 @@
-# Data submission API v2 reference
+# Data submission API reference
 
 This is the documentation for the HTTP API allowing sites to submit data files for archiving, 
 processing and publication in the Cloudnet data portal. This documentation is for API v2.
 
-## Submitting files
+## General
 
 File submission has two stages: metadata and data upload. Metadata of the file must be uploaded 
 before uploading the file itself. You can find sample scripts in [examples](#examples).

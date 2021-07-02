@@ -3,5 +3,5 @@ Welcome! This is the documentation of the [Cloudnet data portal](https://cloudne
 * [Overview](overview.md)
 * [API reference](apis.md)
 * [Processing code and file format](processing.md)
-* [Cloudnet sites](sites.md)
+* [Measurement sites](sites.md)
 * [Contact](contact.md)
