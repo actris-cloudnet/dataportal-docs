@@ -20,6 +20,7 @@ We recommend uploading the following files:
 | `basta` | BASTA cloud radar | Daily `*.nc` files. | netCDF |
 | `parsivel` | OTT Parsivel2 disdrometer | `*.log` files. | text |
 | `thies-lnm` | Thies LNM disdrometer | `*.txt` files. | text |
+| `halo-doppler-lidar` | Halo Photonics Doppler lidar | `*.hpl`, `Background*.txt` and `system_parameters*.txt` files. | text |
 
 We plan to also accept the following instrument types in the future. Note that the API will not accept these yet. 
 If you have other instruments you would like to include (such as other disdrometers, lidars or ancillary instrumentation), please 
@@ -32,4 +33,3 @@ let us know and we will add them to our to-do list.
 |`mpl` | ARM or MPLnet Micropulse Lidar | `*.nc` files produced by ARM or similar. | netCDF | 
 |`microwave radiometer` | Radiometrics - two-channel or three-channel | `*.nc` files. | netCDF |
 |`wls100s`, `wls200s`, `wls400s` |Leosphere windcube long-range scanning Doppler lidars | `*.nc` files. | netCDF |
-| `halo-doppler-lidar` | Halo Photonics Doppler lidar | `*.hpl`, `Background*.txt` and `system_parameters*.txt` files. | text |
