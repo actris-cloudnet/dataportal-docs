@@ -1,3 +1,5 @@
+[Docs home](https://docs.cloudnet.fmi.fi)
+
 # Kenttärova
 
 Kenttärova is a remote site in Northern Finland. Kenttärova is part of 

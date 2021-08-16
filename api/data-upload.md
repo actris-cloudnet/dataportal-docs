@@ -1,3 +1,5 @@
+[Docs home](https://docs.cloudnet.fmi.fi)
+
 # Data submission API reference
 
 This is the documentation for the HTTP API allowing sites to submit data files for archiving, 

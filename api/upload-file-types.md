@@ -1,3 +1,4 @@
+[Docs home](https://docs.cloudnet.fmi.fi)
 
 ## Data upload file types
 

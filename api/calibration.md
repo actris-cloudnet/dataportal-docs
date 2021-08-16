@@ -1,3 +1,5 @@
+[Docs home](https://docs.cloudnet.fmi.fi)
+
 # Calibration API reference
 
 This is a documentation for the HTTP API for configuring the calibration factors used in cloudnet data processing.

@@ -1,3 +1,5 @@
+[Docs home](https://docs.cloudnet.fmi.fi)
+
 # Data portal API reference
 
 This is the documentation for the API v2 provided by the Cloudnet data portal.
