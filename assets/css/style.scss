@@ -3,6 +3,10 @@
 
 @import "{{ site.theme }}";
 
+body {
+  font-size: 1rem
+}
+
 header {
   background-image: linear-gradient(to left, transparent, #78C0E0 70%), url("/img/clouds3.jpg");
   opacity: 0.7;
