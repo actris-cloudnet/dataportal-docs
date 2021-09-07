@@ -1,17 +1,17 @@
 # Cloudnet documentation
 
 Cloudnet is a data pipeline to process and distribute cloud remote sensing
-data from measurement sites all over the Globe. Cloudnet consists of a
-[data portal](https://cloudnet.fmi.fi), 
-[processing code](https://github.com/actris-cloudnet/cloudnetpy), 
+data from measurement sites all over the Globe. Cloudnet consists of
+[Cloudnet data portal](https://cloudnet.fmi.fi), processing software
+[CloudnetPy](https://github.com/actris-cloudnet/cloudnetpy),
 and various APIs to submit raw data and access processed data products.
 
 Cloudnet is also one key element of [ACTRIS](https://www.actris.eu/). ACTRIS Data Centre node 
 for cloud profiling (CLU) utilizes Cloudnet ecosystem to serve official ACTRIS cloud 
 remote sensing products through the [ACTRIS data portal](https://actris.nilu.no/).
 
-[The Cloudnet data portal](https://cloudnet.fmi.fi) contains more data than the official ACTRIS data portal, 
-but it provides only partially quality controlled data, non-standard metadata 
+The Cloudnet data portal contains more data than the official ACTRIS data portal,
+but it provides only partially quality controlled data, non-standard metadata
 schema, experimental products, and so on.
 
 ## Index
@@ -30,13 +30,15 @@ Cloudnet ecosystem provides several HTTP APIs to access different services:
   * [Supported file types](api/upload-file-types.md)
 * [Calibration](api/calibration.md)
 
-## Processing code and file format
+## Processing code and files
 
-Cloudnet data are processed using open source Python package [CloudnetPy](https://github.com/actris-cloudnet/cloudnetpy).
+* Cloudnet data are processed using open source Python package [CloudnetPy](https://github.com/actris-cloudnet/cloudnetpy).
 More info about CloudnetPy can be found from its own [documentation](https://cloudnetpy.readthedocs.io/en/latest/?badge=latest).
 
-Cloudnet uses netCDF4 file format.
+* Cloudnet uses netCDF4 file format.
 See the [file format description](https://cloudnetpy.readthedocs.io/en/latest/fileformat.html).
+
+* Cloudnet files exist in different [Data Levels](levels.md).
 
 
 ## Measurement sites
