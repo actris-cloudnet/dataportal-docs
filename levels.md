@@ -1,8 +1,10 @@
+[Docs home](https://docs.cloudnet.fmi.fi)
+
 # Data levels
 
 Cloudnet data comes as different data levels.
 
-## Level 0  and Level 1a
+## Level 0 and Level 1a
 
 Raw data is submitted as Level 0, which is as close to the raw output from the instrument as possible, 
 or as Level 1a which are data minimally processed by the instrument or the uploading site.
@@ -26,5 +28,7 @@ the wet bulb temperature and the amount of liquid attenuation.
 
 Level 2 files contain derived quantities like the classification of the targets 
 or ice water content.
+
+### Flow chart of the levels: 
 
 ![](img/cloudnet-levels.png)
