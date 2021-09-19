@@ -2,17 +2,23 @@
 
 Cloudnet is a data pipeline to process and distribute cloud remote sensing
 data from measurement sites all over the Globe. Cloudnet consists of
-[Cloudnet data portal](https://cloudnet.fmi.fi), processing software
-[CloudnetPy](https://github.com/actris-cloudnet/cloudnetpy),
-and various APIs to submit raw data and access processed data products.
+[Cloudnet data portal](https://cloudnet.fmi.fi),
+[processing software CloudnetPy](https://github.com/actris-cloudnet/cloudnetpy),
+and various APIs that can be used, for example, to submit raw data or
+programmatically access processed data products.
 
-Cloudnet is also one key element of [ACTRIS](https://www.actris.eu/). ACTRIS Data Centre node 
-for cloud profiling (CLU) utilizes Cloudnet ecosystem to serve official ACTRIS cloud 
+Cloudnet is also one key element of [ACTRIS research infrastructure](https://www.actris.eu/) that is
+currently in its implementation phase. ACTRIS Data Centre node
+for cloud profiling (CLU) utilizes Cloudnet ecosystem to serve official ACTRIS cloud
 remote sensing products through the [ACTRIS data portal](https://actris.nilu.no/).
+More info about ACTRIS data can be found from the
+[ACTRIS data management plan](https://github.com/actris/data-management-plan/blob/master/DMP/ACTRIS-DMP.md).
 
 The Cloudnet data portal contains more data than the official ACTRIS data portal,
-but it provides only partially quality controlled data, non-standard metadata
+but it may also provide only partially quality controlled data, non-standard metadata
 schema, experimental products, and so on.
+
+Cloudnet is developed and maintained by the [Finnish Meteorological Institute](https://en.ilmatieteenlaitos.fi/).
 
 ## Index
 
@@ -38,7 +44,7 @@ More info about CloudnetPy can be found from its own [documentation](https://clo
 * Cloudnet uses netCDF4 file format.
 See the [file format description](https://cloudnetpy.readthedocs.io/en/latest/fileformat.html).
 
-* Cloudnet files exist in different [Data Levels](levels.md).
+* Cloudnet files exist in different [data levels](levels.md).
 
 
 ## Measurement sites
