@@ -32,7 +32,8 @@ header {
   .portal-name > h1 {
     display: inline;
     margin: 0;
-    font-weight: 400
+    font-weight: 400;
+    font-size: revert;
   }
   .portal-name > span {
     font-size: 0.8em;
