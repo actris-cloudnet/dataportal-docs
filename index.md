@@ -25,6 +25,7 @@ Cloudnet is developed and maintained by the [Finnish Meteorological Institute](h
 1. [API reference](#api-reference)
 2. [Processing code and file format](#processing-code-and-file-format)
 3. [Measurement sites](#measurement-sites)
+3. [License](#license)
 4. [Contact](#contact)
 
 ## API Reference
@@ -56,6 +57,22 @@ These are the regular, operational Cloudnet sites:
 
 *(The site list is not exhaustive and will be completed later.)*
 
+## License
+
+Cloudnet data is licensed under a [Creative Commons Attribution 4.0 international licence](https://creativecommons.org/licenses/by/4.0).
+  This is a human-readable summary of (and not a substitute for) the [licence](https://creativecommons.org/licenses/by/4.0/legalcode).
+
+  You are free to:
+
+  - **Share** — copy and redistribute the material in any medium or format</li>
+  - **Adapt** — remix, transform, and build upon the material for any purpose, even commercially</li>
+
+  Under the following terms:
+
+  - **Attribution** — You must give appropriate credit, provide a link to the licence, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use</li>
+  - **No additional restrictions** — You may not apply legal terms or technological measures that legally restrict others from doing anything the licence permits</li>
+
+  The licensor cannot revoke these freedoms as long as you follow the licence terms.
 
 ## Contact
 
