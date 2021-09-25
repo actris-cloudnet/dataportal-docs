@@ -33,6 +33,4 @@ used in ACTRIS-Cloudnet processing.
 
 ![](../img/PuntaArenas1.jpg)
 
-## Pictures
-
 ![](../img/PuntaArenas2.jpg)

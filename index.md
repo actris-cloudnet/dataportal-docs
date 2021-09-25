@@ -50,12 +50,16 @@ See the [file format description](https://cloudnetpy.readthedocs.io/en/latest/fi
 
 ## Measurement sites
 
-These are the regular, operational Cloudnet sites:
+Regular, operational Cloudnet sites:
 
 * [Hyytiälä](sites/hyytiala.md)
 * [Kenttärova](sites/kenttarova.md)
 
-*(The site list is not exhaustive and will be completed later.)*
+Campaign sites:
+
+* [Punta Arenas](sites/punta-arenas.md)
+
+*(Site lists are not exhaustive and will be completed later.)*
 
 ## License
 
