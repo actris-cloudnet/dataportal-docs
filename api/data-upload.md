@@ -101,6 +101,9 @@ echo "$DATA_RESPONSE"
 fi
 ```
 
+There is also a more complete [example script](submit-to-cloudnet) for parsing files from a local
+directory tree and submitting data from several sites and instruments.
+
 ### Python
 
 This example uses the python library `requests` for submitting requests.
