@@ -43,7 +43,7 @@ curl -u USERNAME:PASSWORD \
   https://cloudnet.fmi.fi/upload/metadata/
 ```
 Replace `USERNAME` and `PASSWORD` with your station's credentials. You can acquire the credentials 
-by contacting the CLU team at actris-cloudnet-feedback@fmi.fi.
+by contacting the CLU team at actris-cloudnet@fmi.fi.
   
 ### Data upload
 
