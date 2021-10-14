@@ -21,6 +21,8 @@ Metadata can be queried via the following routes. For examples on how to use the
    1. [File by uuid](#get-apifilesuuid--file)
    1. [Product files](#get-apifiles--file)
    1. [Model files](#get-apimodel-files--modelfile)
+   1. [Raw files](#get-apiraw-files--upload)
+   1. [Raw model files](#get-apiraw-model-files--modelupload)
 1. [Examples](#examples)
 1. [Notes](#notes)
 1. [Errors](#errors)
@@ -349,6 +351,126 @@ Response body:
     "downloadUrl": "https://cloudnet.fmi.fi/api/download/product/90f95f81-4f45-4efb-a25d-80066652aece/20210203_lindenberg_gdas1.nc",
     "filename": "20210203_lindenberg_gdas1.nc"
   }
+]
+```
+
+### `GET /api/raw-files` → `Upload[]`
+
+Query the metadata of uploaded instrument files. Date format is `YYYY-MM-DD` or any 
+date format parseable by [JavaScript `Date`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) -object. You can use the following the parameters to filter the search results.
+- `site`: `Site` id.
+- `status`: Status of the uploaded file. One of the following:
+    - `created`: Metadata has been created but file has not been uploaded.
+    - `uploaded`: File has been successfully uploaded, but it has not been processed.
+    - `processed`: File has been uploaded and it has been processed.
+- `dateFrom`: Limit query to files whose `measurementDate` is `dateFrom` or later.
+  By default `measurementDate` is not limited.
+- `dateTo`: Limit query to files whose `measurementDate` is `dateTo` or earlier.
+  If omitted will default to the current date.
+- `instrument`: `Instrument` id.
+- `updatedAtFrom`: Limit query to files whose `updatedAt` is `updatedAtFrom` or later.
+  By default `updatedAt` is not limited.
+- `updatedAtTo`: Limit query to files whose `updatedAt` is `updatedAtTo` or earlier.
+  If omitted will default to the current date.
+
+The response is an array of `Upload` objects. The `Upload` object has the following properties:
+
+- `uuid`: Unique identifier of the file.
+- `checksum`: An MD5 checksum of the file.
+- `filename`: Original name of the file.
+- `measurementDate`: The date of the measurements contained in the file.
+- `size`: File size in bytes.
+- `status`: Status of the file. See above for possible statuses.
+- `createdAt`: Date of file metadata creation.
+- `updatedAt`: Date of last file and/or metadata update.
+- `site`: `Site` object.
+- `instrument`: `Instrument` object.
+- `downloadUrl`: A URL for direct download of the file.
+
+Example query:
+
+`GET https://cloudnet.fmi.fi/api/raw-files?site=norunda&updatedAtFrom=2021-09-01`
+
+Response body:
+
+```json
+[
+  {
+    "uuid": "8cce060a-f258-4628-85df-f8bcca21f73d",
+    "checksum": "7c7affbf45c468ed9969f49e02a816ad",
+    "filename": "210607_180000_P09_ZEN.LV0",
+    "measurementDate": "2021-06-07",
+    "size": "821833251",
+    "status": "uploaded",
+    "createdAt": "2021-06-08T14:33:41.662Z",
+    "updatedAt": "2021-09-06T23:41:21.660Z",
+    "site": {
+      "id": "norunda",
+      "humanReadableName": "Norunda",
+      "type": [
+        "cloudnet"
+      ],
+      "latitude": 60.086,
+      "longitude": 17.479,
+      "altitude": 46,
+      "gaw": "NOR",
+      "country": "Sweden"
+    },
+    "instrument": {
+      "id": "rpg-fmcw-94",
+      "type": "radar",
+      "auxiliary": false,
+      "humanReadableName": "RPG FMCW-94 cloud radar"
+    },
+    "downloadUrl": "https://cloudnet.fmi.fi/api/download/raw/8cce060a-f258-4628-85df-f8bcca21f73d/210607_180000_P09_ZEN.LV0"
+  },
+  ...
+]
+```
+
+### `GET /api/raw-model-files` → `ModelUpload[]`
+
+Query the metadata of uploaded model files. Query parameters are as above, with the following exception:
+Instead of the `instrument` parameter, it is possible to filter the results with the `model` parameter, which takes `Model` id.
+
+
+
+Example query:
+
+`GET https://cloudnet.fmi.fi/api/raw-files?site=norunda&updatedAtFrom=2021-09-01`
+
+Response body:
+
+```json
+[
+  {
+    "uuid": "375e32c1-d30c-4265-98ff-d07623b0c524",
+    "checksum": "f9c59e2db978a2d2b6cb55d3af342b80",
+    "filename": "20210904_norunda_ecmwf.nc",
+    "measurementDate": "2021-09-04",
+    "size": "501500",
+    "status": "processed",
+    "createdAt": "2021-09-04T18:37:02.852Z",
+    "updatedAt": "2021-09-07T18:37:00.945Z",
+    "site": {
+      "id": "norunda",
+      "humanReadableName": "Norunda",
+      "type": [
+        "cloudnet"
+      ],
+      "latitude": 60.086,
+      "longitude": 17.479,
+      "altitude": 46,
+      "gaw": "NOR",
+      "country": "Sweden"
+    },
+    "model": {
+      "id": "ecmwf",
+      "optimumOrder": 0
+    },
+    "downloadUrl": "https://cloudnet.fmi.fi/api/download/raw/375e32c1-d30c-4265-98ff-d07623b0c524/20210904_norunda_ecmwf.nc"
+  },
+  ...
 ]
 ```
 
