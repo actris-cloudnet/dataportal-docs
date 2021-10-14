@@ -359,10 +359,12 @@ Response body:
 Query the metadata of uploaded instrument files. Date format is `YYYY-MM-DD` or any 
 date format parseable by [JavaScript `Date`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) -object. You can use the following the parameters to filter the search results.
 - `site`: `Site` id.
-- `status`: Status of the uploaded file. One of the following:
+- `status`: Status of the uploaded file. By default returns files with any status. Status may be one of the following:
     - `created`: Metadata has been created but file has not been uploaded.
     - `uploaded`: File has been successfully uploaded, but it has not been processed.
     - `processed`: File has been uploaded and it has been processed.
+    - `invalid`: File could not be processed due to an error.
+- `date`: Limit query to files whose `measurementDate` is `date`.
 - `dateFrom`: Limit query to files whose `measurementDate` is `dateFrom` or later.
   By default `measurementDate` is not limited.
 - `dateTo`: Limit query to files whose `measurementDate` is `dateTo` or earlier.
