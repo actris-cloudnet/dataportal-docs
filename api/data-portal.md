@@ -45,6 +45,7 @@ each having the properties:
 - `longitude`: Longitude of the site given with the precision of three decimals.
 - `altitude`: Elevation of the site from sea level in meters.
 - `gaw`: Global Atmosphere Watch identifier. If the site does not have one, `Unknown`.
+- `dvasId`: DVAS data portal station id. `null` if site is not listed in the DVAS portal.
 - `country`: The country in which the site resides. Human-readable.
 
 Example query:
@@ -65,6 +66,7 @@ Response body:
     "longitude": 16.008,
     "altitude": 380,
     "gaw": "Unknown",
+    "dvasId": null,
     "country": "Norway"
   },
 ...
