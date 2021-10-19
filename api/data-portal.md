@@ -210,6 +210,7 @@ Response body:
     "longitude": 26.029,
     "altitude": 93,
     "gaw": "Unknown",
+    "dvasId": "INO",
     "country": "Romania"
   },
   "product": {
@@ -274,6 +275,7 @@ Response body:
       "longitude": 26.029,
       "altitude": 93,
       "gaw": "Unknown",
+      "dvasId": "INO",
       "country": "Romania"
     },
     "product": {
@@ -339,6 +341,7 @@ Response body:
       "longitude": 14.118,
       "altitude": 104,
       "gaw": "LIN",
+      "dvasId": "LIN",
       "country": "Germany"
     },
     "product": {
@@ -418,6 +421,7 @@ Response body:
       "longitude": 17.479,
       "altitude": 46,
       "gaw": "NOR",
+      "dvasId": "NOR",
       "country": "Sweden"
     },
     "instrument": {
@@ -466,6 +470,7 @@ Response body:
       "longitude": 17.479,
       "altitude": 46,
       "gaw": "NOR",
+      "dvasId": "NOR",
       "country": "Sweden"
     },
     "model": {
