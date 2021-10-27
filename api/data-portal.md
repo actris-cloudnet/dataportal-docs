@@ -102,7 +102,7 @@ Response body:
 
 ### `GET /api/products/variables` → `ProductVariables[]`
 
-Fetch product variables that are plotted.Responds with an array of `ProductVariable` objects,
+Fetch product variables. Responds with an array of `ProductVariable` objects,
 each having the properties:
 - `id`: Unique identifier of the product.
 - `humanReadableName`: Name of the product in a human-readable format.
@@ -112,7 +112,7 @@ each having the properties:
   - `humanReadableName`: Variable name in a human-readable format.
   - `order`: Number indicating the relevance of the variable for the product in question. `0` is the most relevant variable for the product. Used for sorting plots.
 
-**NOTE:** The list of returned variables is not exhaustive, only the variables that are plotted in the portal are returned.
+**NOTE:** The list of returned variables is not exhaustive, the products may contain more variables than listed. Internally this list is used for plotting.
 
 Example query:
 
