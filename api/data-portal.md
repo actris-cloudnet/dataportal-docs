@@ -16,11 +16,14 @@ Metadata can be queried via the following routes. For examples on how to use the
 1. [Routes](#routes)
    1. [Sites](#get-apisites--site)
    1. [Products](#get-apiproducts--product)
+   1. [Product variables](#get-apiproductsvariables--productvariables)
    1. [Instruments](#get-apiinstruments--instrument)
    1. [Models](#get-apimodels--model)
    1. [File by uuid](#get-apifilesuuid--file)
    1. [Product files](#get-apifiles--file)
    1. [Model files](#get-apimodel-files--modelfile)
+   1. [Visualization by file uuid](#get-apivisualizationsuuid--visualization)
+   1. [Visualizations](#get-apivisualizations--visualization)
    1. [Raw files](#get-apiraw-files--upload)
    1. [Raw model files](#get-apiraw-model-files--modelupload)
 1. [Examples](#examples)
@@ -92,6 +95,48 @@ Response body:
     "id": "categorize",
     "humanReadableName": "Categorize",
     "level": "1c"
+  },
+...
+]
+```
+
+### `GET /api/products/variables` → `ProductVariables[]`
+
+Fetch product variables. Responds with an array of `ProductVariable` objects,
+each having the properties:
+- `id`: Unique identifier of the product.
+- `humanReadableName`: Name of the product in a human-readable format.
+- `level`: Product level. Is either `1b`, `1c`, or `2`.
+- `variables`: List of product variables, each having the following properties:
+  - `id`: Unique identifier of the variable.
+  - `humanReadableName`: Variable name in a human-readable format.
+  - `order`: Number indicating the relevance of the variable for the product in question. `0` is the most relevant variable for the product. Used for sorting plots.
+
+**NOTE:** The list of returned variables is not exhaustive, the products may contain more variables than listed. Internally this list is used for plotting.
+
+Example query:
+
+`GET https://cloudnet.fmi.fi/api/products/variables`
+
+Response body:
+```json
+  [
+  {
+    "id": "disdrometer",
+    "humanReadableName": "Disdrometer",
+    "level": "1b",
+    "variables": [
+      {
+        "id": "disdrometer-rainfall_rate",
+        "humanReadableName": "Rainfall rate",
+        "order": "0"
+      },
+      {
+        "id": "disdrometer-n_particles",
+        "humanReadableName": "Number of particles",
+        "order": "1"
+      }
+    ]
   },
 ...
 ]
@@ -358,6 +403,85 @@ Response body:
   }
 ]
 ```
+
+### `GET /api/visualizations/UUID` → `Visualization`
+
+Fetch visualization metadata for a single data object using its UUID.
+On a successful query the route responds with a `Visualization` object, which has the following properties:
+- `sourceFileId`: UUID of the file for of which the visualizations were generated.
+- `productHumanReadable`: Human readable name of the product.
+- `locationHumanReadable`: Human readable name of the site.
+- `volatile`: `true` if the file is volatile, otherwise `false`.
+- `legacy`: `true` if the file is a legacy file, otherwise `false`.
+- `visualizations`: An array of visualization metadata, each entry having the following properties:
+  - `s3key`: Filename of the visualization.
+  - `productVariable`: Product variable object, see [Product variables](#get-apiproductsvariables--productvariables).
+
+Example query:
+
+`GET https://cloudnet.fmi.fi/api/visualizations/cfda5129-0a51-45d4-b674-ccf6c7f1a447`
+
+Response body:
+````json
+{
+  "sourceFileId": "cfda5129-0a51-45d4-b674-ccf6c7f1a447",
+  "visualizations": [
+    {
+      "s3key": "20211025_hyytiala_cl61d-cfda5129-beta.png",
+      "productVariable": {
+        "id": "lidar-beta",
+        "humanReadableName": "Attenuated backscatter coefficient",
+        "order": "0"
+      }
+    },
+    {
+      "s3key": "20211025_hyytiala_cl61d-cfda5129-depolarisation.png",
+      "productVariable": {
+        "id": "lidar-depolarisation",
+        "humanReadableName": "Lidar depolarisation",
+        "order": "2"
+      }
+    }
+  ],
+  "productHumanReadable": "Lidar",
+  "locationHumanReadable": "Hyytiälä",
+  "volatile": true,
+  "legacy": false
+}
+````
+
+### `GET /api/visualizations` → `Visualization[]`
+
+Queries the metadata of visualizations. It offers the same parameters as the [Product files](#get-apifiles--file) -route for filtering the results, with an additional parameter `variable` for fetching visualizations for a specific `ProductVariable`.
+The route responds with an array of `Visualization` objects.
+
+Example request:
+
+`GET https://cloudnet.fmi.fi/api/visualizations/?date=2021-10-25&site=mindelo`
+
+Response body:
+````json
+[
+  {
+    "sourceFileId": "36a95fab-f07f-4182-99b8-0082b26b6069",
+    "visualizations": [
+      {
+        "s3key": "20211025_mindelo_hatpro-36a95fab-LWP.png",
+        "productVariable": {
+          "id": "mwr-LWP",
+          "humanReadableName": "Liquid water path",
+          "order": "0"
+        }
+      }
+    ],
+    "productHumanReadable": "Microwave radiometer",
+    "locationHumanReadable": "Mindelo",
+    "volatile": true,
+    "legacy": false
+  },
+...
+]
+````
 
 ### `GET /api/raw-files` → `Upload[]`
 
