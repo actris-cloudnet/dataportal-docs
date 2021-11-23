@@ -82,7 +82,8 @@ Fetch information on the products served in the data portal. Responds with an ar
 each having the properties:
 - `id`: Unique identifier of the product.
 - `humanReadableName`: Name of the product in a human-readable format.
-- `level`: Product level. Is either `1b`, `1c`, or `2`.
+- `level`: Product level. Is either `1b`, `1c`, `2` or `3`.
+- `experimental`: `true` on experimental products, `false` on normal ones.
 
 Example query:
 
