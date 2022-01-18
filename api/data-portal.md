@@ -417,6 +417,13 @@ On a successful query the route responds with a `Visualization` object, which ha
 - `visualizations`: An array of visualization metadata, each entry having the following properties:
   - `s3key`: Filename of the visualization.
   - `productVariable`: Product variable object, see [Product variables](#get-apiproductsvariables--productvariables).
+  - `dimensions`: `null` or an object with the following properties:
+    - `width`: width of the image in pixels.
+    - `height`: height of the image in pixels.
+    - `marginTop`: space between top axis and image edge in pixels.
+    - `marginRight`: space between right axis and image edge in pixels.
+    - `marginBottom`: space between bottom axis and image edge in pixels.
+    - `marginLeft`: space between left axis and image edge in pixels.
 
 Example query:
 
@@ -433,7 +440,8 @@ Response body:
         "id": "lidar-beta",
         "humanReadableName": "Attenuated backscatter coefficient",
         "order": "0"
-      }
+      },
+      "dimensions": null
     },
     {
       "s3key": "20211025_hyytiala_cl61d-cfda5129-depolarisation.png",
@@ -441,7 +449,8 @@ Response body:
         "id": "lidar-depolarisation",
         "humanReadableName": "Lidar depolarisation",
         "order": "2"
-      }
+      },
+      "dimensions": null
     }
   ],
   "productHumanReadable": "Lidar",
@@ -472,7 +481,8 @@ Response body:
           "id": "mwr-LWP",
           "humanReadableName": "Liquid water path",
           "order": "0"
-        }
+        },
+        "dimensions": null
       }
     ],
     "productHumanReadable": "Microwave radiometer",
