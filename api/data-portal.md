@@ -73,8 +73,8 @@ Response body:
     "gaw": "Unknown",
     "dvasId": null,
     "country": "Norway",
-    "iso_3166_1_alpha_2": "NO",
-    "iso_3166_2": null
+    "countryCode": "NO",
+    "countrySubdivisionCode": null
   },
 ...
 ]
