@@ -50,8 +50,8 @@ each having the properties:
 - `gaw`: Global Atmosphere Watch identifier. If the site does not have one, `Unknown`.
 - `dvasId`: DVAS data portal station id. `null` if site is not listed in the DVAS portal.
 - `country`: The country or subdivision in which the site resides. Human-readable.
-- `iso_3166_1_alpha_2`: Two-letter country code according to [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). `null` if code is not set or available.
-- `iso_3166_2`: Country subdivision code according to [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2). `null` if code is not set or available.
+- `countryCode`: Two-letter country code according to [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). `null` if code is not set or available.
+- `countrySubdivisionCode`: Country subdivision code according to [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2). `null` if code is not set or available.
 
 Example query:
 
