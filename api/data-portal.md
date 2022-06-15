@@ -47,8 +47,8 @@ each having the properties:
 - `latitude`: Latitude of the site given with the precision of three decimals.
 - `longitude`: Longitude of the site given with the precision of three decimals.
 - `altitude`: Elevation of the site from mean sea level in meters.
-- `gaw`: Global Atmosphere Watch identifier. If the site does not have one, `Unknown`.
-- `dvasId`: DVAS data portal station id. `null` if site is not listed in the DVAS portal.
+- `gaw`: Global Atmosphere Watch identifier. `null` if the site does not have one.
+- `dvasId`: DVAS data portal station identifier. `null` if site is not listed in the DVAS portal.
 - `country`: The country or subdivision in which the site resides. Human-readable.
 - `countryCode`: Two-letter country code according to [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). `null` if code is not set or available.
 - `countrySubdivisionCode`: Country subdivision code according to [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2). `null` if code is not set or available.
@@ -70,7 +70,7 @@ Response body:
     "latitude": 62.278,
     "longitude": 16.008,
     "altitude": 380,
-    "gaw": "Unknown",
+    "gaw": null,
     "dvasId": null,
     "country": "Norway",
     "countryCode": "NO",
