@@ -1,46 +1,34 @@
 # Cloudnet documentation
 
-Cloudnet is a data pipeline to process and distribute cloud remote sensing
-data from measurement sites all over the Globe. Cloudnet consists of
-[Cloudnet data portal](https://cloudnet.fmi.fi),
-[processing software CloudnetPy](https://github.com/actris-cloudnet/cloudnetpy),
-and various APIs that can be used, for example, to submit raw data or
-programmatically access processed data products.
+Cloudnet collects, processes, and distrubutes cloud remote sensing data
+from [measurement sites all over the globe](https://cloudnet.fmi.fi/sites).
 
-Cloudnet is also one key element of [ACTRIS research infrastructure](https://www.actris.eu/) that is
-currently in its implementation phase. ACTRIS Data Centre node
-for cloud profiling (CLU) utilizes Cloudnet ecosystem to serve official ACTRIS cloud
-remote sensing products through the [ACTRIS data portal](https://actris.nilu.no/).
-More info about ACTRIS data can be found from the
-[ACTRIS data management plan](https://github.com/actris/data-management-plan/blob/master/DMP/ACTRIS-DMP.md).
+Cloudnet includes:
+* [Dataportal](https://cloudnet.fmi.fi) to browse and download data
+* [Cloudnetpy](https://github.com/actris-cloudnet/cloudnetpy) to post-process data
+* [Cloudnet submit tool](https://github.com/actris-cloudnet/cloudnet-submit) to submit data
+* [API](#api-reference) to access data and various services
 
-The Cloudnet data portal contains more data than the official ACTRIS data portal,
-but it may also provide only partially quality controlled data, non-standard metadata
-schema, experimental products, and so on.
 
-Cloudnet is developed and maintained by the [Finnish Meteorological Institute](https://en.ilmatieteenlaitos.fi/).
-
-## Index
-
-1. [API reference](#api-reference)
-2. [Processing code and file format](#processing-code-and-file-format)
-3. [Measurement sites](#measurement-sites)
-3. [License](#license)
-4. [Contact](#contact)
+Cloudnet is part of [ACTRIS research infrastructure](https://www.actris.eu/)
+and is developed and maintained by 
+the [Finnish Meteorological Institute](https://en.ilmatieteenlaitos.fi/).
 
 ## API Reference
 
-Cloudnet ecosystem provides several HTTP APIs to access different services:
+Cloudnet provides several HTTP APIs to access different services:
 
 * [Fetching data and metadata](api/data-portal.md)
 * [Data submission](api/data-upload.md)
-  * [Supported file types](api/upload-file-types.md)
+* [Supported file types for submission](api/upload-file-types.md)
 * [Calibration](api/calibration.md)
 
 ## Processing code and files
 
-* Cloudnet data are processed using open source Python package [CloudnetPy](https://github.com/actris-cloudnet/cloudnetpy).
-More info about CloudnetPy can be found from its own [documentation](https://cloudnetpy.readthedocs.io/en/latest/?badge=latest).
+* Cloudnet uses open source Python package 
+  [Cloudnetpy](https://github.com/actris-cloudnet/cloudnetpy)
+  for processing data.
+  See the [documentation](https://cloudnetpy.readthedocs.io/en/latest/?badge=latest).
 
 * Cloudnet uses netCDF4 file format.
 See the [file format description](https://cloudnetpy.readthedocs.io/en/latest/fileformat.html).
@@ -50,16 +38,35 @@ See the [file format description](https://cloudnetpy.readthedocs.io/en/latest/fi
 
 ## Measurement sites
 
-Regular, operational Cloudnet sites:
+Cloudnet measurements sites submit data daily into Cloudnet data portal.
+These sites are mostly located in Europe.
+In addition, data portal contains data from campaign sites all over the globe.
+You can also find some legacy data from sites that are part of US based 
+[Atmospheric Radiation Measurement (ARM)](https://www.arm.gov/) network.
 
+[See full list of sites here](https://cloudnet.fmi.fi/sites).
+Below is descriptions of a few.
+
+### Regular, operational Cloudnet sites
 * [Hyytiälä](sites/hyytiala.md)
 * [Kenttärova](sites/kenttarova.md)
 
-Campaign sites:
-
+### Campaign sites
 * [Punta Arenas](sites/punta-arenas.md)
 
-*(Site lists are not exhaustive and will be completed later.)*
+
+## Contact
+
+* Questions and feedback: [actris-cloudnet@fmi.fi](mailto:actris-cloudnet@fmi.fi)
+* News and updates: [twitter](https://twitter.com/actris_cloudnet)
+* Questions about code: [Github](https://github.com/actris-cloudnet)
+
+### Bugs and feature requests
+Create an issue in Github:
+* [Cloudnetpy](https://github.com/actris-cloudnet/cloudnetpy/issues/new)
+* [Cloudnet data submission tool](https://github.com/actris-cloudnet/cloudnet-submit/issues/new)
+* [RPG cloud radar reader](https://github.com/actris-cloudnet/rpgpy/issues/new)
+
 
 ## License
 
@@ -78,7 +85,3 @@ Cloudnet data is licensed under a [Creative Commons Attribution 4.0 internationa
 
   The licensor cannot revoke these freedoms as long as you follow the licence terms.
 
-## Contact
-
-You can contact as by email at [actris-cloudnet@fmi.fi](mailto:actris-cloudnet@fmi.fi). 
-Questions can be also asked using [Cloudnet forum](https://forum.cloudnet.fmi.fi).

@@ -1,11 +1,22 @@
 [Docs home](https://docs.cloudnet.fmi.fi)
 
-# Data submission API reference
+# Data submission
 
-This is the documentation for the HTTP API allowing sites to submit data files for archiving, 
-processing and publication in the Cloudnet data portal. This documentation is for API v2.
+The measurement sites can submit data files for archiving,
+processing and publication in the Cloudnet data portal.
 
-## General
+We recommend using
+the [cloudnet-submit](https://github.com/actris-cloudnet/cloudnet-submit)
+python package for the submissions.
+If the package is missing a feature that you need,
+[create an issue](https://github.com/actris-cloudnet/cloudnet-submit/issues/new)
+in Github.
+
+If you don't want to use the python package,
+you can also use the HTTP API. 
+The documentation for it is below.
+
+## API reference
 
 File submission has two stages: metadata and data upload. Metadata of the file must be uploaded 
 before uploading the file itself. You can find sample scripts in [examples](#examples).
