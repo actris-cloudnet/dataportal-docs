@@ -60,3 +60,14 @@ header {
   flex-direction: column;
   justify-content: center;
 }
+
+.note {
+  padding: 16px;
+  border-radius: 4px;
+  border: 1px solid #cad7ff;
+  background: #eef2ff;
+}
+
+.note p:last-child {
+  margin-bottom: 0;
+}

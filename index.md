@@ -58,11 +58,11 @@ Below is descriptions of a few.
 ## Contact
 
 * Questions and feedback: [actris-cloudnet@fmi.fi](mailto:actris-cloudnet@fmi.fi)
-* News and updates: [twitter](https://twitter.com/actris_cloudnet)
-* Questions about code: [Github](https://github.com/actris-cloudnet)
+* News and updates: [Twitter](https://twitter.com/actris_cloudnet)
+* Questions about code: [GitHub](https://github.com/actris-cloudnet)
 
 ### Bugs and feature requests
-Create an issue in Github:
+Create an issue in GitHub:
 * [Cloudnetpy](https://github.com/actris-cloudnet/cloudnetpy/issues/new)
 * [Cloudnet data submission tool](https://github.com/actris-cloudnet/cloudnet-submit/issues/new)
 * [RPG cloud radar reader](https://github.com/actris-cloudnet/rpgpy/issues/new)

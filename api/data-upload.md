@@ -5,16 +5,20 @@
 The measurement sites can submit data files for archiving,
 processing and publication in the Cloudnet data portal.
 
+<div class="note">
+
 We recommend using
 the [cloudnet-submit](https://github.com/actris-cloudnet/cloudnet-submit)
-python package for the submissions.
+Python package for the submissions.
 If the package is missing a feature that you need,
-[create an issue](https://github.com/actris-cloudnet/cloudnet-submit/issues/new)
-in Github.
+please [create an issue](https://github.com/actris-cloudnet/cloudnet-submit/issues/new)
+in GitHub.
 
-If you don't want to use the python package,
+If you don't want to use the Python package,
 you can also use the HTTP API. 
 The documentation for it is below.
+
+</div>
 
 ## API reference
 
@@ -123,7 +127,7 @@ directory tree and submitting data from several sites and instruments.
 
 ### Python
 
-This example uses the python library `requests` for submitting requests.
+This example uses the Python library `requests` for submitting requests.
 
 ```python
 import hashlib
