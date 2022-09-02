@@ -35,7 +35,7 @@ The JSON request should have the following fields:
 - `measurementDate`: UTC date in `YYYY-MM-DD` format of the first data point in the file.
 - `instrument`: Instrument name. Must be one of the ids listed in [https://cloudnet.fmi.fi/api/instruments/](https://cloudnet.fmi.fi/api/instruments/). 
   See also [expected file types](upload-file-types.md).
-- `instrumentPid`: (optional) persistent identifier (PID) for the instrument. If you don't have a PID for your instrument, send email to <actris-cloudnet@fmi.fi>.
+- `instrumentPid`: (optional) persistent identifier (PID) for the instrument, see [available instruments](https://instrumentdb.out.ocp.fmi.fi/).
 - `filename`: Name of the file.
 - `checksum`: An MD5 sum of the file being sent. Used for identifying the file and verifying its integrity. 
   Can be computed by using for instance the `md5sum` UNIX program.
