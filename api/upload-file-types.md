@@ -15,7 +15,7 @@ We recommend uploading the following files:
 | `rpg-fmcw-94`, `rpg-fmcw-35` | RPG cloud radars | `*.LV1` and compressed `*.LV0` files. | binary |
 | `ct25k`, `cl31`, `cl51`      | Vaisala ceilometers | `*.DAT` files. File extension may be different depending on collection system.  | text |
 | `cl61d`                      | Vaisala CL61-D ceilometer | Non-concatenated `*.nc` files.  | netCDF |
-| `chm15k`, `chm15x`           | Lufft ceilometers | `*.nc` files. Either non-concatenated or concatenated files but not both. | netCDF |
+| `chm15k`, `chm15kx`          | Lufft ceilometers | `*.nc` files. Either non-concatenated or concatenated files but not both. | netCDF |
 | `hatpro`                     | RPG HATPRO microwave radiometer | At least the `*.LWP` binary files, but other files are fine too (brightness temperatures, water vapour, housekeeping). | binary |
 | `radiometrics`               | Radiometrics MP3014 microwave radiometer | `*.csv` files. | CSV |
 | `copernicus`                 | Copernicus cloud radar | `*.nc` files. | netCDF |
