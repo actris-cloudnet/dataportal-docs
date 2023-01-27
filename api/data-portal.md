@@ -280,8 +280,7 @@ Response body:
 Queries the metadata of multiple product files. On a successful query responds with an array of `File` objects. 
 The results can be filtered with the following parameters:
 - `site`: One or more `Site` ids, from which to fetch file metadata.
-- `date`: Only fetch data from a given date. Date format is `YYYY-MM-DD` or any 
-date format parseable by [JavaScript `Date`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) -object. 
+- `date`: Only fetch data from a given date. Date format is `YYYY-MM-DD`.
 - `dateFrom`: Limit query to files whose `measurementDate` is `dateFrom` or later. Same date format as in `date`. 
 By default `measurementDate` is not limited.
 - `dateTo`: Limit query to files whose `measurementDate` is `dateTo` or earlier. Same date format as in `date`.
@@ -347,8 +346,7 @@ Response body:
 Queries the metadata of model files. It offers the following parameters for filtering the results:
 
 - `site`: One or more `Site` ids, from which to fetch file metadata.
-- `date`: Only fetch data from a given date. Date format is `YYYY-MM-DD` or any
-  date format parseable by [JavaScript `Date`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) -object.
+- `date`: Only fetch data from a given date. Date format is `YYYY-MM-DD`.
 - `dateFrom`: Limit query to files whose `measurementDate` is `dateFrom` or later. Same date format as in `date`.
   By default `measurementDate` is not limited.
 - `dateTo`: Limit query to files whose `measurementDate` is `dateTo` or earlier. Same date format as in `date`.
@@ -500,24 +498,23 @@ Response body:
 
 ### `GET /api/raw-files` → `Upload[]`
 
-Query the metadata of uploaded instrument files. Date format is `YYYY-MM-DD` or any 
-date format parseable by [JavaScript `Date`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) -object. You can use the following the parameters to filter the search results.
+Query the metadata of uploaded instrument files. You can use the following the parameters to filter the search results.
 - `site`: `Site` id.
 - `status`: Status of the uploaded file. By default returns files with any status. Status may be one of the following:
     - `created`: Metadata has been created but file has not been uploaded.
     - `uploaded`: File has been successfully uploaded, but it has not been processed.
     - `processed`: File has been uploaded and it has been processed.
     - `invalid`: File could not be processed due to an error.
-- `date`: Limit query to files whose `measurementDate` is `date`.
+- `date`: Limit query to files whose `measurementDate` is `date`. Date format is `YYYY-MM-DD`.
 - `dateFrom`: Limit query to files whose `measurementDate` is `dateFrom` or later.
   By default `measurementDate` is not limited.
 - `dateTo`: Limit query to files whose `measurementDate` is `dateTo` or earlier.
   If omitted will default to the current date.
 - `instrument`: `Instrument` id.
 - `updatedAtFrom`: Limit query to files whose `updatedAt` is `updatedAtFrom` or later.
-  By default `updatedAt` is not limited.
+  By default `updatedAt` is not limited. Accepts either `YYYY-MM-DD` or `YYYY-MM-DDTHH:MM:SS.SSSZ`.
 - `updatedAtTo`: Limit query to files whose `updatedAt` is `updatedAtTo` or earlier.
-  If omitted will default to the current date.
+  If omitted will default to the current date. Accepts same format as `updatedAtFrom`.
 
 The response is an array of `Upload` objects. The `Upload` object has the following properties:
 
