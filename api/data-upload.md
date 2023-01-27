@@ -98,7 +98,8 @@ JSON=$(cat << EOF
  "measurementDate": "2020-10-30",
  "instrument": "chm15k",
  "filename": "$FILENAME",
- "checksum": "$HASH"
+ "checksum": "$HASH",
+ "site": "hyytiala"
 }
 EOF
 )
@@ -123,9 +124,6 @@ echo "$DATA_RESPONSE"
 fi
 ```
 
-There is also a more complete [example script](submit-to-cloudnet) for parsing files from a local
-directory tree and submitting data from several sites and instruments.
-
 ### Python
 
 This example uses the Python library `requests` for submitting requests.
@@ -135,7 +133,7 @@ import hashlib
 import requests
 
 filename = 'file1.nc'
-username = 'granada'
+username = 'example'
 password = 'letmein'
 
 # Compute hash
@@ -151,6 +149,7 @@ metadata = {
    'checksum': checksum,
    'measurementDate': '2020-10-30',
    'instrument': 'chm15k',
+   'site': 'hyytiala'
 }
 
 # Upload metadata
@@ -162,9 +161,10 @@ res = requests.post('https://cloudnet.fmi.fi/upload/metadata/',
 if res.status_code != 200: # Handle errors
    print(res.text)
 else: # Upload data
-   res = requests.put(f'https://cloudnet.fmi.fi/upload/data/{checksum}',
-       data=open(filename, 'rb'),
-       auth=(username, password))
+   with open(filename, 'rb') as f:
+       res = requests.put(f'https://cloudnet.fmi.fi/upload/data/{checksum}',
+           data=f,
+           auth=(username, password))
    print(res.text)
 
 ```
