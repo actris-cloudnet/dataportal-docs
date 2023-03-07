@@ -35,7 +35,7 @@ The JSON request should have the following fields:
 - `measurementDate`: UTC date in `YYYY-MM-DD` format of the first data point in the file.
 - `instrument`: Instrument name. Must be one of the ids listed in [https://cloudnet.fmi.fi/api/instruments/](https://cloudnet.fmi.fi/api/instruments/). 
   See also [expected file types](upload-file-types.md).
-- `instrumentPid`: (optional) persistent identifier (PID) for the instrument, see [available instruments](https://instrumentdb.out.ocp.fmi.fi/).
+- `instrumentPid`: (currently optional, required in the future) persistent identifier (PID) for the instrument, see [available instruments](https://instrumentdb.out.ocp.fmi.fi/).
 - `filename`: Name of the file.
 - `checksum`: An MD5 sum of the file being sent. Used for identifying the file and verifying its integrity. 
   Can be computed by using for instance the `md5sum` UNIX program.
@@ -59,7 +59,7 @@ Example of metadata upload with the `curl` command:
 ```bash
 curl -u USERNAME:PASSWORD \
   -H "Content-Type: application/json" \
-  -d '{"measurementDate":"2020-10-30","instrument":"rpg-fmcw-94","filename":"201030_020000_P06_ZEN.LV1","checksum":"e07910a06a086c83ba41827aa00b26ed","site":"hyytiala"}' \
+  -d '{"measurementDate":"2020-10-30","instrument":"rpg-fmcw-94","instrumentPid": "https://hdl.handle.net/21.12132/3.191564170f8a4686","filename":"201030_020000_P06_ZEN.LV1","checksum":"e07910a06a086c83ba41827aa00b26ed","site":"hyytiala"}' \
   https://cloudnet.fmi.fi/upload/metadata/
 ```
 Replace `USERNAME` and `PASSWORD` with your station's credentials. You can acquire the credentials 
@@ -97,6 +97,7 @@ JSON=$(cat << EOF
 {
  "measurementDate": "2020-10-30",
  "instrument": "chm15k",
+ "instrumentPid": "INSTRUMENTS_PID",
  "filename": "$FILENAME",
  "checksum": "$HASH",
  "site": "hyytiala"
@@ -149,6 +150,7 @@ metadata = {
    'checksum': checksum,
    'measurementDate': '2020-10-30',
    'instrument': 'chm15k',
+   'instrumentPid': 'INSTRUMENTS_PID',
    'site': 'hyytiala'
 }
 
