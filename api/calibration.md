@@ -53,7 +53,8 @@ Response body:
 
 ```shell
 curl -u username:password \
+     -X PUT \
      -H "Content-Type: application/json" \
      -d '{"range_corrected": true, "calibration_factor": 5e-9}' \
-     https://cloudnet.fmi.fi/api/calibration?instrumentPid=https://hdl.handle.net/21.12132/3.cdf99c536bd04146&date=2021-01-01
+     'https://cloudnet.fmi.fi/api/calibration?instrumentPid=https://hdl.handle.net/21.12132/3.cdf99c536bd04146&date=2021-01-01'
 ```
