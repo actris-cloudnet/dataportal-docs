@@ -17,8 +17,8 @@ We recommend uploading the following files:
 | `cl61d`                         | Vaisala CL61-D ceilometer                                | Non-concatenated `.nc` files.                                                            | netCDF    |
 | `chm15k`, `chm15kx`             | Lufft ceilometers                                        | `.nc` files. Either non-concatenated or concatenated files but not both.                 | netCDF    |
 | `hatpro`                        | RPG HATPRO microwave radiometer                          | `.LWP`, `.IWV`, `.HKD`, `.BRT`, `.MET`, `.BLB`/`.BLS`, `.IRT`, and similar binary files. | binary    |
-| `radiometrics`                  | Radiometrics (MP3014, MWP1, etc.) microwave radiometer   | `.csv` files.                                                                            | CSV       |
-| `dwd-mwr`                       | MWR dual-wavelength microwave radiometer from Lindenberg | `unknown`                                                                                | CSV       |
+| `radiometrics`                  | Radiometrics (MP3014, MWP1, etc.) microwave radiometer   | `.csv` or compressed `.csv.gz` files.                                                    | CSV       |
+| `dwd-mwr`                       | MWR dual-wavelength microwave radiometer from Lindenberg | Unknown for now.                                                                         | unknown   |
 | `copernicus`                    | Copernicus cloud radar                                   | `.nc` files.                                                                             | netCDF    |
 | `galileo`                       | Galileo cloud radar                                      | `.nc` files.                                                                             | netCDF    |
 | `basta`                         | BASTA cloud radar                                        | Daily `.nc` files.                                                                       | netCDF    |
@@ -28,7 +28,7 @@ We recommend uploading the following files:
 | `halo-doppler-lidar`            | Halo Photonics Doppler lidar                             | `.hpl`, `Background*.txt` and `system_parameters*.txt` files.                            | text      |
 | `pollyxt`                       | PollyXT Raman lidar                                      | `*att_bsc.nc` and `*vol_depol.nc` files.                                                 | netCDF    |
 | `wls100s`, `wls200s`, `wls400s` | Leosphere windcube long-range scanning Doppler lidars    | `.nc` files.                                                                             | netCDF    |
-| `weather-station`               | Weather station data (temperature, humidity, etc.)       | `unknown`                                                                                | `unknown` |
+| `weather-station`               | Weather station data (temperature, humidity, etc.)       | Unknown for now.                                                                         | unknown   |
 
 We plan to also accept the following instrument types in the future. Note that the API will not accept these yet. 
 If you have other instruments you would like to include (such as other disdrometers, lidars or ancillary instrumentation), please 
