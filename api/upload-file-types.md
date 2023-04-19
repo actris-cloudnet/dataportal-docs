@@ -15,7 +15,7 @@ We recommend uploading the following files:
 | `rpg-fmcw-94`, `rpg-fmcw-35`    | RPG cloud radars                                         | `.LV1` and compressed `.LV0` files.                                                      | binary  |
 | `ld40`, `ct25k`, `cl31`, `cl51` | Vaisala ceilometers                                      | `.DAT` files. File extension may be different depending on collection system.            | text    |
 | `cl61d`                         | Vaisala CL61-D ceilometer                                | Non-concatenated `.nc` files.                                                            | netCDF  |
-| `chm15k`, `chm15kx`             | Lufft ceilometers                                        | `.nc` files. Either non-concatenated or concatenated files but not both.                 | netCDF  |
+| `chm15k`, `chm15kx`             | Lufft ceilometers (formerly Jenoptik)                    | `.nc` files. Either non-concatenated or concatenated files but not both.                 | netCDF  |
 | `hatpro`                        | RPG HATPRO microwave radiometer                          | `.LWP`, `.IWV`, `.HKD`, `.BRT`, `.MET`, `.BLB`/`.BLS`, `.IRT`, and similar binary files. | binary  |
 | `radiometrics`                  | Radiometrics (MP3014, MWP1, etc.) microwave radiometer   | `.csv` or compressed `.csv.gz` files.                                                    | CSV     |
 | `dwd-mwr`                       | MWR dual-wavelength microwave radiometer from Lindenberg | Unknown for now.                                                                         | unknown |
@@ -23,7 +23,7 @@ We recommend uploading the following files:
 | `galileo`                       | Galileo cloud radar                                      | `.nc` files.                                                                             | netCDF  |
 | `basta`                         | BASTA cloud radar                                        | Daily `.nc` files.                                                                       | netCDF  |
 | `rasta`                         | RASTA cloud radar                                        | Daily `.nc` files.                                                                       | netCDF  |
-| `parsivel`                      | OTT Parsivel2 disdrometer                                | `.log` files.                                                                            | text    |
+| `parsivel`                      | OTT Parsivel² disdrometer                                | `.log` files.                                                                            | text    |
 | `thies-lnm`                     | Thies LNM disdrometer                                    | `.txt` files.                                                                            | text    |
 | `halo-doppler-lidar`            | Halo Photonics Doppler lidar                             | `.hpl`, `Background*.txt` and `system_parameters*.txt` files.                            | text    |
 | `pollyxt`                       | PollyXT Raman lidar                                      | `*att_bsc.nc` and `*vol_depol.nc` files.                                                 | netCDF  |
