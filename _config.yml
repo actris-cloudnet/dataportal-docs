@@ -23,7 +23,6 @@ email: actris-cloudnet@fmi.fi
 
 # Build settings
 theme: jekyll-theme-primer
-
 # Exclude from processing.
 # The following items will not be processed, by default.
 # Any item listed under the `exclude:` key here will be automatically added to

@@ -16,14 +16,14 @@ in GitHub.
 </p>
 <p>
 If you don't want to use the Python package,
-you can also use the HTTP API. 
+you can also use the HTTP API.
 The documentation for it is below.
 </p>
 </div>
 
 ## API reference
 
-File submission has two stages: metadata and data upload. Metadata of the file must be uploaded 
+File submission has two stages: metadata and data upload. Metadata of the file must be uploaded
 before uploading the file itself. You can find sample scripts in [examples](#examples).
 
 ### Metadata upload
@@ -33,11 +33,11 @@ The route accepts `application/json` type data, and requires HTTP Basic authenti
 The JSON request should have the following fields:
 
 - `measurementDate`: UTC date in `YYYY-MM-DD` format of the first data point in the file.
-- `instrument`: Instrument name. Must be one of the ids listed in [https://cloudnet.fmi.fi/api/instruments/](https://cloudnet.fmi.fi/api/instruments/). 
+- `instrument`: Instrument name. Must be one of the ids listed in [https://cloudnet.fmi.fi/api/instruments/](https://cloudnet.fmi.fi/api/instruments/).
   See also [expected file types](upload-file-types.md).
 - `instrumentPid`: (currently optional, required in the future) persistent identifier (PID) for the instrument, see [available instruments](https://instrumentdb.out.ocp.fmi.fi/).
 - `filename`: Name of the file.
-- `checksum`: An MD5 sum of the file being sent. Used for identifying the file and verifying its integrity. 
+- `checksum`: An MD5 sum of the file being sent. Used for identifying the file and verifying its integrity.
   Can be computed by using for instance the `md5sum` UNIX program.
 - `site`: Site identifier. Must be one of the ids listed in [https://cloudnet.fmi.fi/api/sites/](https://cloudnet.fmi.fi/api/sites/). If your username corresponds to site identifier, this field is optional.
 
@@ -62,15 +62,16 @@ curl -u USERNAME:PASSWORD \
   -d '{"measurementDate":"2020-10-30","instrument":"rpg-fmcw-94","instrumentPid": "https://hdl.handle.net/21.12132/3.191564170f8a4686","filename":"201030_020000_P06_ZEN.LV1","checksum":"e07910a06a086c83ba41827aa00b26ed","site":"hyytiala"}' \
   https://cloudnet.fmi.fi/upload/metadata/
 ```
-Replace `USERNAME` and `PASSWORD` with your station's credentials. You can acquire the credentials 
+
+Replace `USERNAME` and `PASSWORD` with your station's credentials. You can acquire the credentials
 by contacting the CLU team at actris-cloudnet@fmi.fi.
 
 Update: It is now possible to acquire single credentials for uploading data from several sites.
-  
+
 ### Data upload
 
-After uploading the metadata, the file itself is uploaded by sending a `PUT` request to `https://cloudnet.fmi.fi/upload/data/<md5>`, 
-where `<md5>` is replaced by the file's MD5 checksum. The body of the request should be the file contents. 
+After uploading the metadata, the file itself is uploaded by sending a `PUT` request to `https://cloudnet.fmi.fi/upload/data/<md5>`,
+where `<md5>` is replaced by the file's MD5 checksum. The body of the request should be the file contents.
 Use the `Transfer-Encoding: chunked` HTTP header when uploading files.
 
 Example using `curl`:
@@ -177,6 +178,7 @@ The following status codes are used by the server to signal the success/failure 
 Each response is accompanied by a message elaborating the cause of the status code.
 
 ### Metadata
+
 - `200 OK`: Metadata creation was successful.
 - `400 Bad Request`: There was a problem in handling the request. Check request headers and content type.
 - `401 Unauthorized`: Problem in authentication. Check credentials.
@@ -189,4 +191,3 @@ Each response is accompanied by a message elaborating the cause of the status co
 - `200 OK`: File already exists, doing nothing.
 - `400 Bad Request`: There was a problem in handling the request. Check that the MD5 checksum is valid and corresponds to the file.
 - `401 Unauthorized`: Problem in authentication. Check credentials.
-

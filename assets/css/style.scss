@@ -4,7 +4,7 @@
 @import "{{ site.theme }}";
 
 body {
-  font-size: 1rem
+  font-size: 1rem;
 }
 
 .markdown-body {
@@ -22,7 +22,8 @@ body {
 }
 
 header {
-  background-image: linear-gradient(to left, transparent, #78C0E0 70%), url("/img/clouds3.jpg");
+  background-image: linear-gradient(to left, transparent, #78c0e0 70%),
+    url("/img/clouds3.jpg");
   opacity: 0.7;
   background-position: right 0px top 20%;
   background-repeat: no-repeat;
@@ -38,22 +39,23 @@ header {
 
 .portal-name {
   cursor: pointer;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   color: white;
   margin: 0;
-  line-height: 1; }
-  .portal-name > h1 {
-    display: inline;
-    margin: 0;
-    font-weight: 400;
-    font-size: revert;
-  }
-  .portal-name > span {
-    font-size: 0.8em;
-    text-transform: uppercase;
-    text-align: center;
-    letter-spacing: .3em;
-  }
+  line-height: 1;
+}
+.portal-name > h1 {
+  display: inline;
+  margin: 0;
+  font-weight: 400;
+  font-size: revert;
+}
+.portal-name > span {
+  font-size: 0.8em;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 0.3em;
+}
 
 .vertical-center {
   display: flex;

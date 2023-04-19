@@ -6,10 +6,9 @@ This is the documentation for the API v2 provided by the Cloudnet data portal.
 
 ## General
 
-We provide an HTTP REST API for programmatic access to the metadata at the Cloudnet data portal. 
-The API responds with JSON and can be accessed via the base URL `https://cloudnet.fmi.fi/api/`. 
+We provide an HTTP REST API for programmatic access to the metadata at the Cloudnet data portal.
+The API responds with JSON and can be accessed via the base URL `https://cloudnet.fmi.fi/api/`.
 Metadata can be queried via the following routes. For examples on how to use the API programmatically, see [Examples](#examples).
-
 
 ## Index
 
@@ -30,13 +29,13 @@ Metadata can be queried via the following routes. For examples on how to use the
 1. [Notes](#notes)
 1. [Errors](#errors)
 
-
 ## Routes
 
 ### `GET /api/sites` → `Site[]`
 
-Fetch information on all the measuring stations in the system. Responds with an array of `Site` objects, 
+Fetch information on all the measuring stations in the system. Responds with an array of `Site` objects,
 each having the properties:
+
 - `id`: Unique site identifier.
 - `humanReadableName`: Name of the site in a human-readable format.
 - `type`: An array of site type identifiers. Types are as follows:
@@ -82,8 +81,9 @@ Response body:
 
 ### `GET /api/products` → `Product[]`
 
-Fetch information on the products served in the data portal. Responds with an array of `Product` objects, 
+Fetch information on the products served in the data portal. Responds with an array of `Product` objects,
 each having the properties:
+
 - `id`: Unique identifier of the product.
 - `humanReadableName`: Name of the product in a human-readable format.
 - `level`: Product level. Is either `1b`, `1c`, `2` or `3`.
@@ -94,6 +94,7 @@ Example query:
 `GET https://cloudnet.fmi.fi/api/products`
 
 Response body:
+
 ```json
 [
   {
@@ -109,6 +110,7 @@ Response body:
 
 Fetch product variables. Responds with an array of `ProductVariable` objects,
 each having the properties:
+
 - `id`: Unique identifier of the product.
 - `humanReadableName`: Name of the product in a human-readable format.
 - `level`: Product level. Is either `1b`, `1c`, or `2`.
@@ -124,6 +126,7 @@ Example query:
 `GET https://cloudnet.fmi.fi/api/products/variables`
 
 Response body:
+
 ```json
   [
   {
@@ -149,8 +152,9 @@ Response body:
 
 ### `GET /api/instruments` → `Instrument[]`
 
-Fetch information on the instruments supported by the data portal. Responds with an array of `Instrument` objects, 
+Fetch information on the instruments supported by the data portal. Responds with an array of `Instrument` objects,
 each having the properties:
+
 - `id`: Unique identifier of the instrument.
 - `humanReadableName`: Name of the instrument in a human readable format.
 - `type`: Instrument type. May be, for example, `radar`, `lidar`, or `mwr`.
@@ -160,6 +164,7 @@ Example query:
 `GET https://cloudnet.fmi.fi/api/instruments`
 
 Response body:
+
 ```json
 [
   {
@@ -173,8 +178,9 @@ Response body:
 
 ### `GET /api/models` → `Model[]`
 
-Fetch information on the different model file types served in the data portal. Responds with an array of `Model` objects, 
+Fetch information on the different model file types served in the data portal. Responds with an array of `Model` objects,
 each having the properties:
+
 - `id`: The unique identifier of the model.
 - `optimumOrder`: Integer that signifies model quality. Better models have lower `optimumOrder`.
 
@@ -183,6 +189,7 @@ Example query:
 `GET https://cloudnet.fmi.fi/api/models`
 
 Response body:
+
 ```json
 [
   {
@@ -195,28 +202,29 @@ Response body:
 
 ### `GET /api/files/UUID` → `File`
 
-Fetch metadata for a single data object using its UUID (Universal Unique IDentifier). 
-All the data objects downloaded from the data portal are associated with a UUID, 
-which can be found in the data object's global attribute `file_uuid`. 
+Fetch metadata for a single data object using its UUID (Universal Unique IDentifier).
+All the data objects downloaded from the data portal are associated with a UUID,
+which can be found in the data object's global attribute `file_uuid`.
 To view the global attributes of a NetCDF file, one may use `ncdump -h file.nc`.
 
 On a successful query the route responds with a `File` object, which has the following properties:
+
 - `uuid`: UUIDv4 identifier.
 - `version`: String identifying file version. Empty string on volatile files.
 - `pid`: The persistent identifier of the data object. Empty string for data objects that do not have a PID, such as volatile files.
-- `volatile`: `true` if the file has been modified recently and may change in the future, 
+- `volatile`: `true` if the file has been modified recently and may change in the future,
 - `legacy`: `true` if the file is legacy data, `false` if it has been processed with CloudnetPy.
-`false` if the file has not been changed recently and will not change in the future.
+  `false` if the file has not been changed recently and will not change in the future.
 - `measurementDate`: The date on which the data was measured, `YYYY-MM-DD`.
-- `history`: A freeform history of the file set by the creator/processor of the file. This field 
-is not curated in any way and may or may not contain helpful information.
+- `history`: A freeform history of the file set by the creator/processor of the file. This field
+  is not curated in any way and may or may not contain helpful information.
 - `checksum`: The SHA-256 checksum of the file. Useful for verifying file integrity.
 - `size`: Size of the file in bytes.
 - `format`: The data structure of the file. Either `NetCDF3` or `HDF5 (NetCDF4)`.
 - `createdAt`: The datetime on which the file was created. In ISO 8601 -format.
 - `updatedAt`: The datetime on which the file was last updated. In ISO 8601 -format.
 - `sourceFileIds`: Comma-separated list of `uuid` strings corresponding to the source files that were used to generate the file. If the source file information is not available, this is `null`.
-- `cloudnetpyVersion`: The version of the [CloudnetPy](https://github.com/actris-cloudnet/cloudnetpy) library. 
+- `cloudnetpyVersion`: The version of the [CloudnetPy](https://github.com/actris-cloudnet/cloudnetpy) library.
 - `site`: `Site` object containing information of the site on which the measurement was made.
 - `product`: `Product` object containing information of the data product.
 - `downloadUrl`: The full URL to the data object. Useful for downloading the file.
@@ -224,12 +232,12 @@ is not curated in any way and may or may not contain helpful information.
 - `quality`: Quality status of the product. Either `nrt` (Near Real Time) or `qc` (Quality Controlled).
 - `qualityScore`: A float in the range [0, 1] signifying the results of automatic quality tests, or `null` when the quality test report is not available. `1` means that all tests passed, `0` that no tests pass.
 
-
 Example query:
 
 `GET https://cloudnet.fmi.fi/api/files/911bd5b1-3104-4732-9bd3-34ed8208adad`
 
 Response body:
+
 ```json
 {
   "uuid": "911bd5b1-3104-4732-9bd3-34ed8208adad",
@@ -277,20 +285,21 @@ Response body:
 
 ### `GET /api/files` → `File[]`
 
-Queries the metadata of multiple product files. On a successful query responds with an array of `File` objects. 
+Queries the metadata of multiple product files. On a successful query responds with an array of `File` objects.
 The results can be filtered with the following parameters:
+
 - `site`: One or more `Site` ids, from which to fetch file metadata.
 - `date`: Only fetch data from a given date. Date format is `YYYY-MM-DD`.
-- `dateFrom`: Limit query to files whose `measurementDate` is `dateFrom` or later. Same date format as in `date`. 
-By default `measurementDate` is not limited.
+- `dateFrom`: Limit query to files whose `measurementDate` is `dateFrom` or later. Same date format as in `date`.
+  By default `measurementDate` is not limited.
 - `dateTo`: Limit query to files whose `measurementDate` is `dateTo` or earlier. Same date format as in `date`.
-If omitted will default to the current date.
+  If omitted will default to the current date.
 - `product`: One or more `Product` ids, by which to filter the files. May NOT be `model`; for model files, see route `/api/model-files`.
 - `filename`: One or more filenames by which to filter the files.
 - `allVersions`: By default the API returns only the latest version of the files. Adding this parameter will fetch all existing versions.
 - `showLegacy`: By default the API does not return legacy data. Adding this parameter will fetch also legacy data.
 
-Note: one or more of the parameters *must* be issued. A query without any valid parameters will result in a `400 Bad Request` error.
+Note: one or more of the parameters _must_ be issued. A query without any valid parameters will result in a `400 Bad Request` error.
 
 Example query for fetching metadata for all classification files from Bucharest starting at 24. April 2020 and ending at the current date:
 
@@ -382,9 +391,7 @@ Response body:
     "site": {
       "id": "lindenberg",
       "humanReadableName": "Lindenberg",
-      "type": [
-        "cloudnet"
-      ],
+      "type": ["cloudnet"],
       "latitude": 52.208,
       "longitude": 14.118,
       "altitude": 104,
@@ -411,6 +418,7 @@ Response body:
 
 Fetch visualization metadata for a single data object using its UUID.
 On a successful query the route responds with a `Visualization` object, which has the following properties:
+
 - `sourceFileId`: UUID of the file for of which the visualizations were generated.
 - `productHumanReadable`: Human readable name of the product.
 - `locationHumanReadable`: Human readable name of the site.
@@ -432,7 +440,8 @@ Example query:
 `GET https://cloudnet.fmi.fi/api/visualizations/cfda5129-0a51-45d4-b674-ccf6c7f1a447`
 
 Response body:
-````json
+
+```json
 {
   "sourceFileId": "cfda5129-0a51-45d4-b674-ccf6c7f1a447",
   "visualizations": [
@@ -460,7 +469,7 @@ Response body:
   "volatile": true,
   "legacy": false
 }
-````
+```
 
 ### `GET /api/visualizations` → `Visualization[]`
 
@@ -472,7 +481,8 @@ Example request:
 `GET https://cloudnet.fmi.fi/api/visualizations/?date=2021-10-25&site=mindelo`
 
 Response body:
-````json
+
+```json
 [
   {
     "sourceFileId": "36a95fab-f07f-4182-99b8-0082b26b6069",
@@ -494,17 +504,18 @@ Response body:
   },
 ...
 ]
-````
+```
 
 ### `GET /api/raw-files` → `Upload[]`
 
 Query the metadata of uploaded instrument files. You can use the following the parameters to filter the search results.
+
 - `site`: `Site` id.
 - `status`: Status of the uploaded file. By default returns files with any status. Status may be one of the following:
-    - `created`: Metadata has been created but file has not been uploaded.
-    - `uploaded`: File has been successfully uploaded, but it has not been processed.
-    - `processed`: File has been uploaded and it has been processed.
-    - `invalid`: File could not be processed due to an error.
+  - `created`: Metadata has been created but file has not been uploaded.
+  - `uploaded`: File has been successfully uploaded, but it has not been processed.
+  - `processed`: File has been uploaded and it has been processed.
+  - `invalid`: File could not be processed due to an error.
 - `date`: Limit query to files whose `measurementDate` is `date`. Date format is `YYYY-MM-DD`.
 - `dateFrom`: Limit query to files whose `measurementDate` is `dateFrom` or later.
   By default `measurementDate` is not limited.
@@ -576,8 +587,6 @@ Response body:
 
 Query the metadata of uploaded model files. Query parameters are as above, with the following exception:
 Instead of the `instrument` parameter, it is possible to filter the results with the `model` parameter, which takes `Model` id.
-
-
 
 Example query:
 
@@ -699,6 +708,7 @@ The compression can be enabled effortlessly in `curl` with the `--compressed` sw
 ## Errors
 
 The API responds to errors with the appropriate HTTP status code and an `Error` object, which has the properties:
+
 - `status`: HTTP error code.
 - `message`: Human readable error message as a string or an array of strings.
 
@@ -711,8 +721,6 @@ Response body:
 ```json
 {
   "status": 404,
-  "errors": [
-    "One or more of the specified products were not found"
-  ]
+  "errors": ["One or more of the specified products were not found"]
 }
 ```
