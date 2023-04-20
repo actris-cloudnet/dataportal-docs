@@ -574,7 +574,6 @@ Response body:
     "instrument": {
       "id": "rpg-fmcw-94",
       "type": "radar",
-      "auxiliary": false,
       "humanReadableName": "RPG FMCW-94 cloud radar"
     },
     "downloadUrl": "https://cloudnet.fmi.fi/api/download/raw/8cce060a-f258-4628-85df-f8bcca21f73d/210607_180000_P09_ZEN.LV0"
