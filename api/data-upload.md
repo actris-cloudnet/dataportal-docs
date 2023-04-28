@@ -54,6 +54,33 @@ Example JSON for uploading a file named `201030_020000_P06_ZEN.LV1`:
 }
 ```
 
+To distinguish Halo doppler lidar co and cross files, use `tags`:
+```json
+{
+  "measurementDate": "2022-01-01",
+  "instrument": "halo-doppler-lidar",
+  "instrumentPid": "https://hdl.handle.net/21.12132/3.421272f219be4f97",
+  "filename": "Stare_34_20220101_00.hpl",
+  "checksum": "3f19b6bb762af3c61fa0845cfb5fa6d1",
+  "site": "hyytiala",
+  "tags": ["co"]
+}
+```
+```json
+{
+  "measurementDate": "2022-01-01",
+  "instrument": "halo-doppler-lidar",
+  "instrumentPid": "https://hdl.handle.net/21.12132/3.421272f219be4f97",
+  "filename": "Stare_34_20220101_00.hpl",
+  "checksum": "de46ec1e32b2965fce285057a8970d16",
+  "site": "hyytiala",
+  "tags": ["cross"]
+}
+```
+`tags` field must be given as a list.
+
+
+
 Example of metadata upload with the `curl` command:
 
 ```bash
