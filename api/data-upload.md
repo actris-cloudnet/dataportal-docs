@@ -33,13 +33,14 @@ The route accepts `application/json` type data, and requires HTTP Basic authenti
 The JSON request should have the following fields:
 
 - `measurementDate`: UTC date in `YYYY-MM-DD` format of the first data point in the file.
-- `instrument`: Instrument name. Must be one of the ids listed in [https://cloudnet.fmi.fi/api/instruments/](https://cloudnet.fmi.fi/api/instruments/).
+- `instrument`: Instrument name. Must be one of the IDs listed in [https://cloudnet.fmi.fi/api/instruments/](https://cloudnet.fmi.fi/api/instruments/).
   See also [expected file types](upload-file-types.md).
 - `instrumentPid`: Persistent identifier (PID) for the instrument. See [available instruments](https://instrumentdb.out.ocp.fmi.fi/).
 - `filename`: Name of the file.
-- `checksum`: An MD5 sum of the file being sent. Used for identifying the file and verifying its integrity.
+- `tags`: _(optional)_ Array of tags. Allowed values for each instrument are listed in [https://cloudnet.fmi.fi/api/instruments/](https://cloudnet.fmi.fi/api/instruments/).
+- `checksum`: An MD5 checksum of the file being sent. Used for identifying the file and verifying its integrity.
   Can be computed by using for instance the `md5sum` UNIX program.
-- `site`: Site identifier. Must be one of the ids listed in [https://cloudnet.fmi.fi/api/sites/](https://cloudnet.fmi.fi/api/sites/). If your username corresponds to site identifier, this field is optional.
+- `site`: Site identifier. Must be one of the IDs listed in [https://cloudnet.fmi.fi/api/sites/](https://cloudnet.fmi.fi/api/sites/). If your username corresponds to site identifier, this field is optional.
 
 Example JSON for uploading a file named `201030_020000_P06_ZEN.LV1`:
 
@@ -54,7 +55,9 @@ Example JSON for uploading a file named `201030_020000_P06_ZEN.LV1`:
 }
 ```
 
-To distinguish Halo doppler lidar co and cross files, use `tags`:
+Tags are used to distinguish files with the same filename such as co and cross
+files from Halo doppler lidar:
+
 ```json
 {
   "measurementDate": "2022-01-01",
@@ -66,6 +69,7 @@ To distinguish Halo doppler lidar co and cross files, use `tags`:
   "tags": ["co"]
 }
 ```
+
 ```json
 {
   "measurementDate": "2022-01-01",
@@ -77,9 +81,6 @@ To distinguish Halo doppler lidar co and cross files, use `tags`:
   "tags": ["cross"]
 }
 ```
-`tags` field must be given as a list.
-
-
 
 Example of metadata upload with the `curl` command:
 

@@ -158,6 +158,7 @@ each having the properties:
 - `id`: Unique identifier of the instrument.
 - `humanReadableName`: Name of the instrument in a human readable format.
 - `type`: Instrument type. May be, for example, `radar`, `lidar`, or `mwr`.
+- `allowedTags`: Allowed tags for this instrument. May be, for example, `co`, `cross`, or `calibration`.
 
 Example query:
 
@@ -170,7 +171,8 @@ Response body:
   {
     "id": "mira",
     "humanReadableName": "METEK MIRA-35 cloud radar",
-    "type": "radar"
+    "type": "radar",
+    "allowedTags": []
   },
 ...
 ]
@@ -533,12 +535,14 @@ The response is an array of `Upload` objects. The `Upload` object has the follow
 - `checksum`: An MD5 checksum of the file.
 - `filename`: Original name of the file.
 - `measurementDate`: The date of the measurements contained in the file.
+- `tags`: Array of tags.
 - `size`: File size in bytes.
 - `status`: Status of the file. See above for possible statuses.
 - `createdAt`: Date of file metadata creation.
 - `updatedAt`: Date of last file and/or metadata update.
 - `site`: `Site` object.
 - `instrument`: `Instrument` object.
+- `instrumentPid`: Persistent identifier (PID) for the instrument.
 - `downloadUrl`: A URL for direct download of the file.
 
 Example query:
@@ -550,14 +554,18 @@ Response body:
 ```json
 [
   {
-    "uuid": "8cce060a-f258-4628-85df-f8bcca21f73d",
-    "checksum": "7c7affbf45c468ed9969f49e02a816ad",
-    "filename": "210607_180000_P09_ZEN.LV0",
-    "measurementDate": "2021-06-07",
-    "size": "821833251",
+    "uuid": "890c7130-8cf0-44a2-b5bc-75fcec344d97",
+    "checksum": "1a3ab11370e1b3c4833fb812c0a0f82e",
+    "filename": "220701_050008_P09_ZEN.LV0",
+    "measurementDate": "2022-07-01",
+    "size": "975360456",
     "status": "uploaded",
-    "createdAt": "2021-06-08T14:33:41.662Z",
-    "updatedAt": "2021-09-06T23:41:21.660Z",
+    "createdAt": "2022-07-01T10:24:44.130Z",
+    "updatedAt": "2022-07-01T12:25:05.188Z",
+    "instrumentPid": "https://hdl.handle.net/21.12132/3.bf6c0c3926c54dbb",
+    "tags": [],
+    "siteId": "norunda",
+    "instrumentId": "rpg-fmcw-94",
     "site": {
       "id": "norunda",
       "humanReadableName": "Norunda",
@@ -569,15 +577,19 @@ Response body:
       "altitude": 46,
       "gaw": "NOR",
       "dvasId": "NOR",
-      "country": "Sweden"
+      "actrisId": null,
+      "country": "Sweden",
+      "countryCode": "SE",
+      "countrySubdivisionCode": null
     },
     "instrument": {
       "id": "rpg-fmcw-94",
       "type": "radar",
-      "humanReadableName": "RPG FMCW-94 cloud radar"
+      "humanReadableName": "RPG-Radiometer Physics RPG-FMCW-94 cloud radar",
+      "allowedTags": []
     },
-    "downloadUrl": "https://cloudnet.fmi.fi/api/download/raw/8cce060a-f258-4628-85df-f8bcca21f73d/210607_180000_P09_ZEN.LV0"
-  },
+    "downloadUrl": "https://cloudnet.fmi.fi/api/download/raw/890c7130-8cf0-44a2-b5bc-75fcec344d97/220701_050008_P09_ZEN.LV0"
+  }
   ...
 ]
 ```
