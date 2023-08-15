@@ -5,8 +5,8 @@ from [measurement sites all over the globe](https://cloudnet.fmi.fi/sites).
 
 Cloudnet includes:
 
-- [Dataportal](https://cloudnet.fmi.fi) to browse and download data
-- [Cloudnetpy](https://github.com/actris-cloudnet/cloudnetpy) to post-process data
+- [Data portal](https://cloudnet.fmi.fi) to browse and download data
+- [CloudnetPy](https://github.com/actris-cloudnet/cloudnetpy) to post-process data
 - [Cloudnet submit tool](https://github.com/actris-cloudnet/cloudnet-submit) to submit data
 - [API](#api-reference) to access data and various services
 
@@ -26,7 +26,7 @@ Cloudnet provides several HTTP APIs to access different services:
 ## Processing code and files
 
 - Cloudnet uses open source Python package
-  [Cloudnetpy](https://github.com/actris-cloudnet/cloudnetpy)
+  [CloudnetPy](https://github.com/actris-cloudnet/cloudnetpy)
   for processing data.
   See the [documentation](https://cloudnetpy.readthedocs.io/en/latest/?badge=latest).
 
@@ -65,7 +65,7 @@ Below is descriptions of a few.
 
 Create an issue in GitHub:
 
-- [Cloudnetpy](https://github.com/actris-cloudnet/cloudnetpy/issues/new)
+- [CloudnetPy](https://github.com/actris-cloudnet/cloudnetpy/issues/new)
 - [Cloudnet data submission tool](https://github.com/actris-cloudnet/cloudnet-submit/issues/new)
 - [RPG cloud radar reader](https://github.com/actris-cloudnet/rpgpy/issues/new)
 
