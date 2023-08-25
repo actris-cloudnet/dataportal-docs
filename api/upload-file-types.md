@@ -31,6 +31,7 @@ We recommend uploading the following files:
 | `wls100s`, `wls200s`, `wls400s` | Leosphere windcube long-range scanning Doppler lidars    | `.nc` files.                                                                             | netCDF  |
 | `weather-station`               | Weather station data (temperature, humidity, etc.)       | Unknown for now.                                                                         | unknown |
 | `rain-e-h3`                     | LAMBRECHT rain[e]H3 rain gauge                           | `.txt` files.                                                                            | text    |
+| `minimpl`                       | Droplet MiniMPL lidar                                    | `.nc` files (preferable).                                                                | netCDF  |
 
 We plan to also accept the following instrument types in the future. Note that the API will not accept these yet.
 If you have other instruments you would like to include (such as other disdrometers, lidars or ancillary instrumentation), please
