@@ -18,10 +18,10 @@ Metadata can be queried via the following routes. For examples on how to use the
    1. [Product variables](#get-apiproductsvariables--productvariables)
    1. [Instruments](#get-apiinstruments--instrument)
    1. [Models](#get-apimodels--model)
-   1. [File by uuid](#get-apifilesuuid--file)
+   1. [File by UUID](#get-apifilesuuid--file)
    1. [Product files](#get-apifiles--file)
    1. [Model files](#get-apimodel-files--modelfile)
-   1. [Visualization by file uuid](#get-apivisualizationsuuid--visualization)
+   1. [Visualization by file UUID](#get-apivisualizationsuuid--visualization)
    1. [Visualizations](#get-apivisualizations--visualization)
    1. [Raw files](#get-apiraw-files--upload)
    1. [Raw model files](#get-apiraw-model-files--modelupload)
@@ -223,10 +223,10 @@ On a successful query the route responds with a `File` object, which has the fol
 - `checksum`: The SHA-256 checksum of the file. Useful for verifying file integrity.
 - `size`: Size of the file in bytes.
 - `format`: The data structure of the file. Either `NetCDF3` or `HDF5 (NetCDF4)`.
-- `createdAt`: The datetime on which the file was created. In ISO 8601 -format.
-- `updatedAt`: The datetime on which the file was last updated. In ISO 8601 -format.
-- `sourceFileIds`: Comma-separated list of `uuid` strings corresponding to the source files that were used to generate the file. If the source file information is not available, this is `null`.
-- `cloudnetpyVersion`: The version of the [CloudnetPy](https://github.com/actris-cloudnet/cloudnetpy) library.
+- `createdAt`: The date and time on which the file was created in ISO 8601 format.
+- `updatedAt`: The date and time on which the file was last updated in ISO 8601 format.
+- `sourceFileIds`: List of UUIDs corresponding to the source files that were used to generate the file. If the source file information is not available, this is `null`.
+- `software`: List of software used to produce the file.
 - `site`: `Site` object containing information of the site on which the measurement was made.
 - `product`: `Product` object containing information of the data product.
 - `downloadUrl`: The full URL to the data object. Useful for downloading the file.
@@ -259,7 +259,6 @@ Response body:
     "6ac91e0483934db2afb3bacc97a7d8c0",
     "3171e11d022549b29e863138c406dce8"
   ],
-  "cloudnetpyVersion": "1.3.1",
   "site": {
     "id": "bucharest",
     "humanReadableName": "Bucharest",
@@ -278,6 +277,20 @@ Response body:
     "humanReadableName": "Categorize",
     "level": "1c"
   },
+  "software": [
+    {
+      "id":"cloudnet-processing",
+      "version":"2.22.0",
+      "title":"Cloudnet processing 2.22.0",
+      "url":"https://github.com/actris-cloudnet/cloudnet-processing/tree/v2.22.0"
+    },
+    {
+      "id":"cloudnetpy",
+      "version":"1.53.1",
+      "title":"CloudnetPy 1.53.1",
+      "url":"https://doi.org/10.5281/zenodo.8321630"
+    }
+  ],
   "downloadUrl": "https://cloudnet.fmi.fi/api/download/product/911bd5b1-3104-4732-9bd3-34ed8208adad/20200105_bucharest_categorize.nc",
   "filename": "20200105_bucharest_categorize.nc"
   "quality": "nrt",
@@ -324,7 +337,6 @@ Response body:
     "format": "HDF5 (NetCDF4)",
     "createdAt": "2021-02-23T02:05:03.970Z",
     "updatedAt": "2021-02-23T08:04:20.186Z",
-    "cloudnetpyVersion": "1.9.2",
     "site": {
       "id": "bucharest",
       "humanReadableName": "Bucharest",
@@ -343,6 +355,20 @@ Response body:
       "humanReadableName": "Classification",
       "level": "2"
     },
+    "software": [
+      {
+        "id":"cloudnet-processing",
+        "version":"2.22.0",
+        "title":"Cloudnet processing 2.22.0",
+        "url":"https://github.com/actris-cloudnet/cloudnet-processing/tree/v2.22.0"
+      },
+      {
+        "id":"cloudnetpy",
+        "version":"1.53.1",
+        "title":"CloudnetPy 1.53.1",
+        "url":"https://doi.org/10.5281/zenodo.8321630"
+      }
+    ],
     "downloadUrl": "https://cloudnet.fmi.fi/api/download/product/f63628b4-7e68-4c98-87ea-86a247f7fcfd/20210221_bucharest_classification.nc",
     "filename": "20210221_bucharest_classification.nc",
     "quality": "nrt",
@@ -410,6 +436,14 @@ Response body:
       "id": "gdas1",
       "optimumOrder": 3
     },
+    "software": [
+      {
+        "id": "cloudnet-processing",
+        "version": "2.22.0",
+        "title": "Cloudnet processing 2.22.0",
+        "url": "https://github.com/actris-cloudnet/cloudnet-processing/tree/v2.22.0"
+      }
+    ],
     "downloadUrl": "https://cloudnet.fmi.fi/api/download/product/90f95f81-4f45-4efb-a25d-80066652aece/20210203_lindenberg_gdas1.nc",
     "filename": "20210203_lindenberg_gdas1.nc"
   }
