@@ -635,7 +635,7 @@ Instead of the `instrument` parameter, it is possible to filter the results with
 
 Example query:
 
-`GET https://cloudnet.fmi.fi/api/raw-files?site=norunda&updatedAtFrom=2021-09-01`
+`GET https://cloudnet.fmi.fi/api/raw-model-files?site=norunda&date=2021-09-01`
 
 Response body:
 
