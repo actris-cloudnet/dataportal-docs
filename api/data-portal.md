@@ -128,7 +128,7 @@ Example query:
 Response body:
 
 ```json
-  [
+[
   {
     "id": "disdrometer",
     "humanReadableName": "Disdrometer",
