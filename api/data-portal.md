@@ -313,6 +313,10 @@ The results can be filtered with the following parameters:
 - `filename`: One or more filenames by which to filter the files.
 - `allVersions`: By default the API returns only the latest version of the files. Adding this parameter will fetch all existing versions.
 - `showLegacy`: By default the API does not return legacy data. Adding this parameter will fetch also legacy data.
+- `updatedAtFrom`: Limit query to files whose `updatedAt` is `updatedAtFrom` or later.
+  By default `updatedAt` is not limited. Accepts either `YYYY-MM-DD` or `YYYY-MM-DDTHH:MM:SS.SSSZ`.
+- `updatedAtTo`: Limit query to files whose `updatedAt` is `updatedAtTo` or earlier.
+  If omitted will default to the current date. Accepts same format as `updatedAtFrom`.
 
 Note: one or more of the parameters _must_ be issued. A query without any valid parameters will result in a `400 Bad Request` error.
 
@@ -391,6 +395,10 @@ Queries the metadata of model files. It offers the following parameters for filt
 - `filename`: One or more filenames by which to filter the files.
 - `model`: One or more `Model` ids, by which to filter the files.
 - `allModels`: By default the API returns only the best model available matching the given search parameters. Adding this parameter will fetch all model files matching the search paramterers.
+- `updatedAtFrom`: Limit query to files whose `updatedAt` is `updatedAtFrom` or later.
+  By default `updatedAt` is not limited. Accepts either `YYYY-MM-DD` or `YYYY-MM-DDTHH:MM:SS.SSSZ`.
+- `updatedAtTo`: Limit query to files whose `updatedAt` is `updatedAtTo` or earlier.
+  If omitted will default to the current date. Accepts same format as `updatedAtFrom`.
 
 The `ModelFile` response similar to the `File` response, with an additional `model` property. The `model` property containing a `Model` object (see example response).
 Furthermore, the `ModelFile` response omits the fields `cloudnetPyVersion` and `sourceFileIds`, as this information is not available for model files.
