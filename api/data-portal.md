@@ -60,7 +60,7 @@ Response body:
 
 ```json
 [
-    {
+  {
     "id": "alomar",
     "humanReadableName": "Alomar",
     "type": [
