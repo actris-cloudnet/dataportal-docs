@@ -28,7 +28,7 @@ We recommend uploading the following files:
 | `thies-lnm`                     | Thies LNM disdrometer                                    | `.txt` files.                                                                            | text    |
 | `halo-doppler-lidar`            | Halo Photonics Doppler lidar                             | `.hpl`, `Background*.txt` and `system_parameters*.txt` files.                            | text    |
 | `pollyxt`                       | PollyXT Raman lidar                                      | `*att_bsc.nc` and `*vol_depol.nc` files.                                                 | netCDF  |
-| `wls100s`, `wls200s`, `wls400s` | Leosphere windcube long-range scanning Doppler lidars    | `.nc` files.                                                                             | netCDF  |
+| `wls100s`, `wls200s`, `wls400s` | Leosphere windcube long-range scanning Doppler lidars    | `.nc` or compressed `.nc.gz` files.                                                      | netCDF  |
 | `weather-station`               | Weather station data (temperature, humidity, etc.)       | Unknown for now.                                                                         | unknown |
 | `rain-e-h3`                     | LAMBRECHT rain[e]H3 rain gauge                           | `.txt` files.                                                                            | text    |
 | `minimpl`                       | Droplet MiniMPL lidar                                    | `.nc` files.                                                                             | netCDF  |
