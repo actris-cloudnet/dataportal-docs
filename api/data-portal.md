@@ -39,9 +39,10 @@ each having the properties:
 - `id`: Unique site identifier.
 - `humanReadableName`: Name of the site in a human-readable format.
 - `type`: An array of site type identifiers. Types are as follows:
+  - `cloudnet`: Cloudnet sites.
+  - `campaign`: Short-term measurement sites.
   - `arm`: Atmospheric Radiation Measurement (ARM) site.
-  - `campaign`: Temporary measurement sites.
-  - `cloudnet`: Official Cloudnet sites.
+  - `model`: Model only sites not visible in the search GUI.
   - `hidden`: Sites that are not visible in the search GUI.
 - `latitude`: Latitude of the site given with the precision of three decimals.
 - `longitude`: Longitude of the site given with the precision of three decimals.
