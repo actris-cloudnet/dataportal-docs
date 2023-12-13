@@ -571,6 +571,9 @@ Query the metadata of uploaded instrument files. You can use the following the p
   By default `updatedAt` is not limited. Accepts either `YYYY-MM-DD` or `YYYY-MM-DDTHH:MM:SS.SSSZ`.
 - `updatedAtTo`: Limit query to files whose `updatedAt` is `updatedAtTo` or earlier.
   If omitted will default to the current date. Accepts same format as `updatedAtFrom`.
+- `filename`: Limit query to files with `filename`.
+- `filenamePrefix`: Limit query to filenames with prefix `filenamePrefix`.
+- `filenameSuffix`: Limit query to filenames with suffix `filenameSuffix`.
 
 The response is an array of `Upload` objects. The `Upload` object has the following properties:
 
