@@ -49,9 +49,9 @@ each having the properties:
 - `altitude`: Elevation of the site from mean sea level in meters.
 - `gaw`: Global Atmosphere Watch identifier. `null` if the site does not have one.
 - `dvasId`: DVAS data portal station identifier. `null` if site is not listed in the DVAS portal.
-- `country`: The country or subdivision in which the site resides. Human-readable.
-- `countryCode`: Two-letter country code according to [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). `null` if code is not set or available.
-- `countrySubdivisionCode`: Country subdivision code according to [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2). `null` if code is not set or available.
+- `country`: Human-readable name for the country or subdivision in which the site resides.
+- `countryCode`: Two-letter country code according to [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). `null` if the code is not set or available.
+- `countrySubdivisionCode`: Country subdivision code according to [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2). `null` if the code is not set or available.
 
 Example query:
 
@@ -157,8 +157,9 @@ Fetch information on the instruments supported by the data portal. Responds with
 each having the properties:
 
 - `id`: Unique identifier of the instrument.
-- `humanReadableName`: Name of the instrument in a human readable format.
-- `type`: Instrument type. May be, for example, `radar`, `lidar`, or `mwr`.
+- `humanReadableName`: Human-readable name for the instrument.
+- `shortName`: Human-readable short name for the instrument.
+- `type`: Type of the instrument. May be, for example, `radar`, `lidar`, or `mwr`.
 - `allowedTags`: Allowed tags for this instrument. May be, for example, `co`, `cross`, or `calibration`.
 
 Example query:
@@ -185,6 +186,7 @@ Fetch information on the different model file types served in the data portal. R
 each having the properties:
 
 - `id`: The unique identifier of the model.
+- `humanReadableName`: Human-readable name for the model.
 - `optimumOrder`: Integer that signifies model quality. Better models have lower `optimumOrder`.
 
 Example query:
@@ -197,6 +199,7 @@ Response body:
 [
   {
     "id": "ecmwf",
+    "humanReadableName":"ECMWF IFS forecast",
     "optimumOrder": 0
   },
 ...
@@ -232,8 +235,11 @@ On a successful query the route responds with a `File` object, which has the fol
 - `product`: `Product` object containing information of the data product.
 - `downloadUrl`: The full URL to the data object. Useful for downloading the file.
 - `filename`: The name of the file.
-- `quality`: Quality status of the product. Either `nrt` (Near Real Time) or `qc` (Quality Controlled).
-- `qualityScore`: A float in the range [0, 1] signifying the results of automatic quality tests, or `null` when the quality test report is not available. `1` means that all tests passed, `0` that no tests pass.
+- `timeliness`: [Timeliness](https://vocabulary.actris.nilu.no/actris_vocab/timeliness) of the file. Possible values are
+  `rrt` ([real real-time](https://vocabulary.actris.nilu.no/actris_vocab/realreal-time)),
+  `nrt` ([near real-time](https://vocabulary.actris.nilu.no/actris_vocab/nearreal-time)) and
+  [`scheduled`](https://vocabulary.actris.nilu.no/actris_vocab/scheduled).
+- `errorLevel`: Quality control outcome for the file. Possible values are `pass`, `info`, `warning` and `error`.
 
 Example query:
 
@@ -263,9 +269,7 @@ Response body:
   "site": {
     "id": "bucharest",
     "humanReadableName": "Bucharest",
-    "type": [
-      "cloudnet"
-    ],
+    "type": ["cloudnet"],
     "latitude": 44.348,
     "longitude": 26.029,
     "altitude": 93,
@@ -280,22 +284,22 @@ Response body:
   },
   "software": [
     {
-      "id":"cloudnet-processing",
-      "version":"2.22.0",
-      "title":"Cloudnet processing 2.22.0",
-      "url":"https://github.com/actris-cloudnet/cloudnet-processing/tree/v2.22.0"
+      "id": "cloudnet-processing",
+      "version": "2.22.0",
+      "title": "Cloudnet processing 2.22.0",
+      "url": "https://github.com/actris-cloudnet/cloudnet-processing/tree/v2.22.0"
     },
     {
-      "id":"cloudnetpy",
-      "version":"1.53.1",
-      "title":"CloudnetPy 1.53.1",
-      "url":"https://doi.org/10.5281/zenodo.8321630"
+      "id": "cloudnetpy",
+      "version": "1.53.1",
+      "title": "CloudnetPy 1.53.1",
+      "url": "https://doi.org/10.5281/zenodo.8321630"
     }
   ],
   "downloadUrl": "https://cloudnet.fmi.fi/api/download/product/911bd5b1-3104-4732-9bd3-34ed8208adad/20200105_bucharest_categorize.nc",
-  "filename": "20200105_bucharest_categorize.nc"
-  "quality": "nrt",
-  "qualityScore": 0.9
+  "filename": "20200105_bucharest_categorize.nc",
+  "errorLevel": "pass",
+  "timeliness": "nrt"
 }
 ```
 
