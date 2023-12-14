@@ -12,9 +12,10 @@
   <body>
   {% if site.title and site.title != page.title %}
   <header class="global">
-    <div onclick="window.location = 'https://cloudnet.fmi.fi/'" class="vertical-center portal-name">
-      <h1>Cloudnet</h1>
-      <span>data portal</span>
+    <div class="container" id="header-content">
+      <div onclick="window.location = 'https://cloudnet.fmi.fi/'" class="vertical-center portal-name">
+        <img src="{{ "/img/header-logo.svg" | relative_url }}" alt="Cloudnet logo" class="logo">
+      </div>
     </div>
   </header>
   {% endif %}
