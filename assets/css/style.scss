@@ -21,20 +21,30 @@ body {
   margin-top: 12px;
 }
 
+$header-color: darken(#78c0e0, 25%);
+
 header {
-  background-image: linear-gradient(to left, transparent, #78c0e0 70%),
+  background-image: linear-gradient(
+      to left,
+      rgba($header-color, 0.5),
+      $header-color 70%
+    ),
     url("/img/clouds3.jpg");
   opacity: 0.7;
   background-position: right 0px top 20%;
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
-  justify-content: space-between;
-  box-sizing: border-box;
-  width: 100%;
-  padding-left: 1em;
-  padding-right: 1em;
-  height: 4.5em;
+  height: 4.5rem;
+}
+
+#header-content {
+  display: flex;
+  max-width: 700px;
+}
+
+.logo {
+  height: 2.5rem;
 }
 
 .portal-name {
