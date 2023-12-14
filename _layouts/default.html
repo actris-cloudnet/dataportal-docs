@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="{{ "/img/favicon.ico" | relative_url }}">
 
 {% seo %}
     <link rel="stylesheet" href="{{ "/assets/css/style.css?v=" | append: site.github.build_revision | relative_url }}">
@@ -13,9 +14,9 @@
   {% if site.title and site.title != page.title %}
   <header class="global">
     <div class="container" id="header-content">
-      <div onclick="window.location = 'https://cloudnet.fmi.fi/'" class="vertical-center portal-name">
+      <a href="https://cloudnet.fmi.fi/" class="vertical-center portal-name">
         <img src="{{ "/img/header-logo.svg" | relative_url }}" alt="Cloudnet logo" class="logo">
-      </div>
+      </a>
     </div>
   </header>
   {% endif %}
