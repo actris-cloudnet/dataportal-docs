@@ -19,7 +19,6 @@ We recommend uploading the following files:
 | `chm15k`, `chm15kx`             | Lufft ceilometers (formerly Jenoptik)                         | `.nc` files. Either non-concatenated or concatenated files but not both.                 | netCDF  |
 | `hatpro`                        | RPG HATPRO microwave radiometer                               | `.LWP`, `.IWV`, `.HKD`, `.BRT`, `.MET`, `.BLB`/`.BLS`, `.IRT`, and similar binary files. | binary  |
 | `radiometrics`                  | Radiometrics (MP3014, MWP1, etc.) microwave radiometer        | `.csv` or compressed `.csv.gz` files.                                                    | CSV     |
-| `dwd-mwr`                       | MWR dual-wavelength microwave radiometer from Lindenberg      | Unknown for now.                                                                         | unknown |
 | `copernicus`                    | Copernicus cloud radar                                        | `.nc` files.                                                                             | netCDF  |
 | `galileo`                       | Galileo cloud radar                                           | `.nc` files.                                                                             | netCDF  |
 | `basta`                         | BASTA cloud radar                                             | Daily `.nc` files.                                                                       | netCDF  |
