@@ -378,11 +378,11 @@ The following attributes should be present and of type `text`:
     satisfy the CF conventions, don't include this attribute.
   </dd>
   <dt><tt>day</tt></dt>
-  <dd>The day of the month on which the data were taken.</dd>
+  <dd>The day of the month on which the data were taken, two-digits (e.g. "01").</dd>
   <dt><tt>month</tt></dt>
-  <dd>The month of the year, where January = <tt>1</tt> etc.</dd>
+  <dd>The month of the year, two digits (e.g. "01" for January)</dd>
   <dt><tt>year</tt></dt>
-  <dd>The year as a full four-digit number (e.g. <tt>2001</tt>)</dd>
+  <dd>The year as a full four-digit number (e.g. "2024")</dd>
   <dt><tt>cloudnet_file_type</tt></dt>
   <dd>Identifier for product like <tt>lidar</tt> or <tt>classification</tt></dd>
   <dt><tt>location</tt></dt>
