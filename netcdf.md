@@ -337,7 +337,7 @@ to indicate the sign of the byte and could easily be misread by badly written
 programs. Hence use no more than 7 bits per byte, and if you need more bits,
 consider providing two bit fields. Rather than use a `units` attribute, the
 variable should use a `definition` attribute, where each line (separated by the
-new-line character) indicates the meaning either of each value, or of each bit.
+newline character) indicates the meaning either of each value, or of each bit.
 In the case of status fields, we could have:
 
 <dl>
@@ -359,7 +359,7 @@ Note that `definition` is used by programs such as `chilncplot` in the key at
 the side of the plot to indicate the meaning of each colour, so the
 descriptions should be fairly concise. Use of a `long_definition` attribute is
 therefore recommended where more complete descriptions may be placed, but the
-same format should be used, with a single line terminated by a new-line
+same format should be used, with a single line terminated by a newline
 character (except the last) for each entry.
 
 ## Global attributes
@@ -401,14 +401,14 @@ The following attributes should be present and of type `text`:
   <dd>
     Each program that acts on the file should append to this attribute a brief
     description of what they did, and when they did it (again using the
-    new-line character as a separator). Extra information can include the user
+    newline character as a separator). Extra information can include the user
     and the name of the machine. For example, "<tt>Wed Nov 28 18:38:12 GMT 2001
     - NetCDF generated from original data by Robin Hogan
     &lt;r.j.hogan@reading.ac.uk&gt; on voldemort</tt>". If the calibration
     needs to be changed then it may be appended by "<tt>\nThu Nov 29 18:38:12
     GMT 2001 - Recalibrated (+3 dB) by Robin Hogan
     &lt;r.j.hogan@reading.ac.uk&gt; on voldemort</tt>", where '<tt>\n</tt>'
-    indicates the new-line character (i.e. not a backslash character followed
+    indicates the newline character (i.e. not a backslash character followed
     by an "n" character).
   </dd>
   <dt><tt>source</tt></dt>
@@ -417,12 +417,12 @@ The following attributes should be present and of type `text`:
     of the instrument. The spec of a radar should include frequency, antenna
     diameter, pulse repetition freqiency, pulse width (in microseconds) and
     peak power, and the spec of a lidar should include wavelength, divergence,
-    field of view and pulse repetition frequency. The fields would be new-line
+    field of view and pulse repetition frequency. The fields would be newline
     separated. In the case of model data a single-line title for the model is
     sufficient, e.g. "<tt>UK Met Office mesoscale model</tt>". Data derived
     from a variety of sources should concatenate the global <tt>source</tt>
     attributes from the input datasets, separated by semi-colon (<tt>;</tt>)
-    and new-line.
+    and newline.
   </dd>
   <dt><tt>file_uuid</tt></dt>
   <dd>Universally unique identifier (UUID) of the file.</dd>
@@ -444,7 +444,7 @@ The following attributes should be present and of type `text`:
     Any further general information for the user (that is not specific to
     individual variables) should be added here. Use complete sentences
     terminated with a full-stop/period so that extra comments can be easily
-    appended. It is also useful to add new-line characters to break up long
+    appended. It is also useful to add newline characters to break up long
     lines.
   </dd>
   <dt><tt>source_file_uuids</tt></dt>
