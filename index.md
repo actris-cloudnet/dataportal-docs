@@ -31,7 +31,7 @@ Cloudnet provides several HTTP APIs to access different services:
   See the [documentation](https://cloudnetpy.readthedocs.io/en/latest/?badge=latest).
 
 - Cloudnet uses netCDF4 file format.
-  See the [descriptions of Cloudnet products](https://cloudnet.fmi.fi/products/).
+  See the [Cloudnet NetCDF convention](netcdf.md) and [descriptions of Cloudnet products](https://cloudnet.fmi.fi/products/).
 
 ## Measurement sites
 
