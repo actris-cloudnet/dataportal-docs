@@ -19,8 +19,8 @@ file should contain data from a single day. The times reported in the file
 should be in hours UTC, so for instruments that operate continuously, each
 individual file should run from midnight to midnight UTC.
 
-Filenames should be of the form <tt>YYYYMMDD_WHERE_WHAT_ID.nc</tt>, where the
-fields are as follows
+Filenames should be of the form `YYYYMMDD_WHERE_WHAT.nc` or
+`YYYYMMDD_WHERE_WHAT_ID.nc`, where the fields are as follows:
 
 <dl>
   <dt><tt>YYYYMMDD</tt></dt>
@@ -33,15 +33,15 @@ fields are as follows
   <dt><tt>WHAT</tt></dt>
   <dd>
     This field either identifies the instrument (e.g. <tt>galileo</tt> for the
-    Galileo radar), the model (<tt>met-office-global-12-35</tt> for the 12-35
-    hour forecast of the Met Office global model) or the meteorological product
-    (e.g. <tt>iwc-Z-T-method</tt> for ice water content derived using the
+    Galileo radar), the model (e.g. <tt>harmonie-fmi-0-5</tt> for the 0-5 hour
+    forecast of the HARMONIE-AROME model) or the meteorological product (e.g.
+    <tt>iwc-Z-T-method</tt> for ice water content derived using the
     reflectivity+temperature method).
   </dd>
   <dt><tt>ID</tt></dt>
   <dd>
-    An unique identifier to distinguish multiple files of the same type, only
-    instrumental data.
+    Additional unique identifier to distinguish multiple files of the same type
+    (e.g. two radars in the same location) from each other.
   </dd>
 </dl>
 
@@ -384,18 +384,17 @@ The following attributes should be present and of type `text`:
   <dt><tt>year</tt></dt>
   <dd>The year as a full four-digit number (e.g. "2024")</dd>
   <dt><tt>cloudnet_file_type</tt></dt>
-  <dd>Identifier for product like <tt>lidar</tt> or <tt>classification</tt></dd>
+  <dd>Identifier for product (e.g. "lidar" or "classification").</dd>
   <dt><tt>location</tt></dt>
   <dd>
-    The site at which the instrument was operating, such as
-    "<tt>Chilbolton</tt>", "<tt>Cabauw</tt>", "<tt>Palaiseau</tt>" and "<tt>ARM
-    Southern Great Plains</tt>".
+    The site at which the instrument was operating, such as "Chilbolton",
+    "Cabauw", "Palaiseau" and "ARM Southern Great Plains".
   </dd>
   <dt><tt>title</tt></dt>
   <dd>
-    A suitable title for plots created from the dataset, such as "<tt>Ice water
-    content from Chilbolton</tt>", "<tt>Chilbolton 94-GHz Cloud Radar
-    (Galileo)</tt>" or "<tt>Cabauw 905-nm CT75K Vaisala Lidar Ceilometer</tt>".
+    A suitable title for plots created from the dataset, such as "Ice water
+    content from Chilbolton", "Chilbolton 94-GHz Cloud Radar (Galileo)" or
+    "Cabauw 905-nm CT75K Vaisala Lidar Ceilometer".
   </dd>
   <dt><tt>history</tt></dt>
   <dd>
@@ -419,7 +418,7 @@ The following attributes should be present and of type `text`:
     peak power, and the spec of a lidar should include wavelength, divergence,
     field of view and pulse repetition frequency. The fields would be newline
     separated. In the case of model data a single-line title for the model is
-    sufficient, e.g. "<tt>UK Met Office mesoscale model</tt>". Data derived
+    sufficient, e.g. "UK Met Office mesoscale model". Data derived
     from a variety of sources should concatenate the global <tt>source</tt>
     attributes from the input datasets, separated by semi-colon (<tt>;</tt>)
     and newline.
@@ -428,11 +427,10 @@ The following attributes should be present and of type `text`:
   <dd>Universally unique identifier (UUID) of the file.</dd>
   <dt><tt>references</tt></dt>
   <dd>
-    Any web-based or published information about the data, e.g.
-    "<tt>Information on the data is available at
-    http://www.met.rdg.ac.uk/radar/doc/galileo.html</tt>". Obviously please
-    ensure that the web site referred to is maintained for the likely lifetime
-    of the data.
+    Any web-based or published information about the data, e.g. "Information on
+    the data is available at http://www.met.rdg.ac.uk/radar/doc/galileo.html".
+    Obviously please ensure that the web site referred to is maintained for the
+    likely lifetime of the data.
   </dd>
 </dl>
 
@@ -453,15 +451,15 @@ The following attributes should be present and of type `text`:
   </dd>
   <dt><tt>instrument_pid</tt></dt>
   <dd>
-    Persistent identifier (PID) of the source instrument such as <a
+    Persistent identifier (PID) of the source instrument (e.g. <a
     href="https://hdl.handle.net/21.12132/3.d98f6fd2bec94e5e">
-    https://hdl.handle.net/21.12132/3.d98f6fd2bec94e5e</a>.
+    https://hdl.handle.net/21.12132/3.d98f6fd2bec94e5e</a>).
   </dd>
   <dt><tt>pid</tt></dt>
   <dd>
-    Persistent identifier (PID) of the file such as <a
+    Persistent identifier (PID) of the file (e.g. <a
     href="https://hdl.handle.net/21.12132/1.ce67fc697f3f4aa5">
-    https://hdl.handle.net/21.12132/1.ce67fc697f3f4aa5</a>
+    https://hdl.handle.net/21.12132/1.ce67fc697f3f4aa5</a>).
   </dd>
   <dt><tt>serial_number</tt></dt>
   <dd>
@@ -552,15 +550,15 @@ For lidar, use:
 
 Most two-dimensional variables will be of type <tt>float</tt>. However, for
 some data it may make sense to use the <tt>short</tt> data type (a signed
-2-byte integer; <tt>integer\*2</tt> in FORTRAN nomenclature). The CT75K lidar
-ceilometer is a good candidate as the raw data are stored to this precision so
-no information is lost. You may then use <tt>scale_factor</tt> and/or
-<tt>add_offset</tt> attributes to get the data into suitable units and to
-provide the correct calibration. If both are present then the data in the file
-should be scaled first before the offset is added. Note also that the
-<tt>missing_value</tt> and <tt>\_FillValue</tt> attributes apply to the data
-<i>before</i> it has been scaled and shifted in this way. Usually
-<tt>scale_factor</tt> and <tt>add_offset</tt> would be of type <tt>float</tt>.
+2-byte integer; The CT75K lidar ceilometer is a good candidate as the raw data
+are stored to this precision so no information is lost. You may then use
+<tt>scale_factor</tt> and/or <tt>add_offset</tt> attributes to get the data
+into suitable units and to provide the correct calibration. If both are present
+then the data in the file should be scaled first before the offset is added.
+Note also that the <tt>missing_value</tt> and <tt>\_FillValue</tt> attributes
+apply to the data <i>before</i> it has been scaled and shifted in this way.
+Usually <tt>scale_factor</tt> and <tt>add_offset</tt> would be of type
+<tt>float</tt>.
 
 For some variables, notably radar reflectivity, accurate calibration can be
 difficult and the data may need to be recalibrated after the initial release.
