@@ -1,10 +1,10 @@
 # Cloudnet NetCDF Convention
 
-## Motivation
+## Introduction
 
 The Cloudnet convention is applicable to any dataset on a time-height grid,
 including radar and lidar data, single-site model forecasts and derived
-meteorological products. It adopts many of the components of other NetCDF
+meteorological products. It adopts many of the components of other netCDF
 conventions, specifically the [Climate and Forecast (CF) Metadata
 Conventions](https://cfconventions.org/). Conventions generally relate to the
 attributes that should be supplied, or those that it is recommended to use if a
@@ -14,10 +14,11 @@ Suggestions for improvements and clarifications to the convention are welcome.
 
 ## Files and filenames
 
-Each level 1 (instrumental or model data) or level 2 (meteorological product)
-file should contain data from a single day. The times reported in the file
-should be in hours UTC, so for instruments that operate continuously, each
-individual file should run from midnight to midnight UTC.
+Files should use the netCDF4 classic file format. Each level 1 (instrumental or
+model data) or level 2 (meteorological product) file should contain data from a
+single day. The times reported in the file should be in hours UTC, so for
+instruments that operate continuously, each individual file should run from
+midnight to midnight UTC.
 
 Filenames should be of the form `YYYYMMDD_WHERE_WHAT.nc` or
 `YYYYMMDD_WHERE_WHAT_ID.nc`, where the fields are as follows:
@@ -53,7 +54,7 @@ the habit of breaking Unix scripts.
 
 ## Dimensions
 
-The NetCDF dataset should contain the dimension `time`, which should be the
+The netCDF dataset should contain the dimension `time`, which should be the
 first dimension defined. The vertical dimension may be `range`, `height` or
 `level`:
 
@@ -98,7 +99,7 @@ save space), which is referenced using the `model_height` dimension.
 The following compulsory variables are stored as variables rather than global
 attributes because they have a unit or other describing attribute associated
 with them; the attributes that should be set are shown indented after each
-variable name. Each NetCDF attribute consists of a "name" and a "value", where
+variable name. Each netCDF attribute consists of a "name" and a "value", where
 the value can be a text string or a vector of numbers. All these variables are
 of type `float`, i.e. a 4-byte floating-point number.
 
@@ -222,7 +223,7 @@ They should conform to the conventions indicated.
     <tt>references</tt> attribute) then include them here. Ideally this
     attribute should start with "<tt>This variable contains...</tt>", such that
     it may be used as a general description of the variable for use with
-    programs that generate automatic documentation from a NetCDF file; for
+    programs that generate automatic documentation from a netCDF file; for
     example, the detailed descriptions of variables on the <a
     href="/radar/cloudnet/data/products/iwc-Z-T-method.html">IWC product
     page</a> were contained in <tt>comment</tt> attributes. Use complete
@@ -265,11 +266,22 @@ attributes:
 
 <dl>
   <dt><tt>error_variable</tt></dt>
-  <dd>Contains the name of the variable in the file that indicates the random error of the variable in question. Typically if the variable name were <tt>Z</tt>, then the corresponding <tt>error_variable</tt> would be <tt>Z_error</tt>.</dd>
+  <dd>
+    Contains the name of the variable in the file that indicates the random
+    error of the variable in question. Typically if the variable name were
+    <tt>Z</tt>, then the corresponding <tt>error_variable</tt> would be
+    <tt>Z_error</tt>.
+  </dd>
   <dt><tt>bias_variable</tt></dt>
-  <dd>As above, but for the bias. Similarly, the typical name for the bias in <tt>Z</tt> would be <tt>Z_bias</tt>.</dd>
+  <dd>
+    As above, but for the bias. Similarly, the typical name for the bias in
+    <tt>Z</tt> would be <tt>Z_bias</tt>.
+  </dd>
   <dt><tt>sensitivity_variable</tt></dt>
-  <dd>As above, but for the sensitivity. The typical name for the minimum detectable <tt>Z</tt> would be <tt>Z_sensitivity</tt>.</dd>
+  <dd>
+    As above, but for the sensitivity. The typical name for the minimum
+    detectable <tt>Z</tt> would be <tt>Z_sensitivity</tt>.
+  </dd>
 </dl>
 
 Sometimes errors can have a long (and difficult to define) decorrelation time,
@@ -329,7 +341,7 @@ need to be distinguished between a number of different types, such as "liquid
 clouds", "ice clouds", "aerosol", "insects". In this case one can use a _status
 field_, where the integer variable will be one of a limited number of values,
 or a <i>bit field</i>, where each bit of the integer variable should be
-interpretted as a separate flag. Such variables should always be of NetCDF type
+interpretted as a separate flag. Such variables should always be of netCDF type
 `byte`, to avoid the byte-order confusion that is likely to arise with two-byte
 and four-byte integers due to different CPU architectures. Additionally, it is
 probably best not to use the most significant bit of the field, as this is used
@@ -342,11 +354,14 @@ In the case of status fields, we could have:
 
 <dl>
   <dt><tt>definition</tt> =</dt>
-  <dd>"<tt>0: No cloud present<br>
-  1: Reliable retrieval<br>
-  2: Possibly unreliable retrieval due to spiders in the waveguide<br>
-  3: Unreliable retrieval</tt>"</dd>
-</dl>while in the case of bit fields we could have:
+  <dd>"<tt>Value 0: No cloud present<br>
+  Value 1: Reliable retrieval<br>
+  Value 2: Possibly unreliable retrieval due to spiders in the waveguide<br>
+  Value 3: Unreliable retrieval</tt>"</dd>
+</dl>
+
+while in the case of bit fields we could have:
+
 <dl>
   <dt><tt>definition</tt> =</dt>
   <dd>"<tt>Bit 0: Liquid droplets are present<br>
@@ -355,16 +370,9 @@ In the case of status fields, we could have:
   Bit 3: Aerosol particles are present</tt>"</dd>
 </dl>
 
-Note that `definition` is used by programs such as `chilncplot` in the key at
-the side of the plot to indicate the meaning of each colour, so the
-descriptions should be fairly concise. Use of a `long_definition` attribute is
-therefore recommended where more complete descriptions may be placed, but the
-same format should be used, with a single line terminated by a newline
-character (except the last) for each entry.
-
 ## Global attributes
 
-Global attributes provide important information about the data in a NetCDF
+Global attributes provide important information about the data in a netCDF
 file.
 
 ### Compulsory global attributes
@@ -374,17 +382,25 @@ The following attributes should be present and of type `text`:
 <dl>
   <dt><tt>Conventions = "CF-1.8"</tt></dt>
   <dd>
-    Indicates that your data satisfies the CF conventions. If your data doesn't
-    satisfy the CF conventions, don't include this attribute.
+    Indicates that your data satisfies the CF conventions.
   </dd>
   <dt><tt>day</tt></dt>
-  <dd>The day of the month on which the data were taken, two-digits (e.g. "01").</dd>
+  <dd>
+    The day of the month on which the data were taken as a two-digit number
+    (e.g. "01").
+  </dd>
   <dt><tt>month</tt></dt>
-  <dd>The month of the year, two digits (e.g. "01" for January)</dd>
+  <dd>
+    The month of the year as a two-digit number (e.g. "01" for January).
+  </dd>
   <dt><tt>year</tt></dt>
-  <dd>The year as a full four-digit number (e.g. "2024")</dd>
+  <dd>
+    The year as a full four-digit number (e.g. "2024").
+  </dd>
   <dt><tt>cloudnet_file_type</tt></dt>
-  <dd>Identifier for product (e.g. "lidar" or "classification").</dd>
+  <dd>
+    Identifier for product (e.g. "lidar" or "classification").
+  </dd>
   <dt><tt>location</tt></dt>
   <dd>
     The site at which the instrument was operating, such as "Chilbolton",
@@ -608,7 +624,7 @@ the attributes that should be present:
   <dt><tt>sigma_v(time, range)</tt></dt>
   <dd>
     Level 1 data is typically averaged to 30 seconds, so the velocity variable
-    in the NetCDF file is typically an average of a number of high-resolution
+    in the netCDF file is typically an average of a number of high-resolution
     mean velocity values measured in the averaging time. The <tt>sigma_v</tt>
     variable is the standard deviation of these high-resolution mean
     velocities. Spectral width is the standard deviation of actual particle
