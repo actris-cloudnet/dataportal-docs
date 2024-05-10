@@ -221,27 +221,19 @@ They should conform to the conventions indicated.
     be aware of when using this variable. If there are references specific to
     this variable (i.e. those that would be inappropriate in the global
     <tt>references</tt> attribute) then include them here. Ideally this
-    attribute should start with "<tt>This variable contains...</tt>", such that
-    it may be used as a general description of the variable for use with
-    programs that generate automatic documentation from a netCDF file; for
-    example, the detailed descriptions of variables on the <a
-    href="/radar/cloudnet/data/products/iwc-Z-T-method.html">IWC product
-    page</a> were contained in <tt>comment</tt> attributes. Use complete
+    attribute should start with This variable contains...". Use complete
     sentences terminated with a full-stop/period so that extra comments can be
     easily appended. New line characters (ASCII code: decimal 10) should be
     used to break long lines. Note that the use of the plural <tt>comments</tt>
     has been deprecated.
   </dd>
-  <dt><tt>_FillValue</tt> and <tt>missing_value</tt></dt>
+  <dt><tt>_FillValue</tt></dt>
   <dd>
     If the variable contains missing data (e.g. because an instrument was not
     working or the variable indicates cloud particle size but not cloud is
-    present etc.) then both <tt>_FillValue</tt> and <tt>missing_value</tt>
-    should be present to indicate which value has been used to flag that no
-    valid data are available. They must be of the same type as the variable
-    itself. The use of two different attributes is an unfortunate consequence
-    of the fact that older programs may only expect <tt>missing_value</tt>
-    while newer programs tend to use <tt>_FillValue</tt>.
+    present etc.) then <tt>_FillValue</tt> should be present to indicate which
+    value has been used to flag that no valid data are available. They must be
+    of the same type as the variable itself.
   </dd>
   <dt><tt>source</tt></dt>
   <dd>
@@ -265,19 +257,22 @@ Variables affected in this way should define one or more of the following
 attributes:
 
 <dl>
-  <dt><tt>error_variable</tt></dt>
+  <dt><tt>&lt;variable&gt;_error</tt></dt>
   <dd>
     Contains the name of the variable in the file that indicates the random
     error of the variable in question. Typically if the variable name were
-    <tt>Z</tt>, then the corresponding <tt>error_variable</tt> would be
-    <tt>Z_error</tt>.
+    <tt>Z</tt>, then the corresponding error variable would be
+    <tt>Z_error</tt>. The variables should be linked with
+    <tt>ancillary_variables</tt> attribute as specified in the <a
+    href="https://cfconventions.org/Data/cf-conventions/cf-conventions-1.8/cf-conventions.html#ancillary-data">CF
+    conventions</a>.
   </dd>
-  <dt><tt>bias_variable</tt></dt>
+  <dt><tt>&lt;variable&gt;_bias</tt></dt>
   <dd>
     As above, but for the bias. Similarly, the typical name for the bias in
     <tt>Z</tt> would be <tt>Z_bias</tt>.
   </dd>
-  <dt><tt>sensitivity_variable</tt></dt>
+  <dt><tt>&lt;variable&gt;_sensitivity</tt></dt>
   <dd>
     As above, but for the sensitivity. The typical name for the minimum
     detectable <tt>Z</tt> would be <tt>Z_sensitivity</tt>.
@@ -286,7 +281,7 @@ attributes:
 
 Sometimes errors can have a long (and difficult to define) decorrelation time,
 and it is not obvious how to differentiate between random error and bias. In
-this case only an `error_variable` need be defined. The variables used to
+this case only an `<variable>_error` need be defined. The variables used to
 report error and sensitivity should conform to the following conventions:
 
 <ul>
@@ -320,16 +315,19 @@ report error and sensitivity should conform to the following conventions:
       10log<sub>10</sub>(<tt>X</tt>) dB.</dd>
     </dl>
   </li>
-  <li>The error should correspond to <i>one standard deviation</i>, not be a
-  95% confidence interval, which is around two standard deviations. This should
-  be stated in the <tt>comment</tt> attribute, and ideally the
-  <tt>long_name</tt> attribute. So for variable <tt>Z</tt> , its random error
-  variable would typically have the long name <tt>Random error in Z, one
-  standard deviation</tt>.</li>
-  <li>The <tt>comment</tt> attribute should start with, for example, "<tt>This
-  variable is the [random error in|expected bias in|approximate calibration
-  error in|minimum detectable]...</tt>", and indicate how it was
-  calculated.</li>
+  <li>
+    The error should correspond to <i>one standard deviation</i>, not be a 95%
+    confidence interval, which is around two standard deviations. This should
+    be stated in the <tt>comment</tt> attribute, and ideally the
+    <tt>long_name</tt> attribute. So for variable <tt>Z</tt> , its random error
+    variable would typically have the long name "Random error in Z, one
+    standard deviation".
+  </li>
+  <li>
+    The <tt>comment</tt> attribute should start with, for example, "This
+    variable is the [random error in|expected bias in|approximate calibration
+    error in|minimum detectable]...", and indicate how it was calculated.
+  </li>
 </ul>
 
 ### Bit fields and status fields
@@ -481,7 +479,7 @@ The following attributes should be present and of type `text`:
   <dd>
     Serial number of the source instrument.
   </dd>
-  <dt><tt>software_version</tt></dt>
+  <dt><tt>&lt;software&gt;_version</tt></dt>
   <dd>
     If the processing program changes over time then it is useful to store the
     version number (as a string) of the program here.
@@ -571,10 +569,9 @@ are stored to this precision so no information is lost. You may then use
 <tt>scale_factor</tt> and/or <tt>add_offset</tt> attributes to get the data
 into suitable units and to provide the correct calibration. If both are present
 then the data in the file should be scaled first before the offset is added.
-Note also that the <tt>missing_value</tt> and <tt>\_FillValue</tt> attributes
-apply to the data <i>before</i> it has been scaled and shifted in this way.
-Usually <tt>scale_factor</tt> and <tt>add_offset</tt> would be of type
-<tt>float</tt>.
+Note also that the <tt>\_FillValue</tt> attributes apply to the data
+<i>before</i> it has been scaled and shifted in this way. Usually
+<tt>scale_factor</tt> and <tt>add_offset</tt> would be of type <tt>float</tt>.
 
 For some variables, notably radar reflectivity, accurate calibration can be
 difficult and the data may need to be recalibrated after the initial release.
