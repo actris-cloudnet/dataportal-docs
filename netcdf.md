@@ -107,16 +107,16 @@ of type `float`, i.e. a 4-byte floating-point number.
   <dt><tt>latitude</tt></dt>
   <dd>
     <dl>
-      <dt><tt>units</tt> = "<tt>degrees_north</tt>"</dt>
-      <dt><tt>long_name</tt> = "<tt>Latitude of site</tt>"</dt>
+      <dt><tt>units</tt> = "degrees_north"</dt>
+      <dt><tt>long_name</tt> = "Latitude of site"</dt>
     </dl>
   </dd>
   <dt><tt>longitude</tt></dt>
   <dd>
     It is conventional to always report positive longitudes, i.e. +359.0 rather than -1.0.
     <dl>
-      <dt><tt>units</tt> = "<tt>degrees_east</tt>"</dt>
-      <dt><tt>long_name</tt> = "<tt>Longitude of site</tt>"</dt>
+      <dt><tt>units</tt> = "degrees_east"</dt>
+      <dt><tt>long_name</tt> = "Longitude of site"</dt>
     </dl>
   </dd>
 </dl>
@@ -131,14 +131,14 @@ variable with the same name as the dimension. Typically these would be of type
     Note that the <tt>float</tt> type has enough precision for time in hours to
     be discretised to better than 0.007 seconds.
     <dl>
-      <dt><tt>units</tt> = "<tt>hours since YYYY-MM-DD 00:00:00 00:00</tt>"</dt>
+      <dt><tt>units</tt> = "hours since YYYY-MM-DD 00:00:00 00:00"</dt>
       <dd>where YYYY-MM-DD must contain the date that the data were taken (e.g.
       2002-09-05). The zeros at the end indicate that the time is from midnight
       UTC (i.e. timezone 00:00). This reporting of time is from the CF
       convention. Note that reporting time in hours rather than seconds from
       midnight is much more convenient for the user.</dd>
-      <dt><tt>long_name</tt> = "<tt>Time UTC</tt>"</dt>
-      <dt><tt>axis</tt> = "<tt>T</tt>"</dt>
+      <dt><tt>long_name</tt> = "Time UTC"</dt>
+      <dt><tt>axis</tt> = "T"</dt>
     </dl>
   </dd>
 </dl>
@@ -150,19 +150,18 @@ on the dimensions present, e.g.
   <dt><tt>range(range)</tt></dt>
   <dd>
     <dl>
-      <dt><tt>units</tt> = "<tt>km</tt>"</dt>
-      <dd>Note that reporting range in metres ("<tt>m</tt>") is also permissible.</dd>
-      <dt><tt>long_name</tt> = "<tt>Range from antenna to the centre of each range gate</tt>"</dt>
+      <dt><tt>units</tt> = "km"</dt>
+      <dt><tt>long_name</tt> = "Range from antenna to the centre of each range gate"</dt>
       <dd>An example long name.</dd>
-      <dt><tt>axis</tt> = "<tt>Z</tt>"</dt>
+      <dt><tt>axis</tt> = "Z"</dt>
     </dl>
   </dd>
   <dt><tt>height(height)</tt></dt>
   <dd>
     <dl>
-      <dt><tt>units</tt> = "<tt>m</tt>"</dt>
-      <dt><tt>long_name</tt> = "<tt>Height above mean sea level</tt>"</dt>
-      <dt><tt>axis</tt> = "<tt>Z</tt>"</dt>
+      <dt><tt>units</tt> = "m"</dt>
+      <dt><tt>long_name</tt> = "Height above mean sea level"</dt>
+      <dt><tt>axis</tt> = "Z"</dt>
     </dl>
   </dd>
 </dl>
@@ -179,19 +178,19 @@ All variables should set the following two attributes:
   <dt><tt>units</tt></dt>
   <dd>
     The units should be readable by the UDUNITS package, as required by the CF
-    convention description. An additionally accepted unit is <tt>dBZ</tt>. If
+    convention description. An additionally accepted unit is "dBZ". If
     possible, units should be SI. The main points for uniform use of units are
     as follows:
     <ul>
-      <li>Exponents should be expressed by "<tt>g m-3</tt>", not "<tt>g
-      m^{-3}</tt>", "<tt>gm-3</tt>", "<tt>g/m3</tt>", "<tt>g(m)^-1</tt>"
-      etc.</li>
+      <li>Exponents should be expressed by "g m-3", not "g m^{-3}", "gm-3",
+      "g/m3", "g(m)^-1" etc.</li>
       <li>If conventional modifiers such as "kilo" are used, please use the
-      correct case, i.e. "<tt>km</tt>" not "<tt>Km</tt>" for kilometers.</li>
-      <li>The appropriate way to express microns is "<tt>um</tt>", not
-      "<tt>microns</tt>" or "<tt>1e-6 m</tt>".</li>
-      <li>The units for <tt>time</tt> should conform to the use indicated in the section above.</li>
-      <li>Dimensionless variables use the unit "<tt>1</tt>".</li>
+      correct case, i.e. "km" not "Km" for kilometers.</li>
+      <li>The appropriate way to express microns is "um", not "microns" or
+      "1e-6 m".</li>
+      <li>The units for <tt>time</tt> should conform to the use indicated in
+      the section above.</li>
+      <li>Dimensionless variables use the unit "1".</li>
     </ul>
     Note that <i>bit fields</i> and <i>status fields</i>, defined below, need
     not use the <tt>units</tt> attribute.
@@ -221,7 +220,7 @@ They should conform to the conventions indicated.
     be aware of when using this variable. If there are references specific to
     this variable (i.e. those that would be inappropriate in the global
     <tt>references</tt> attribute) then include them here. Ideally this
-    attribute should start with This variable contains...". Use complete
+    attribute should start with "This variable contains...". Use complete
     sentences terminated with a full-stop/period so that extra comments can be
     easily appended. New line characters (ASCII code: decimal 10) should be
     used to break long lines. Note that the use of the plural <tt>comments</tt>
@@ -352,20 +351,20 @@ In the case of status fields, we could have:
 
 <dl>
   <dt><tt>definition</tt> =</dt>
-  <dd>"<tt>Value 0: No cloud present<br>
+  <dd>"Value 0: No cloud present<br>
   Value 1: Reliable retrieval<br>
   Value 2: Possibly unreliable retrieval due to spiders in the waveguide<br>
-  Value 3: Unreliable retrieval</tt>"</dd>
+  Value 3: Unreliable retrieval"</dd>
 </dl>
 
 while in the case of bit fields we could have:
 
 <dl>
   <dt><tt>definition</tt> =</dt>
-  <dd>"<tt>Bit 0: Liquid droplets are present<br>
+  <dd>"Bit 0: Liquid droplets are present<br>
   Bit 1: Ice particles are present<br>
   Bit 2: Raindrops are present<br>
-  Bit 3: Aerosol particles are present</tt>"</dd>
+  Bit 3: Aerosol particles are present"</dd>
 </dl>
 
 ## Global attributes
@@ -415,12 +414,12 @@ The following attributes should be present and of type `text`:
     Each program that acts on the file should append to this attribute a brief
     description of what they did, and when they did it (again using the
     newline character as a separator). Extra information can include the user
-    and the name of the machine. For example, "<tt>Wed Nov 28 18:38:12 GMT 2001
+    and the name of the machine. For example, "Wed Nov 28 18:38:12 GMT 2001
     - NetCDF generated from original data by Robin Hogan
-    &lt;r.j.hogan@reading.ac.uk&gt; on voldemort</tt>". If the calibration
-    needs to be changed then it may be appended by "<tt>\nThu Nov 29 18:38:12
+    &lt;r.j.hogan@reading.ac.uk&gt; on voldemort". If the calibration
+    needs to be changed then it may be appended by "\nThu Nov 29 18:38:12
     GMT 2001 - Recalibrated (+3 dB) by Robin Hogan
-    &lt;r.j.hogan@reading.ac.uk&gt; on voldemort</tt>", where '<tt>\n</tt>'
+    &lt;r.j.hogan@reading.ac.uk&gt; on voldemort", where '<tt>\n</tt>'
     indicates the newline character (i.e. not a backslash character followed
     by an "n" character).
   </dd>
@@ -507,8 +506,8 @@ after each variable name. All these variables are of type <tt>float</tt>.
     account of the fact that <tt>altitude</tt> is in metres and <tt>range</tt>
     is in km).
     <dl>
-      <dt><tt>units</tt> = "<tt>m</tt>"</dt>
-      <dt><tt>long_name</tt> = "<tt>Altitude of antenna above mean sea level</tt>"</dt>
+      <dt><tt>units</tt> = "m"</dt>
+      <dt><tt>long_name</tt> = "Altitude of antenna above mean sea level"</dt>
     </dl>
   </dd>
   <dt><tt>elevation</tt></dt>
@@ -518,8 +517,8 @@ after each variable name. All these variables are of type <tt>float</tt>.
     from horizontally aligned plate crystals, in which case the elevation will
     be less than 90&deg;.
     <dl>
-      <dt><tt>units</tt> = "<tt>degrees</tt>"</dt>
-      <dt><tt>long_name</tt> = "<tt>Elevation above horizon</tt>"</dt>
+      <dt><tt>units</tt> = "degrees"</dt>
+      <dt><tt>long_name</tt> = "Elevation above horizon"</dt>
     </dl>
   </dd>
   <dt><tt>azimuth</tt></dt>
@@ -527,8 +526,8 @@ after each variable name. All these variables are of type <tt>float</tt>.
     An optional variable that gives the azimuth of instruments that are not
     vertically pointing.
     <dl>
-      <dt><tt>units</tt> = "<tt>degrees</tt>"</dt>
-      <dt><tt>long_name</tt> = "<tt>Azimuth clockwise from due north</tt>"</dt>
+      <dt><tt>units</tt> = "degrees"</dt>
+      <dt><tt>long_name</tt> = "Azimuth clockwise from due north"</dt>
     </dl>
   </dd>
 </dl>
@@ -539,8 +538,8 @@ For radar the following should also be defined:
   <dt><tt>frequency</tt></dt>
   <dd>
     <dl>
-      <dt><tt>units</tt> = "<tt>GHz</tt>"</dt>
-      <dt><tt>long_name</tt> = "<tt>Radar frequency</tt>"</dt>
+      <dt><tt>units</tt> = "GHz"</dt>
+      <dt><tt>long_name</tt> = "Radar frequency"</dt>
     </dl>
   </dd>
 </dl>
@@ -554,8 +553,8 @@ For lidar, use:
     one-dimensional array containing all the wavelengths available. This
     requires an extra dimension, also with name <tt>wavelength</tt>.
     <dl>
-      <dt><tt>units</tt> = "<tt>nm</tt>"</dt>
-      <dt><tt>long_name</tt> = "<tt>Lidar wavelength</tt>"</dt>
+      <dt><tt>units</tt> = "nm"</dt>
+      <dt><tt>long_name</tt> = "Lidar wavelength"</dt>
     </dl>
   </dd>
 </dl>
@@ -585,12 +584,12 @@ the attributes that should be present:
   <dt><tt>Z(time, range)</tt></dt>
   <dd>
     <dl>
-      <dt><tt>units</tt> = "<tt>dBZ</tt>"</dt>
-      <dt><tt>long_name</tt> = "<tt>Radar reflectivity factor</tt>"</dt>
-      <dt><tt>comment</tt> = "<tt>Calibration convention: in the absence of
+      <dt><tt>units</tt> = "dBZ"</dt>
+      <dt><tt>long_name</tt> = "Radar reflectivity factor"</dt>
+      <dt><tt>comment</tt> = "Calibration convention: in the absence of
       attenuation, a cloud at 273 K containing one million 100-micron droplets
       per cubic metre will have a reflectivity of 0 dBZ at all
-      frequencies.</tt>"</dt>
+      frequencies."</dt>
       <dt><tt>calibration_applied</tt></dt>
       <dd>...in dB.</dd>
     </dl>
@@ -598,9 +597,9 @@ the attributes that should be present:
   <dt><tt>v(time, range)</tt></dt>
   <dd>
     <dl>
-      <dt><tt>units</tt> = "<tt>m s-1</tt>"</dt>
-      <dt><tt>long_name</tt> = "<tt>Doppler velocity</tt>"</dt>
-      <dt><tt>comment</tt> = "<tt>Positive velocities are away from the radar.</tt>"</dt>
+      <dt><tt>units</tt> = "m s-1"</dt>
+      <dt><tt>long_name</tt> = "Doppler velocity"</dt>
+      <dt><tt>comment</tt> = "Positive velocities are away from the radar."</dt>
       <dt><tt>folding_velocity</tt></dt>
       <dd>
 	This attribute indicates that the velocities may be folded, lying in
@@ -611,11 +610,11 @@ the attributes that should be present:
   <dt><tt>width(time, range)</tt></dt>
   <dd>
     <dl>
-      <dt><tt>units</tt> = "<tt>m s-1</tt>"</dt>
-      <dt><tt>long_name</tt> = "<tt>Spectral width</tt>"</dt>
-      <dt><tt>comment</tt> = "<tt>This variable is the standard deviation of
+      <dt><tt>units</tt> = "m s-1"</dt>
+      <dt><tt>long_name</tt> = "Spectral width"</dt>
+      <dt><tt>comment</tt> = "This variable is the standard deviation of
       the reflectivity-weighted velocities in the radar pulse
-      volume.</tt>"</dt>
+      volume."</dt>
     </dl>
   </dd>
   <dt><tt>sigma_v(time, range)</tt></dt>
@@ -630,19 +629,19 @@ the attributes that should be present:
     fall speeds of the different sized particles. This variable, on the other
     hand, is dominated by turbulence.
     <dl>
-      <dt><tt>units</tt> = "<tt>m s-1</tt>"</dt>
-      <dt><tt>long_name</tt> = "<tt>Standard deviation of mean velocity</tt>"</dt>
-      <dt><tt>comment</tt> = "<tt>The data in this file are at a lower
+      <dt><tt>units</tt> = "m s-1"</dt>
+      <dt><tt>long_name</tt> = "Standard deviation of mean velocity"</dt>
+      <dt><tt>comment</tt> = "The data in this file are at a lower
       resolution than the raw data, and this variable is the standard deviation
       of the raw Doppler velocities measured during in each output gate and
-      ray.</tt>"</dt>
+      ray."</dt>
     </dl>
   </dd>
   <dt><tt>ldr(time, range)</tt></dt>
   <dd>
     <dl>
-      <dt><tt>units</tt> = "<tt>dB</tt>"</dt>
-      <dt><tt>long_name</tt> = "<tt>Linear depolarisation ratio</tt>"</dt>
+      <dt><tt>units</tt> = "dB"</dt>
+      <dt><tt>long_name</tt> = "Linear depolarisation ratio"</dt>
     </dl>
   </dd>
 </dl>
@@ -656,16 +655,16 @@ Similarly, the following are variable names that could be used with lidar data:
     wavelength, then the wavelength could be indicated in the variable name,
     such as <tt>beta1064</tt>, <tt>beta532</tt> etc.
     <dl>
-      <dt><tt>units</tt> = "<tt>m-1 sr-1</tt>"</dt>
-      <dt><tt>long_name</tt> = "<tt>Attenuated backscatter coefficient</tt>"</dt>
+      <dt><tt>units</tt> = "m-1 sr-1"</dt>
+      <dt><tt>long_name</tt> = "Attenuated backscatter coefficient"</dt>
     </dl>
   </dd>
   <dt><tt>ldr(time, range)</tt></dt>
   <dd>
     <dl>
-      <dt><tt>units</tt> = "<tt>1</tt>"</dt>
+      <dt><tt>units</tt> = "1"</dt>
       <dd>Lidar depolarisation ratio normally lies in the range <tt>0</tt> to <tt>1</tt>.</dd>
-      <dt><tt>long_name</tt> = "<tt>Linear depolarisation ratio</tt>"</dt>
+      <dt><tt>long_name</tt> = "Linear depolarisation ratio"</dt>
     </dl>
   </dd>
 </dl>
