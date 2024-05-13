@@ -338,16 +338,12 @@ need to be distinguished between a number of different types, such as "liquid
 clouds", "ice clouds", "aerosol", "insects". In this case one can use a _status
 field_, where the integer variable will be one of a limited number of values,
 or a <i>bit field</i>, where each bit of the integer variable should be
-interpretted as a separate flag. Such variables should always be of netCDF type
-`byte`, to avoid the byte-order confusion that is likely to arise with two-byte
-and four-byte integers due to different CPU architectures. Additionally, it is
-probably best not to use the most significant bit of the field, as this is used
-to indicate the sign of the byte and could easily be misread by badly written
-programs. Hence use no more than 7 bits per byte, and if you need more bits,
-consider providing two bit fields. Rather than use a `units` attribute, the
-variable should use a `definition` attribute, where each line (separated by the
-newline character) indicates the meaning either of each value, or of each bit.
-In the case of status fields, we could have:
+interpretted as a separate flag.
+
+Rather than use a `units` attribute, the variable should use a `definition`
+attribute, where each line (separated by the newline character) indicates the
+meaning either of each value, or of each bit. In the case of status fields, we
+could have:
 
 <dl>
   <dt><tt>definition</tt> =</dt>
@@ -366,6 +362,8 @@ while in the case of bit fields we could have:
   Bit 2: Raindrops are present<br>
   Bit 3: Aerosol particles are present"</dd>
 </dl>
+
+where bit 0 is the least significant bit.
 
 ## Global attributes
 
