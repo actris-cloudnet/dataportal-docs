@@ -458,7 +458,8 @@ The following attributes should be present and of type `text`:
   </dd>
   <dt><tt>source_file_uuids</tt></dt>
   <dd>
-    Newline-separated list of source file UUIDs in products like categorize.
+    Comma-separated list of UUIDs that identify the files used in generation of
+    this product. Useful in categorize and level 2 files.
   </dd>
   <dt><tt>instrument_pid</tt></dt>
   <dd>
