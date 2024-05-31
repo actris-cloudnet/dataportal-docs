@@ -33,26 +33,6 @@ Cloudnet provides several HTTP APIs to access different services:
 - Cloudnet uses netCDF4 file format.
   See the [Cloudnet NetCDF convention](netcdf.md) and [descriptions of Cloudnet products](https://cloudnet.fmi.fi/products/).
 
-## Measurement sites
-
-Cloudnet measurements sites submit data daily into Cloudnet data portal.
-These sites are mostly located in Europe.
-In addition, data portal contains data from campaign sites all over the globe.
-You can also find some legacy data from sites that are part of US based
-[Atmospheric Radiation Measurement (ARM)](https://www.arm.gov/) network.
-
-[See full list of sites here](https://cloudnet.fmi.fi/sites).
-Below is descriptions of a few.
-
-### Regular, operational Cloudnet sites
-
-- [Hyytiälä](sites/hyytiala.md)
-- [Kenttärova](sites/kenttarova.md)
-
-### Campaign sites
-
-- [Punta Arenas](sites/punta-arenas.md)
-
 ## Contact
 
 - Questions and feedback: [actris-cloudnet@fmi.fi](mailto:actris-cloudnet@fmi.fi)
