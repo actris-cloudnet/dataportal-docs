@@ -12,7 +12,7 @@ Germany.
 The campaign location was in the premises of the University of Magallanes,
 Punta Arenas, Chile.
 
-# Instrumentation
+## Instrumentation
 
 The Leipzig Aerosol and Cloud Remote Observations System (LACROS) [Bühl et al.,
 2012] is container-based system housing the following instruments used in
@@ -27,10 +27,6 @@ ACTRIS-Cloudnet processing.
 ## Contact person
 
 - [Patric Seifert](mailto:seifert@tropos.de)
-
-## Links
-
-- [DACAPO-PESO home page](https://dacapo.tropos.de/)
 
 ## Pictures
 
