@@ -1,0 +1,12 @@
+# Sodankylä
+
+Sodankylä is an Arctic measurement site in Northern Finland (Hirsikko et al.,
+2014). It is located 7&nbsp;km from the municipality centre of Sodankylä. The
+station is part of [Sodankylä Supersite](https://en.ilmatieteenlaitos.fi/sodankyla-supersite)
+hosted by the Finnish Meteorological Institute.
+
+## References
+
+Hirsikko et al. (2014). Observing wind, aerosol particles, cloud and
+precipitation: Finland's new ground-based remote-sensing network. _Atmos. Meas.
+Tech._, _7_(5), 1351–1375. <https://doi.org/10.5194/amt-7-1351-2014>
