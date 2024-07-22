@@ -12,4 +12,4 @@ Tech._, _7_(5), 1351–1375. <https://doi.org/10.5194/amt-7-1351-2014>
 
 ## Links
 
-[Savilahti homepage](https://en.ilmatieteenlaitos.fi/kuopio-measurement-stations)
+[Savilahti home page](https://en.ilmatieteenlaitos.fi/kuopio-measurement-stations)
