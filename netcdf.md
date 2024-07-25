@@ -338,7 +338,7 @@ need to be distinguished between a number of different types, such as "liquid
 clouds", "ice clouds", "aerosol", "insects". In this case one can use a _status
 field_, where the integer variable will be one of a limited number of values,
 or a <i>bit field</i>, where each bit of the integer variable should be
-interpretted as a separate flag.
+interpreted as a separate flag.
 
 Rather than use a `units` attribute, the variable should use a `definition`
 attribute, where each line (separated by the newline character) indicates the
@@ -425,7 +425,7 @@ The following attributes should be present and of type `text`:
   <dd>
     In the case of instrumental data, this would contain a brief specification
     of the instrument. The spec of a radar should include frequency, antenna
-    diameter, pulse repetition freqiency, pulse width (in microseconds) and
+    diameter, pulse repetition frequency, pulse width (in microseconds) and
     peak power, and the spec of a lidar should include wavelength, divergence,
     field of view and pulse repetition frequency. The fields would be newline
     separated. In the case of model data a single-line title for the model is

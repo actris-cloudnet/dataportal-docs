@@ -399,7 +399,7 @@ Queries the metadata of model files. It offers the following parameters for filt
   If omitted will default to the current date.
 - `filename`: One or more filenames by which to filter the files.
 - `model`: One or more `Model` ids, by which to filter the files.
-- `allModels`: By default the API returns only the best model available matching the given search parameters. Adding this parameter will fetch all model files matching the search paramterers.
+- `allModels`: By default the API returns only the best model available matching the given search parameters. Adding this parameter will fetch all model files matching the search parameters.
 - `updatedAtFrom`: Limit query to files whose `updatedAt` is `updatedAtFrom` or later.
   By default `updatedAt` is not limited. Accepts either `YYYY-MM-DD` or `YYYY-MM-DDTHH:MM:SS.SSSZ`.
 - `updatedAtTo`: Limit query to files whose `updatedAt` is `updatedAtTo` or earlier.
