@@ -208,7 +208,7 @@ Response body:
 
 ### `GET /api/files/UUID` → `File`
 
-Fetch metadata for a single data object using its UUID (Universal Unique IDentifier).
+Fetch metadata for a single data object using its UUID (Universal Unique Identifier).
 All the data objects downloaded from the data portal are associated with a UUID,
 which can be found in the data object's global attribute `file_uuid`.
 To view the global attributes of a NetCDF file, one may use `ncdump -h file.nc`.
