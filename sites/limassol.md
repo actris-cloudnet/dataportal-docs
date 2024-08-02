@@ -8,9 +8,9 @@ calibration/validation of satellite missions.
 
 The CARO’s ground-based atmospheric remote sensing station consolidates
 advanced infrastructure and high-quality instrumentation for aerosol and cloud
-remote sensing. The station is located in the heart of Limassol, approximately
-800 meters from the coastline, the station captures unique atmospheric data
-influenced by urban and coastal dynamics.
+remote sensing. Located in the heart of Limassol, approximately 800 meters from
+the coastline, the station captures unique atmospheric data influenced by urban
+and coastal dynamics.
 
 ## Links
 
