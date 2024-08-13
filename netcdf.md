@@ -4,7 +4,7 @@
 
 The Cloudnet convention is applicable to any dataset on a time-height grid,
 including radar and lidar data, single-site model forecasts and derived
-meteorological products. It adopts many of the components of other netCDF
+geophysical products. It adopts many of the components of other netCDF
 conventions, specifically the [Climate and Forecast (CF) Metadata
 Conventions](https://cfconventions.org/). Conventions generally relate to the
 attributes that should be supplied, or those that it is recommended to use if a
@@ -15,7 +15,7 @@ Suggestions for improvements and clarifications to the convention are welcome.
 ## Files and filenames
 
 Files should use the netCDF4 classic file format. Each level 1 (instrumental or
-model data) or level 2 (meteorological product) file should contain data from a
+model data) or level 2 (geophysical product) file should contain data from a
 single day. The times reported in the file should be in hours UTC, so for
 instruments that operate continuously, each individual file should run from
 midnight to midnight UTC.
@@ -35,7 +35,7 @@ Filenames should be of the form `YYYYMMDD_WHERE_WHAT.nc` or
   <dd>
     This field either identifies the instrument (e.g. <tt>galileo</tt> for the
     Galileo radar), the model (e.g. <tt>harmonie-fmi-0-5</tt> for the 0-5 hour
-    forecast of the HARMONIE-AROME model) or the meteorological product (e.g.
+    forecast of the HARMONIE-AROME model) or the geophysical product (e.g.
     <tt>iwc-Z-T-method</tt> for ice water content derived using the
     reflectivity+temperature method).
   </dd>
@@ -245,7 +245,7 @@ They should conform to the conventions indicated.
 
 ### Variables indicating error and sensitivity
 
-All derived meteorological products at level 2 and above should ideally be
+All derived geophysical products at level 2 and above should ideally be
 accompanied by an indication of their error. Typically errors can be divided
 into _random error_ that decorrelates rapidly with time, and a _bias_ due to
 the accuracy with which an instrument was calibrated and which may affect all
@@ -285,16 +285,16 @@ report error and sensitivity should conform to the following conventions:
 
 <ul>
   <li>An error/sensitivity variable may be a function of all, some or none of
-  the dimensions used by the corresponding meteorological variable. For
+  the dimensions used by the corresponding geophysical variable. For
   example, a random error might vary with <tt>time</tt> and <tt>height</tt>,
   while a bias might be a constant value for the whole file, indicating the
   expected accuracy of the calibration of the instrument from which the
-  meteorological variable was derived (so therefore needing no dimensions). In
+  geophysical variable was derived (so therefore needing no dimensions). In
   the case of radar, the sensitivity of radar reflectivity is predominantly a
   function of <tt>height</tt>, as will be parameters derived from it.</li>
   <li>
     The <tt>units</tt> of the error/sensitivity variable would typically be the
-    same as those of the meteorological variable. However, for errors and
+    same as those of the geophysical variable. However, for errors and
     biases, two additional units are permissible:
     <dl>
       <dt><tt>%</tt></dt>
