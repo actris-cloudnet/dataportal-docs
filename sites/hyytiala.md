@@ -22,17 +22,13 @@ measurements are performed.
 
 ## References
 
-Petäjä et al. (2016). BAECC: A Field Campaign to Elucidate the Impact of
-Biogenic Aerosols on Clouds and Climate. _Bull. Amer. Meteor. Soc._, _97_(10),
-1909–1928. <https://doi.org/10.1175/BAMS-D-14-00199.1>.
+- Petäjä et al. (2016). BAECC: A Field Campaign to Elucidate the Impact of
+  Biogenic Aerosols on Clouds and Climate. _Bull. Amer. Meteor. Soc._, _97_(10),
+  1909–1928. <https://doi.org/10.1175/BAMS-D-14-00199.1>.
 
 ## Links
 
 - [Hyytiälä home page](https://www2.helsinki.fi/en/research-stations/hyytiala-forestry-field-station)
-
-## Contact person
-
-- [Dmitri Moisseev](mailto:dmitri.moisseev@helsinki.fi)
 
 ## Pictures
 

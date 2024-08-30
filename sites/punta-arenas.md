@@ -24,10 +24,6 @@ ACTRIS-Cloudnet processing.
 - Microwave radiometer: HATPRO G2
 - Model data: ECMWF
 
-## Contact person
-
-- [Patric Seifert](mailto:seifert@tropos.de)
-
 ## Pictures
 
 ![](../img/PuntaArenas1.jpg)
