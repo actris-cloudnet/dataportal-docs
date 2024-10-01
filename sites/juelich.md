@@ -22,9 +22,8 @@ characterize diurnal and seasonal patterns in a statistical way.
 
 ## References
 
-- Löhnert et al. (2015). JOYCE: Jülich Observatory for Cloud
-  Evolution. Bulletin of the American Meteorological Society, 96(7), 1157-1174.
-  <https://doi.org/10.1175/BAMS-D-14-00105.1>
+- Löhnert et al. (2015). JOYCE: Jülich Observatory for Cloud Evolution. _Bull.
+  Amer. Meteor. Soc._, _96_(7), 1157–1174. <https://doi.org/10.1175/BAMS-D-14-00105.1>
 
 ## Links
 
