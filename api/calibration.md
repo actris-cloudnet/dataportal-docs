@@ -3,7 +3,7 @@
 # Calibration API reference
 
 This is a documentation for the HTTP API for configuring the calibration
-factors used in Cloudnet data processing.
+information used in Cloudnet data processing.
 
 ## Routes
 
@@ -14,10 +14,10 @@ This route takes the following URL parameters:
 - `instrumentPid`: Instrument PID
 - `date`: Date of the calibration
 
-NOTE: For dates that do not have a calibration factor set, the previous
-calibration factor is returned. For example, given that there is a calibration
-factor for date 2021-01-01, querying the factor for 2021-01-02 will return the
-calibration factor of 2021-01-01.
+NOTE: For dates that do not have calibration data set, the previous
+calibration data are returned. For example, given that there are calibration
+data for date 2021-01-01, querying the data for 2021-01-02 will return the
+calibration data of 2021-01-01.
 
 ### POST /api/calibration
 
@@ -27,6 +27,20 @@ The route takes the following URL parameters:
 - `date`: Date for which the calibration is valid
 
 Request body must contain calibration data as JSON.
+
+## Calibration data
+
+| Field Name             | Type        | Unit  | Product                    | Description                                                                               |
+| ---------------------- | ----------- | ----- | -------------------------- | ----------------------------------------------------------------------------------------- |
+| **time_offset**        | `int`       | `min` | `lidar`, `weather-station` | Time offset compared to UTC (positive values mean ahead of UTC, e.g. Finnish local time). |
+| **range_offset**       | `int`       | `m`   | `radar`                    | Range offset.                                                                             |
+| **calibration_factor** | `float`     | 1     | `lidar`                    | Calibration factor.                                                                       |
+| **range_corrected**    | `bool`      | 1     | `lidar`                    | Indicates range-correction.                                                               |
+| **telegram**           | `list[int]` | 1     | `disdrometer`              | Telegram of data.                                                                         |
+| **coefficientLinks**   | `list[str]` | 1     | `mwr-l1b`                  | Coefficient links.                                                                        |
+| **azimuth_offset_deg** | `int`       | `deg` | `doppler-lidar-wind`       | Azimuth offset.                                                                           |
+| **missing_timestamps** | `bool`      | 1     | `disdrometer`              | Indicates missing timestamps.                                                             |
+| **snr_limit**          | `float`     | 1     | `lidar`                    | Signal-to-noise ratio limit.                                                              |
 
 ## Examples
 
@@ -58,3 +72,5 @@ curl -u username:password \
      -d '{"range_corrected": true, "calibration_factor": 5e-9}' \
      'https://cloudnet.fmi.fi/api/calibration?instrumentPid=https://hdl.handle.net/21.12132/3.cdf99c536bd04146&date=2021-01-01'
 ```
+
+Note: Updating the calibration database is currently done by the CLU personnel only.
