@@ -14,6 +14,8 @@ Cloudnet is part of [ACTRIS research infrastructure](https://www.actris.eu/)
 and is developed and maintained by
 the [Finnish Meteorological Institute](https://en.ilmatieteenlaitos.fi/).
 
+See [publications](https://cloudnet.fmi.fi/publications) using Cloudnet data or methods.
+
 ## API Reference
 
 Cloudnet provides several HTTP APIs to access different services:
