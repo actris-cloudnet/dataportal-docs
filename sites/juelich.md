@@ -27,4 +27,4 @@ characterize diurnal and seasonal patterns in a statistical way.
 
 ## Links
 
-- [JOYCE home page](https://cpex-lab.de/cpex-lab/EN/Home/JOYCE-CF/JOYCE-CF_node.html)
+- [JOYCE home page](https://geomet.uni-koeln.de/forschung/actris/joyce)
