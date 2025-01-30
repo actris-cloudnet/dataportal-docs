@@ -38,8 +38,8 @@ Request body must contain calibration data as JSON.
 | **range_corrected**    | `bool`      | 1       | `lidar`                       | Indicates range-correction.                                                               |
 | **telegram**           | `list[int]` | 1       | `disdrometer`                 | Telegram of data.                                                                         |
 | **coefficientLinks**   | `list[str]` | 1       | `mwr-l1b`                     | Coefficient links.                                                                        |
-| **azimuth_offset**     | `int`       | degrees | `radar`, `doppler-lidar-wind` | Offset value to be added to azimuth angles.                                               |
-| **zenith_offset**      | `int`       | degrees | `radar`, `doppler-lidar-wind` | Offset value to be added to zenith angles.                                                |
+| **azimuth_offset**     | `float`     | degrees | `radar`, `doppler-lidar-wind` | Offset value to be added to azimuth angles.                                               |
+| **zenith_offset**      | `float`     | degrees | `radar`, `doppler-lidar-wind` | Offset value to be added to zenith angles.                                                |
 | **missing_timestamps** | `bool`      | 1       | `disdrometer`                 | Indicates missing timestamps.                                                             |
 | **snr_limit**          | `float`     | 1       | `lidar`                       | Signal-to-noise ratio limit.                                                              |
 
