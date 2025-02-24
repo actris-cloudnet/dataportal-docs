@@ -87,7 +87,6 @@ each having the properties:
 
 - `id`: Unique identifier of the product.
 - `humanReadableName`: Name of the product in a human-readable format.
-- `level`: Product level. Is either `1b`, `1c`, `2` or `3`.
 - `experimental`: `true` on experimental products, `false` on normal ones.
 
 Example query:
@@ -100,8 +99,7 @@ Response body:
 [
   {
     "id": "categorize",
-    "humanReadableName": "Categorize",
-    "level": "1c"
+    "humanReadableName": "Categorize"
   },
 ...
 ]
@@ -114,7 +112,6 @@ each having the properties:
 
 - `id`: Unique identifier of the product.
 - `humanReadableName`: Name of the product in a human-readable format.
-- `level`: Product level. Is either `1b`, `1c`, or `2`.
 - `variables`: List of product variables, each having the following properties:
   - `id`: Unique identifier of the variable.
   - `humanReadableName`: Variable name in a human-readable format.
@@ -133,7 +130,6 @@ Response body:
   {
     "id": "disdrometer",
     "humanReadableName": "Disdrometer",
-    "level": "1b",
     "variables": [
       {
         "id": "disdrometer-rainfall_rate",
@@ -279,8 +275,7 @@ Response body:
   },
   "product": {
     "id": "categorize",
-    "humanReadableName": "Categorize",
-    "level": "1c"
+    "humanReadableName": "Categorize"
   },
   "software": [
     {
@@ -361,8 +356,7 @@ Response body:
     },
     "product": {
       "id": "classification",
-      "humanReadableName": "Classification",
-      "level": "2"
+      "humanReadableName": "Classification"
     },
     "software": [
       {
@@ -442,8 +436,7 @@ Response body:
     },
     "product": {
       "id": "model",
-      "humanReadableName": "Model",
-      "level": "1b"
+      "humanReadableName": "Model"
     },
     "model": {
       "id": "gdas1",
