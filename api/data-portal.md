@@ -33,22 +33,25 @@ Metadata can be queried via the following routes. For examples on how to use the
 
 ### `GET /api/sites` → `Site[]`
 
-Fetch information on all the measuring stations in the system. Responds with an array of `Site` objects,
+Fetch information on all the measuring stations in the system. Responds with a list of `Site` objects,
 each having the properties:
 
 - `id`: Unique site identifier.
 - `humanReadableName`: Name of the site in a human-readable format.
-- `type`: An array of site type identifiers. Types are as follows:
+- `stationName`: Name or abbreviation of the measurement station at the site. `null` if the site does not have one.
+- `description`: Site description in HTML format.
+- `type`: List of site type identifiers. Possible values are:
   - `cloudnet`: Cloudnet sites.
   - `campaign`: Short-term measurement sites.
   - `arm`: Atmospheric Radiation Measurement (ARM) site.
   - `model`: Model only sites not visible in the search GUI.
   - `hidden`: Sites that are not visible in the search GUI.
-- `latitude`: Latitude of the site given with the precision of three decimals.
-- `longitude`: Longitude of the site given with the precision of three decimals.
+- `latitude`: Latitude of the site given with the precision of at least three decimals. `null` if the site is a moving site (e.g. ship).
+- `longitude`: Longitude of the site given with the precision of at least three decimals. `null` if the site is a moving site.
 - `altitude`: Elevation of the site from mean sea level in meters.
 - `gaw`: Global Atmosphere Watch identifier. `null` if the site does not have one.
 - `dvasId`: DVAS data portal station identifier. `null` if site is not listed in the DVAS portal.
+- `actrisId`: ACTRIS national facility identifier. `null` if site is not an ACTRIS national facility.
 - `country`: Human-readable name for the country or subdivision in which the site resides.
 - `countryCode`: Two-letter country code according to [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). `null` if the code is not set or available.
 - `countrySubdivisionCode`: Country subdivision code according to [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2). `null` if the code is not set or available.
@@ -64,6 +67,8 @@ Response body:
   {
     "id": "alomar",
     "humanReadableName": "Alomar",
+    "stationName": null,
+    "description": null,
     "type": [
       "hidden"
     ],
@@ -72,21 +77,26 @@ Response body:
     "altitude": 380,
     "gaw": null,
     "dvasId": null,
+    "actrisId": null,
     "country": "Norway",
     "countryCode": "NO",
     "countrySubdivisionCode": null
   },
-...
+  ...
 ]
 ```
 
 ### `GET /api/products` → `Product[]`
 
-Fetch information on the products served in the data portal. Responds with an array of `Product` objects,
+Fetch information on the products served in the data portal. Responds with a list of `Product` objects,
 each having the properties:
 
 - `id`: Unique identifier of the product.
 - `humanReadableName`: Name of the product in a human-readable format.
+- `type`: List of product types. Possible values are:
+  - `instrument`: Instrument product.
+  - `geophysical`: Geophysical product.
+  - `evaluation`: Higher-level evaluation product (e.g. level 3).
 - `experimental`: `true` on experimental products, `false` on normal ones.
 
 Example query:
@@ -99,23 +109,30 @@ Response body:
 [
   {
     "id": "categorize",
-    "humanReadableName": "Categorize"
+    "humanReadableName": "Categorize",
+    "type": [
+      "geophysical"
+    ],
+    "experimental": "false"
   },
-...
+  ...
 ]
 ```
 
 ### `GET /api/products/variables` → `ProductVariables[]`
 
-Fetch product variables. Responds with an array of `ProductVariable` objects,
+Fetch product variables. Responds with a list of `ProductVariable` objects,
 each having the properties:
 
 - `id`: Unique identifier of the product.
 - `humanReadableName`: Name of the product in a human-readable format.
+- `type`: List of product types (see `Product[]` above).
+- `experimental`: `true` on experimental products, `false` on normal ones.
 - `variables`: List of product variables, each having the following properties:
   - `id`: Unique identifier of the variable.
   - `humanReadableName`: Variable name in a human-readable format.
   - `order`: Number indicating the relevance of the variable for the product in question. `0` is the most relevant variable for the product. Used for sorting plots.
+  - `actrisName`: Variable name in ACTRIS Vocabulary.
 
 **NOTE:** The list of returned variables is not exhaustive, the products may contain more variables than listed. Internally this list is used for plotting.
 
@@ -130,6 +147,10 @@ Response body:
   {
     "id": "disdrometer",
     "humanReadableName": "Disdrometer",
+    "type": [
+      "instrument"
+    ],
+    "experimental": false,
     "variables": [
       {
         "id": "disdrometer-rainfall_rate",
@@ -143,20 +164,20 @@ Response body:
       }
     ]
   },
-...
+  ...
 ]
 ```
 
 ### `GET /api/instruments` → `Instrument[]`
 
-Fetch information on the instruments supported by the data portal. Responds with an array of `Instrument` objects,
+Fetch information on the instruments supported by the data portal. Responds with a list of `Instrument` objects,
 each having the properties:
 
 - `id`: Unique identifier of the instrument.
+- `type`: Type of the instrument. For example, `radar`, `lidar`, or `mwr`.
 - `humanReadableName`: Human-readable name for the instrument.
 - `shortName`: Human-readable short name for the instrument.
-- `type`: Type of the instrument. May be, for example, `radar`, `lidar`, or `mwr`.
-- `allowedTags`: Allowed tags for this instrument. May be, for example, `co`, `cross`, or `calibration`.
+- `allowedTags`: Allowed tags for this instrument. For example, `co`, `cross`.
 
 Example query:
 
@@ -168,22 +189,26 @@ Response body:
 [
   {
     "id": "mira",
-    "humanReadableName": "METEK MIRA-35 cloud radar",
     "type": "radar",
+    "humanReadableName": "METEK MIRA-35 cloud radar",
+    "shortName": "MIRA-10 cloud radar",
     "allowedTags": []
   },
-...
+  ...
 ]
 ```
 
 ### `GET /api/models` → `Model[]`
 
-Fetch information on the different model file types served in the data portal. Responds with an array of `Model` objects,
+Fetch information on the different model file types served in the data portal. Responds with a list of `Model` objects,
 each having the properties:
 
 - `id`: The unique identifier of the model.
 - `humanReadableName`: Human-readable name for the model.
 - `optimumOrder`: Integer that signifies model quality. Better models have lower `optimumOrder`.
+- `sourceModelId`: Source model identifier.
+- `forecastStart`: Start hour of the forecast.
+- `forecastEnd`: End hour of the forecast.
 
 Example query:
 
@@ -196,9 +221,12 @@ Response body:
   {
     "id": "ecmwf",
     "humanReadableName":"ECMWF IFS forecast",
-    "optimumOrder": 0
+    "optimumOrder": 0,
+    "sourceModelId": null,
+    "forecastStart": null,
+    "forecastEnd": null,
   },
-...
+  ...
 ]
 ```
 
@@ -214,7 +242,9 @@ On a successful query the route responds with a `File` object, which has the fol
 - `uuid`: UUIDv4 identifier.
 - `version`: String identifying file version. Empty string on volatile files.
 - `pid`: The persistent identifier of the data object. Empty string for data objects that do not have a PID, such as volatile files.
+- `dvasId`: DVAS data portal identifier.
 - `volatile`: `true` if the file has been modified recently and may change in the future,
+- `tombstoneReason`: Reason for tombstoning the file. `null` for valid files.
 - `legacy`: `true` if the file is legacy data, `false` if it has been processed with CloudnetPy.
   `false` if the file has not been changed recently and will not change in the future.
 - `measurementDate`: The date on which the data was measured, `YYYY-MM-DD`.
@@ -222,85 +252,109 @@ On a successful query the route responds with a `File` object, which has the fol
   is not curated in any way and may or may not contain helpful information.
 - `checksum`: The SHA-256 checksum of the file. Useful for verifying file integrity.
 - `size`: Size of the file in bytes.
+- `coverage`: Float between 0-1 indicating the data coverage.
 - `format`: The data structure of the file. Either `NetCDF3` or `HDF5 (NetCDF4)`.
+- `errorLevel`: Quality control outcome for the file. Possible values are `pass`, `info`, `warning` and `error`.
 - `createdAt`: The date and time on which the file was created in ISO 8601 format.
 - `updatedAt`: The date and time on which the file was last updated in ISO 8601 format.
-- `sourceFileIds`: List of UUIDs corresponding to the source files that were used to generate the file. If the source file information is not available, this is `null`.
+- `dvasUpdatedAt`: The date and time on which the metadata was submitted to DVAS data portal in ISO 8601 format.
+- `startTime`: Start time of the measurement in ISO 8601 format.
+- `stopTime`: Stop time of the measurement in ISO 8601 format.
 - `software`: List of software used to produce the file.
 - `site`: `Site` object containing information of the site on which the measurement was made.
 - `product`: `Product` object containing information of the data product.
+- `software`: `Software` object containing information of used processing software.
+- `instrument`: `Instrument` object containing information of instrument used to measure the data.
 - `downloadUrl`: The full URL to the data object. Useful for downloading the file.
 - `filename`: The name of the file.
 - `timeliness`: [Timeliness](https://vocabulary.actris.nilu.no/actris_vocab/timeliness) of the file. Possible values are
   `rrt` ([real real-time](https://vocabulary.actris.nilu.no/actris_vocab/realreal-time)),
   `nrt` ([near real-time](https://vocabulary.actris.nilu.no/actris_vocab/nearreal-time)) and
   [`scheduled`](https://vocabulary.actris.nilu.no/actris_vocab/scheduled).
-- `errorLevel`: Quality control outcome for the file. Possible values are `pass`, `info`, `warning` and `error`.
+- `sourceFileIds`: List of UUIDs corresponding to the source files that were used to generate the file. If the source file information is not available, this is `[]`.
 
 Example query:
 
-`GET https://cloudnet.fmi.fi/api/files/911bd5b1-3104-4732-9bd3-34ed8208adad`
+`GET https://cloudnet.fmi.fi/api/files/f695d0e6-a58a-40d1-affe-a18d2ff044fd`
 
 Response body:
 
 ```json
 {
-  "uuid": "911bd5b1-3104-4732-9bd3-34ed8208adad",
-  "version": "icRZfkXzTHB2-uuRTDaSV-eQu6N5wNm",
-  "pid": "https://hdl.handle.net/21.12132/1.911bd5b131044732",
-  "volatile": false,
+  "uuid": "f695d0e6-a58a-40d1-affe-a18d2ff044fd",
+  "version": "",
+  "pid": "https://hdl.handle.net/21.12132/1.f695d0e6a58a40d1",
+  "dvasId": null,
+  "volatile": true,
+  "tombstoneReason": null,
   "legacy": false,
-  "measurementDate": "2020-01-05",
-  "history": "2020-09-25 02:51:44 - categorize file created\n2020-09-25 02:50:07 - radar file created\n2020-09-25 02:49:27 - ceilometer file created",
-  "checksum": "51db399d73e69842988d35e7e14fff815342f6925c70c0bdc9296b2847960738",
-  "size": "8836007",
+  "measurementDate": "2025-04-23",
+  "checksum": "76f9d28a428e349db700dcdedd93a524c464195ba6e6b59e515efebf09bce02d",
+  "size": "9545135",
+  "coverage": 0.771777,
   "format": "HDF5 (NetCDF4)",
-  "createdAt": "2020-12-01T09:30:40.016Z",
-  "updatedAt": "2020-12-01T09:30:40.016Z",
-  "sourceFileIds": [
-    "f4cb2b92bd0c49779606b87440afa7b7",
-    "6ac91e0483934db2afb3bacc97a7d8c0",
-    "3171e11d022549b29e863138c406dce8"
-  ],
+  "errorLevel": "info",
+  "createdAt": "2025-04-23T01:21:05.694Z",
+  "updatedAt": "2025-04-23T14:21:07.303Z",
+  "dvasUpdatedAt": null,
+  "startTime": "2025-04-23T00:00:10.000Z",
+  "stopTime": "2025-04-23T13:47:02.000Z",
   "site": {
     "id": "bucharest",
     "humanReadableName": "Bucharest",
+    "stationName": "RADO-Bucharest",
     "type": ["cloudnet"],
-    "latitude": 44.348,
-    "longitude": 26.029,
-    "altitude": 93,
-    "gaw": "Unknown",
-    "dvasId": "INO",
-    "country": "Romania"
+    "latitude": 44.344,
+    "longitude": 26.012,
+    "altitude": 77,
+    "gaw": "INO",
+    "dvasId": "lbok",
+    "actrisId": 99,
+    "country": "Romania",
+    "countryCode": "RO",
+    "countrySubdivisionCode": null
   },
   "product": {
-    "id": "categorize",
-    "humanReadableName": "Categorize"
+    "id": "radar",
+    "humanReadableName": "Radar",
+    "type": ["instrument"],
+    "experimental": false
   },
   "software": [
     {
       "id": "cloudnet-processing",
-      "version": "2.22.0",
-      "title": "Cloudnet processing 2.22.0",
-      "url": "https://github.com/actris-cloudnet/cloudnet-processing/tree/v2.22.0"
+      "version": "2.54.8",
+      "title": "Cloudnet processing 2.54.8",
+      "url": "https://github.com/actris-cloudnet/cloudnet-processing/tree/v2.54.8"
     },
     {
       "id": "cloudnetpy",
-      "version": "1.53.1",
-      "title": "CloudnetPy 1.53.1",
-      "url": "https://doi.org/10.5281/zenodo.8321630"
+      "version": "1.74.3",
+      "title": "CloudnetPy 1.74.3",
+      "url": "https://doi.org/10.5281/zenodo.15261153"
     }
   ],
-  "downloadUrl": "https://cloudnet.fmi.fi/api/download/product/911bd5b1-3104-4732-9bd3-34ed8208adad/20200105_bucharest_categorize.nc",
-  "filename": "20200105_bucharest_categorize.nc",
-  "errorLevel": "pass",
-  "timeliness": "nrt"
+  "instrument": {
+    "uuid": "d98f6fd2-bec9-4e5e-b1d3-5ca422529215",
+    "pid": "https://hdl.handle.net/21.12132/3.d98f6fd2bec94e5e",
+    "name": "INOE MIRA-35S",
+    "owners": [
+      "National Institute of Research and Development for Optoelectronics (INOE)"
+    ],
+    "model": "METEK MIRA-35S",
+    "type": "Doppler scanning cloud radar",
+    "serialNumber": null
+  },
+  "downloadUrl": "https://cloudnet.fmi.fi/api/download/product/f695d0e6-a58a-40d1-affe-a18d2ff044fd/20250423_bucharest_mira-35_d98f6fd2.nc",
+  "filename": "20250423_bucharest_mira-35_d98f6fd2.nc",
+  "timeliness": "rrt",
+  "sourceFileIds": []
 }
 ```
 
 ### `GET /api/files` → `File[]`
 
-Queries the metadata of multiple product files. On a successful query responds with an array of `File` objects.
+Queries the metadata of multiple product files. On a successful query responds with a list of `File` objects.
 The results can be filtered with the following parameters:
 
 - `site`: One or more `Site` ids, from which to fetch file metadata.
@@ -310,6 +364,8 @@ The results can be filtered with the following parameters:
 - `dateTo`: Limit query to files whose `measurementDate` is `dateTo` or earlier. Same date format as in `date`.
   If omitted will default to the current date.
 - `product`: One or more `Product` ids, by which to filter the files. May NOT be `model`; for model files, see route `/api/model-files`.
+- `instrument`: Limit query by instrument (e.g. "radar" or "lidar").
+- `instrumentPid`: Limit query by instrument PID.
 - `filename`: One or more filenames by which to filter the files.
 - `allVersions`: By default the API returns only the latest version of the files. Adding this parameter will fetch all existing versions.
 - `showLegacy`: By default the API does not return legacy data. Adding this parameter will fetch also legacy data.
@@ -329,55 +385,51 @@ Response body:
 ```json
 [
   {
-    "uuid": "f63628b4-7e68-4c98-87ea-86a247f7fcfd",
+    "uuid": "689a2b82-74e9-426c-9c44-5da111eeccd7",
     "version": "",
-    "pid": "",
+    "pid": "https://hdl.handle.net/21.12132/1.689a2b8274e9426c",
+    "dvasId": "68084189e8baa9a87477dc63",
     "volatile": true,
+    "tombstoneReason": null,
     "legacy": false,
-    "measurementDate": "2021-02-21",
-    "history": "2021-02-23 08:04:18 - classification file created\n2021-02-23 08:04:01 - categorize file created\n2021-02-23 02:04:13 - radar file created\n2021-02-23 02:04:24 - ceilometer file created",
-    "checksum": "9ccd36e4c6ee94c5179e34e08ff7898bf31979277badeb5806b688a30e23feda",
-    "size": "82547",
+    "measurementDate": "2025-04-23",
+    "checksum": "87c8a09d0adc5085c8d420d76e4efe89122724a24330ad70b238ed88e559f21f",
+    "size": "106095",
+    "coverage": 0.7452301,
     "format": "HDF5 (NetCDF4)",
-    "createdAt": "2021-02-23T02:05:03.970Z",
-    "updatedAt": "2021-02-23T08:04:20.186Z",
+    "errorLevel": "info",
+    "createdAt": "2025-04-23T01:25:26.970Z",
+    "updatedAt": "2025-04-23T14:51:17.140Z",
+    "dvasUpdatedAt": "2025-04-23T14:51:19.799Z",
+    "startTime": "2025-04-23T00:00:15.000Z",
+    "stopTime": "2025-04-23T13:47:15.000Z",
     "site": {
       "id": "bucharest",
       "humanReadableName": "Bucharest",
-      "type": [
-        "cloudnet"
-      ],
-      "latitude": 44.348,
-      "longitude": 26.029,
-      "altitude": 93,
-      "gaw": "Unknown",
-      "dvasId": "INO",
-      "country": "Romania"
+      "stationName": "RADO-Bucharest",
+      "type": ["cloudnet"],
+      "latitude": 44.344,
+      "longitude": 26.012,
+      "altitude": 77,
+      "gaw": "INO",
+      "dvasId": "lbok",
+      "actrisId": 99,
+      "country": "Romania",
+      "countryCode": "RO",
+      "countrySubdivisionCode": null
     },
     "product": {
       "id": "classification",
-      "humanReadableName": "Classification"
+      "humanReadableName": "Classification",
+      "type": ["geophysical"],
+      "experimental": false
     },
-    "software": [
-      {
-        "id":"cloudnet-processing",
-        "version":"2.22.0",
-        "title":"Cloudnet processing 2.22.0",
-        "url":"https://github.com/actris-cloudnet/cloudnet-processing/tree/v2.22.0"
-      },
-      {
-        "id":"cloudnetpy",
-        "version":"1.53.1",
-        "title":"CloudnetPy 1.53.1",
-        "url":"https://doi.org/10.5281/zenodo.8321630"
-      }
-    ],
-    "downloadUrl": "https://cloudnet.fmi.fi/api/download/product/f63628b4-7e68-4c98-87ea-86a247f7fcfd/20210221_bucharest_classification.nc",
-    "filename": "20210221_bucharest_classification.nc",
-    "quality": "nrt",
-    "qualityScore": 0.9
-  },
-...
+    "instrument": null,
+    "downloadUrl": "https://cloudnet.fmi.fi/api/download/product/689a2b82-74e9-426c-9c44-5da111eeccd7/20250423_bucharest_classification.nc",
+    "filename": "20250423_bucharest_classification.nc",
+    "timeliness": "rrt"
+  }
+  ...
 ]
 ```
 
@@ -399,8 +451,8 @@ Queries the metadata of model files. It offers the following parameters for filt
 - `updatedAtTo`: Limit query to files whose `updatedAt` is `updatedAtTo` or earlier.
   If omitted will default to the current date. Accepts same format as `updatedAtFrom`.
 
-The `ModelFile` response similar to the `File` response, with an additional `model` property. The `model` property containing a `Model` object (see example response).
-Furthermore, the `ModelFile` response omits the fields `cloudnetPyVersion` and `sourceFileIds`, as this information is not available for model files.
+The `ModelFile` response similar to the `File` response, with an additional `model` property containing a `Model` object (see example response).
+Furthermore, the `ModelFile` response omits the fields `instrument`, `software` and `sourceFileIds`.
 
 Example query for fetching metadata for `gdas1` model from Lindenberg on 2. March 2021:
 
@@ -412,46 +464,55 @@ Response body:
 [
   {
     "uuid": "90f95f81-4f45-4efb-a25d-80066652aece",
-    "version": "",
-    "pid": "",
-    "volatile": true,
+    "version": "TlV0KVxoVwpWBXdfJkQROoGTk9bs9f.",
+    "pid": "https://hdl.handle.net/21.12132/1.90f95f814f454efb",
+    "dvasId": null,
+    "volatile": false,
+    "tombstoneReason": null,
     "legacy": false,
     "measurementDate": "2021-02-03",
-    "history": "2021-02-04 08:10:26 - File content harmonized by the CLU unit.\n03-Feb-2021 18:59:45: Created from GDAS1 profiles produced with the profile binary in the HYSPLIT offline package using convert_gdas12pro.sh.",
-    "checksum": "0b8b621ad2d76ca629451f56c94b79b432caba9c2839b3fcc535910544b3b854",
-    "size": "194983",
+    "checksum": "ec7507be604efbec159c4c70ca815890d33bed190ffc15bccdb403e43a13b579",
+    "size": "206451",
+    "coverage": null,
     "format": "HDF5 (NetCDF4)",
-    "createdAt": "2021-02-04T08:10:28.001Z",
-    "updatedAt": "2021-02-04T08:10:28.001Z",
+    "errorLevel": null,
+    "createdAt": "2021-02-04T10:10:28.001Z",
+    "updatedAt": "2021-02-08T21:24:14.883Z",
+    "dvasUpdatedAt": null,
+    "startTime": null,
+    "stopTime": null,
     "site": {
       "id": "lindenberg",
       "humanReadableName": "Lindenberg",
+      "stationName": "MOL-RAO",
       "type": ["cloudnet"],
       "latitude": 52.208,
       "longitude": 14.118,
       "altitude": 104,
       "gaw": "LIN",
-      "dvasId": "LIN",
-      "country": "Germany"
+      "dvasId": "6zm2",
+      "actrisId": 49,
+      "country": "Germany",
+      "countryCode": "DE",
+      "countrySubdivisionCode": null
     },
     "product": {
       "id": "model",
-      "humanReadableName": "Model"
+      "humanReadableName": "Model",
+      "type": ["model"],
+      "experimental": false
     },
     "model": {
       "id": "gdas1",
-      "optimumOrder": 3
+      "humanReadableName": "Global Data Assimilation System (GDAS1)",
+      "optimumOrder": 400,
+      "sourceModelId": null,
+      "forecastStart": null,
+      "forecastEnd": null
     },
-    "software": [
-      {
-        "id": "cloudnet-processing",
-        "version": "2.22.0",
-        "title": "Cloudnet processing 2.22.0",
-        "url": "https://github.com/actris-cloudnet/cloudnet-processing/tree/v2.22.0"
-      }
-    ],
     "downloadUrl": "https://cloudnet.fmi.fi/api/download/product/90f95f81-4f45-4efb-a25d-80066652aece/20210203_lindenberg_gdas1.nc",
-    "filename": "20210203_lindenberg_gdas1.nc"
+    "filename": "20210203_lindenberg_gdas1.nc",
+    "timeliness": "scheduled"
   }
 ]
 ```
@@ -466,7 +527,7 @@ On a successful query the route responds with a `Visualization` object, which ha
 - `locationHumanReadable`: Human readable name of the site.
 - `volatile`: `true` if the file is volatile, otherwise `false`.
 - `legacy`: `true` if the file is a legacy file, otherwise `false`.
-- `visualizations`: An array of visualization metadata, each entry having the following properties:
+- `visualizations`: List of visualization metadata, each entry having the following properties:
   - `s3key`: Filename of the visualization.
   - `productVariable`: Product variable object, see [Product variables](#get-apiproductsvariables--productvariables).
   - `dimensions`: `null` or an object with the following properties:
@@ -516,7 +577,7 @@ Response body:
 ### `GET /api/visualizations` → `Visualization[]`
 
 Queries the metadata of visualizations. It offers the same parameters as the [Product files](#get-apifiles--file) -route for filtering the results, with an additional parameter `variable` for fetching visualizations for a specific `ProductVariable`.
-The route responds with an array of `Visualization` objects.
+The route responds with a list of `Visualization` objects.
 
 Example request:
 
@@ -527,24 +588,93 @@ Response body:
 ```json
 [
   {
-    "sourceFileId": "36a95fab-f07f-4182-99b8-0082b26b6069",
+    "sourceFileId": "cbfa399d-97ee-41e8-a80a-23f8f1661817",
     "visualizations": [
       {
-        "s3key": "20211025_mindelo_hatpro-36a95fab-LWP.png",
+        "s3key": "20211025_mindelo_pollyxt-cbfa399d-beta.png",
         "productVariable": {
-          "id": "mwr-LWP",
-          "humanReadableName": "Liquid water path",
-          "order": "0"
+          "id": "lidar-beta",
+          "humanReadableName": "Attenuated backscatter coefficient",
+          "order": 0,
+          "actrisName": "atmosphere calibrated attenuated backscattered lidar signal"
         },
-        "dimensions": null
+        "dimensions": {
+          "width": 1453,
+          "height": 458,
+          "marginTop": 19,
+          "marginRight": 136,
+          "marginBottom": 68,
+          "marginLeft": 72
+        }
+      },
+      {
+        "s3key": "20211025_mindelo_pollyxt-cbfa399d-beta_raw.png",
+        "productVariable": {
+          "id": "lidar-beta_raw",
+          "humanReadableName": "Non-screened attenuated backscatter coefficient",
+          "order": 1,
+          "actrisName": null
+        },
+        "dimensions": {
+          "width": 1453,
+          "height": 458,
+          "marginTop": 19,
+          "marginRight": 136,
+          "marginBottom": 68,
+          "marginLeft": 72
+        }
+      },
+      {
+        "s3key": "20211025_mindelo_pollyxt-cbfa399d-depolarisation.png",
+        "productVariable": {
+          "id": "lidar-depolarisation",
+          "humanReadableName": "Uncalibrated lidar volume linear depolarisation ratio",
+          "order": 2,
+          "actrisName": null
+        },
+        "dimensions": {
+          "width": 1421,
+          "height": 458,
+          "marginTop": 19,
+          "marginRight": 104,
+          "marginBottom": 68,
+          "marginLeft": 72
+        }
+      },
+      {
+        "s3key": "20211025_mindelo_pollyxt-cbfa399d-depolarisation_raw.png",
+        "productVariable": {
+          "id": "lidar-depolarisation_raw",
+          "humanReadableName": "Non-screened uncalibrated lidar volume linear depolarisation ratio",
+          "order": 3,
+          "actrisName": null
+        },
+        "dimensions": {
+          "width": 1421,
+          "height": 458,
+          "marginTop": 19,
+          "marginRight": 104,
+          "marginBottom": 68,
+          "marginLeft": 72
+        }
       }
     ],
-    "productHumanReadable": "Microwave radiometer",
+    "source": {
+      "uuid": "3b8d6fb7-e7e2-4f1d-89c9-f81f9de1b1b6",
+      "pid": "https://hdl.handle.net/21.12132/3.3b8d6fb7e7e24f1d",
+      "name": "TROPOS PollyXT (cpv)",
+      "owners": ["Leibniz Institute for Tropospheric Research (TROPOS)"],
+      "model": "PollyXT",
+      "type": "multiwavelength Raman polarization lidar",
+      "serialNumber": "pollyxt_cpv"
+    },
+    "productHumanReadable": "Lidar",
     "locationHumanReadable": "Mindelo",
-    "volatile": true,
-    "legacy": false
+    "volatile": false,
+    "legacy": false,
+    "experimental": false
   },
-...
+  ...
 ]
 ```
 
@@ -572,54 +702,60 @@ Query the metadata of uploaded instrument files. You can use the following the p
 - `filenamePrefix`: Limit query to filenames with prefix `filenamePrefix`.
 - `filenameSuffix`: Limit query to filenames with suffix `filenameSuffix`.
 
-The response is an array of `Upload` objects. The `Upload` object has the following properties:
+The response is a list of `Upload` objects. The `Upload` object has the following properties:
 
 - `uuid`: Unique identifier of the file.
 - `checksum`: An MD5 checksum of the file.
 - `filename`: Original name of the file.
 - `measurementDate`: The date of the measurements contained in the file.
-- `tags`: Array of tags.
 - `size`: File size in bytes.
 - `status`: Status of the file. See above for possible statuses.
 - `createdAt`: Date of file metadata creation.
 - `updatedAt`: Date of last file and/or metadata update.
+- `instrumentPid`: Persistent identifier (PID) for the instrument.
+- `tags`: List of tags.
+- `siteId`: Site identifier.
+- `instrumentId`: Instrument identifier.
+- `instrumentInfoUuid`: Reference to `InstrumentInfo` object.
 - `site`: `Site` object.
 - `instrument`: `Instrument` object.
-- `instrumentPid`: Persistent identifier (PID) for the instrument.
+- `instrumentInfo`: `InstrumentInfo` object.
 - `downloadUrl`: A URL for direct download of the file.
 
 Example query:
 
-`GET https://cloudnet.fmi.fi/api/raw-files?site=norunda&updatedAtFrom=2021-09-01`
+`GET https://cloudnet.fmi.fi/api/raw-files?site=norunda&date=2021-09-01`
 
 Response body:
 
 ```json
 [
   {
-    "uuid": "890c7130-8cf0-44a2-b5bc-75fcec344d97",
-    "checksum": "1a3ab11370e1b3c4833fb812c0a0f82e",
-    "filename": "220701_050008_P09_ZEN.LV0",
-    "measurementDate": "2022-07-01",
-    "size": "975360456",
+    "uuid": "dccb71c2-9671-4f23-a2d8-31193c04c533",
+    "checksum": "ddb021374eddf36db15d09f0df3a332c",
+    "filename": "210901_120002_P09_ZEN.LV0",
+    "s3key": "norunda/dccb71c2-9671-4f23-a2d8-31193c04c533/210901_120002_P09_ZEN.LV0",
+    "measurementDate": "2021-09-01",
+    "size": "139723302",
     "status": "uploaded",
-    "createdAt": "2022-07-01T10:24:44.130Z",
-    "updatedAt": "2022-07-01T12:25:05.188Z",
+    "createdAt": "2021-09-01T16:58:22.436Z",
+    "updatedAt": "2021-09-01T16:58:26.359Z",
     "instrumentPid": "https://hdl.handle.net/21.12132/3.bf6c0c3926c54dbb",
     "tags": [],
     "siteId": "norunda",
     "instrumentId": "rpg-fmcw-94",
+    "instrumentInfoUuid": "bf6c0c39-26c5-4dbb-bd0a-054d5382989e",
     "site": {
       "id": "norunda",
       "humanReadableName": "Norunda",
-      "type": [
-        "cloudnet"
-      ],
+      "stationName": null,
+      "description": null,
+      "type": ["cloudnet"],
       "latitude": 60.086,
       "longitude": 17.479,
       "altitude": 46,
       "gaw": "NOR",
-      "dvasId": "NOR",
+      "dvasId": "d83u",
       "actrisId": null,
       "country": "Sweden",
       "countryCode": "SE",
@@ -629,10 +765,21 @@ Response body:
       "id": "rpg-fmcw-94",
       "type": "radar",
       "humanReadableName": "RPG-Radiometer Physics RPG-FMCW-94 cloud radar",
+      "shortName": "RPG-FMCW-94 cloud radar",
       "allowedTags": []
     },
-    "downloadUrl": "https://cloudnet.fmi.fi/api/download/raw/890c7130-8cf0-44a2-b5bc-75fcec344d97/220701_050008_P09_ZEN.LV0"
-  }
+    "instrumentInfo": {
+      "uuid": "bf6c0c39-26c5-4dbb-bd0a-054d5382989e",
+      "pid": "https://hdl.handle.net/21.12132/3.bf6c0c3926c54dbb",
+      "name": "ESA RPG-FMCW-94-DP",
+      "owners": ["European Space Agency (ESA)"],
+      "model": "RPG-FMCW-94-DP",
+      "type": "Doppler non-scanning cloud radar",
+      "serialNumber": null,
+      "instrumentId": "rpg-fmcw-94"
+    },
+    "downloadUrl": "https://cloudnet.fmi.fi/api/download/raw/dccb71c2-9671-4f23-a2d8-31193c04c533/210901_120002_P09_ZEN.LV0"
+  },
   ...
 ]
 ```
@@ -651,32 +798,42 @@ Response body:
 ```json
 [
   {
-    "uuid": "375e32c1-d30c-4265-98ff-d07623b0c524",
-    "checksum": "f9c59e2db978a2d2b6cb55d3af342b80",
-    "filename": "20210904_norunda_ecmwf.nc",
-    "measurementDate": "2021-09-04",
+    "uuid": "71b69dbb-69f6-4b9e-839e-8427e055e3e9",
+    "checksum": "089a71af295fa3b5f32d217d402113b4",
+    "filename": "20210901_norunda_ecmwf.nc",
+    "s3key": "norunda/71b69dbb-69f6-4b9e-839e-8427e055e3e9/20210901_norunda_ecmwf.nc",
+    "measurementDate": "2021-09-01",
     "size": "501500",
     "status": "processed",
-    "createdAt": "2021-09-04T18:37:02.852Z",
-    "updatedAt": "2021-09-07T18:37:00.945Z",
+    "createdAt": "2021-09-01T21:36:52.837Z",
+    "updatedAt": "2022-04-27T12:53:38.715Z",
+    "siteId": "norunda",
+    "modelId": "ecmwf",
     "site": {
       "id": "norunda",
       "humanReadableName": "Norunda",
-      "type": [
-        "cloudnet"
-      ],
+      "stationName": null,
+      "description": null,
+      "type": ["cloudnet"],
       "latitude": 60.086,
       "longitude": 17.479,
       "altitude": 46,
       "gaw": "NOR",
-      "dvasId": "NOR",
-      "country": "Sweden"
+      "dvasId": "d83u",
+      "actrisId": null,
+      "country": "Sweden",
+      "countryCode": "SE",
+      "countrySubdivisionCode": null
     },
     "model": {
       "id": "ecmwf",
-      "optimumOrder": 0
+      "humanReadableName": "ECMWF IFS forecast",
+      "optimumOrder": 0,
+      "sourceModelId": null,
+      "forecastStart": null,
+      "forecastEnd": null
     },
-    "downloadUrl": "https://cloudnet.fmi.fi/api/download/raw/375e32c1-d30c-4265-98ff-d07623b0c524/20210904_norunda_ecmwf.nc"
+    "downloadUrl": "https://cloudnet.fmi.fi/api/download/raw/71b69dbb-69f6-4b9e-839e-8427e055e3e9/20210901_norunda_ecmwf.nc"
   },
   ...
 ]
@@ -736,21 +893,26 @@ and pass them on to `curl` again to download.
 
 ### Python example
 
-Download one day of classification data from all sites using the `requests` package:
+The easiest way to fetch metadata and data from the Cloudnet API is to use the [official Python client](https://github.com/actris-cloudnet/cloudnet-api-client).
+
+Installation:
+
+```bash
+python3 -m pip install cloudnet-api-client
+```
+
+Download one day of classification data from all sites:
 
 ```python
-import requests
+from cloudnet_api_client import APIClient
 
-url = 'https://cloudnet.fmi.fi/api/files'
-payload = {
-    'date': '2020-10-01',
-    'product': 'classification'
-}
-metadata = requests.get(url, payload).json()
-for row in metadata:
-    res = requests.get(row['downloadUrl'])
-    with open(row['filename'], 'wb') as f:
-        f.write(res.content)
+client = APIClient()
+
+sites = client.sites()
+site_ids = [site.id for site in sites]
+
+metadata = client.metadata(site_ids, "2025-01-01", product="classification")
+client.download(metadata, "data/")
 ```
 
 ## Notes
@@ -764,7 +926,7 @@ The compression can be enabled effortlessly in `curl` with the `--compressed` sw
 The API responds to errors with the appropriate HTTP status code and an `Error` object, which has the properties:
 
 - `status`: HTTP error code.
-- `message`: Human readable error message as a string or an array of strings.
+- `message`: Human readable error message as a string or list of strings.
 
 Example query:
 
