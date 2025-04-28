@@ -19,7 +19,7 @@ calibration data are returned. For example, given that there are calibration
 data for date 2021-01-01, querying the data for 2021-01-02 will return the
 calibration data of 2021-01-01.
 
-### POST /api/calibration
+### PUT /api/calibration
 
 The route takes the following URL parameters:
 
@@ -40,8 +40,6 @@ Response body:
 
 ```json
 {
-  "createdAt": "2023-04-04T12:59:47.686Z",
-  "updatedAt": "2023-04-04T12:59:47.686Z",
   "data": {
     "range_corrected": true,
     "calibration_factor": 4e-12
