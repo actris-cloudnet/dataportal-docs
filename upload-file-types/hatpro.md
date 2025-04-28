@@ -1,10 +1,10 @@
 [Docs home](https://docs.cloudnet.fmi.fi) / [Data upload file types](../api/upload-file-types.md)
 
-# HATPRO microwave radiometers
+# RPG microwave radiometers
 
-RPG HATPRO microwave radiometer.
+Microwave radiometers manufactured by RPG Radiometer Physics GmbH.
 
-Instrument ID: `hatpro`
+Instrument ID: `hatpro`, `lhatpro`, `lhumpro`
 
 ## Recommended files
 
