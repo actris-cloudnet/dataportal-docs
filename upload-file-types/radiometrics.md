@@ -2,15 +2,16 @@
 
 # Radiometrics microwave radiometers
 
-Radiometrics (MP3014, MWP1, etc.) microwave radiometers.
+Radiometrics microwave radiometers (MP-3000A, TP/WVP-3001, WVR-1100 etc.)
 
 Instrument ID: `radiometrics`
 
 ## Recommended files
 
-| File        | Format | Description   |
-| ----------- | ------ | ------------- |
-| `*_lv2.csv` | text   | Level 2 data. |
+| File        | Format | Description                     |
+| ----------- | ------ | ------------------------------- |
+| `*_lv2.csv` | text   | Level 2 data for newer models.  |
+| `*.los`     | text   | For older models like WVR-1100. |
 
 ## Example
 
