@@ -8,9 +8,9 @@ Instrument ID: `thies-lnm`
 
 ## Recommended files
 
-| File                  | Format | Description |
-| --------------------- | ------ | ----------- |
-| `*.txt`, `*.csv` etc. | text   |             |
+| File                  | Format | Description                                                            |
+| --------------------- | ------ | ---------------------------------------------------------------------- |
+| `*.txt`, `*.csv` etc. | text   | Log file with drop size and fall velocity spectra (data telegram 4/5). |
 
 ## Example
 
