@@ -10,16 +10,21 @@ Instrument ID: `halo-doppler-lidar`
 
 | File                     | Format | Description                                                                         |
 | ------------------------ | ------ | ----------------------------------------------------------------------------------- |
-| `*.hpl`                  | text   | Hourly measurements.                                                                |
+| `*.hpl`                  | text   | Hourly measurements (Stare, VAD, etc.)                                              |
 | `Background*.txt`        | text   | Hourly background measurements.                                                     |
 | `system_parameters*.txt` | text   | Monthly system parameters. These should be submitted to the first day of the month. |
 
-If you have depolarisation measurements, you need to specify tags for `*.hpl` and `Background*.txt` files:
+If you have depolarisation measurements stored in two different directories,
+you need to specify tags for `*.hpl` files:
 
 | Tag     | Description                      |
 | ------- | -------------------------------- |
 | `co`    | Co-polarisation measurements.    |
 | `cross` | Cross-polarisation measurements. |
+
+Sometimes `Background*.txt` files are also stored in different directories
+alongside the co and cross measurements. In this case, you can specify tags for
+`Background*.txt` files.
 
 ## Example
 
@@ -30,19 +35,13 @@ Example configuration for [`cloudnet-submit`](https://github.com/actris-cloudnet
 site           = "hyytiala"
 instrument     = "halo-doppler-lidar"
 instrument_pid = "https://hdl.handle.net/21.12132/3.421272f219be4f97"
-path_fmt       = "/data/dlidar34/%Y/%Y%m/%Y%m%d/Stare_34_%Y%m%d_*.hpl"
+path_fmt       = "/data/dlidar34/%Y/%Y%m/%Y%m%d/*.{hpl,txt}"
 
 [[instrument]]
 site           = "hyytiala"
 instrument     = "halo-doppler-lidar"
 instrument_pid = "https://hdl.handle.net/21.12132/3.421272f219be4f97"
-path_fmt       = "/data/dlidar34/%Y/%Y%m/%Y%m%d/Background_%Y%m%d_*.txt"
-
-[[instrument]]
-site           = "hyytiala"
-instrument     = "halo-doppler-lidar"
-instrument_pid = "https://hdl.handle.net/21.12132/3.421272f219be4f97"
-path_fmt       = "/data/dlidar34/%Y/%Y%m/system_parameters_*_%Y%m.txt"
+path_fmt       = "/data/dlidar34/%Y/%Y%m/system_parameters_*.txt"
 periodicity    = "monthly"
 ```
 
@@ -53,28 +52,14 @@ For depolarisation measurements:
 site           = "hyytiala"
 instrument     = "halo-doppler-lidar"
 instrument_pid = "https://hdl.handle.net/21.12132/3.421272f219be4f97"
-path_fmt       = "/data/dlidar34/co/%Y/%Y%m/%Y%m%d/Stare_34_%Y%m%d_*.hpl"
+path_fmt       = "/data/dlidar34/%Y/%Y%m/%Y%m%d/*.{hpl,txt}"
 tags           = ["co"]
 
 [[instrument]]
 site           = "hyytiala"
 instrument     = "halo-doppler-lidar"
 instrument_pid = "https://hdl.handle.net/21.12132/3.421272f219be4f97"
-path_fmt       = "/data/dlidar34/co/%Y/%Y%m/%Y%m%d/Background_%Y%m%d_*.txt"
-tags           = ["co"]
-
-[[instrument]]
-site           = "hyytiala"
-instrument     = "halo-doppler-lidar"
-instrument_pid = "https://hdl.handle.net/21.12132/3.421272f219be4f97"
-path_fmt       = "/data/dlidar34/cross/%Y/%Y%m/%Y%m%d/Stare_34_%Y%m%d_*.hpl"
-tags           = ["cross"]
-
-[[instrument]]
-site           = "hyytiala"
-instrument     = "halo-doppler-lidar"
-instrument_pid = "https://hdl.handle.net/21.12132/3.421272f219be4f97"
-path_fmt       = "/data/dlidar34/cross/%Y/%Y%m/%Y%m%d/Background_%Y%m%d_*.txt"
+path_fmt       = "/data/dlidar34/cross/%Y/%Y%m/%Y%m%d/*.{hpl,txt}"
 tags           = ["cross"]
 ```
 
