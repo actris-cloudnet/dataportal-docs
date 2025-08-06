@@ -8,10 +8,10 @@ Instrument ID: `parsivel`
 
 ## Recommended files
 
-| File                  | Format | Description                                                               |
-| --------------------- | ------ | ------------------------------------------------------------------------- |
-| `*.txt`, `*.csv` etc. | text   | Log file with drop size and fall velocity spectra (fields 90, 91 and 93). |
-| `*.nc`                | netCDF | Suitable if only option.                                                  |
+| File                  | Format | Description                                                                    |
+| --------------------- | ------ | ------------------------------------------------------------------------------ |
+| `*.txt`, `*.csv` etc. | text   | Log file including drop size and fall velocity spectra (fields 90, 91 and 93). |
+| `*.nc`                | netCDF | Suitable if only option.                                                       |
 
 Many different kind of formats are supported for Parsivel². If you are unsure about the formats, please contact [actris-cloudnet@fmi.fi](mailto:actris-cloudnet@fmi.fi).
 
