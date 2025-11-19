@@ -6,8 +6,9 @@ from [measurement sites all over the globe](https://cloudnet.fmi.fi/sites).
 Cloudnet includes:
 
 - [Data portal](https://cloudnet.fmi.fi) to browse and download data
-- [CloudnetPy](https://github.com/actris-cloudnet/cloudnetpy) to post-process data
+- [CloudnetPy](https://github.com/actris-cloudnet/cloudnetpy) to process data
 - [Cloudnet submit tool](https://github.com/actris-cloudnet/cloudnet-submit) to submit data
+- [Cloudnet API client](https://github.com/actris-cloudnet/cloudnet-api-client) to search and download data
 - [API](#api-reference) to access data and various services
 
 Cloudnet is part of [ACTRIS research infrastructure](https://www.actris.eu/)

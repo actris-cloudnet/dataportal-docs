@@ -2,7 +2,15 @@
 
 # Data portal API reference
 
-This is the documentation for the API v2 provided by the Cloudnet data portal.
+This is the documentation for the API provided by the Cloudnet data portal.
+
+<div class="note">
+<p>
+We recommend using
+the official <a href="https://github.com/actris-cloudnet/cloudnet-api-client">cloudnet-api-client</a>
+Python package for interacting with the API.
+</p>
+</div>
 
 ## General
 

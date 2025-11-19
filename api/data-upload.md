@@ -7,17 +7,9 @@ processing and publication in the Cloudnet data portal.
 
 <div class="note">
 <p>
-We recommend using
-the <a href="https://github.com/actris-cloudnet/cloudnet-submit">cloudnet-submit</a>
-Python package for the submissions.
-If the package is missing a feature that you need,
-please <a href="https://github.com/actris-cloudnet/cloudnet-submit/issues/new">create an issue</a>
-in GitHub.
-</p>
-<p>
-If you don't want to use the Python package,
-you can also use the HTTP API.
-The documentation for it is below.
+We strongly recommend using
+the official <a href="https://github.com/actris-cloudnet/cloudnet-submit">cloudnet-submit</a>
+Python package for data submission.
 </p>
 </div>
 
