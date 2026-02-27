@@ -28,6 +28,7 @@ get deleted.
 | [`cs135`](../upload-file-types/cs135.html)                                                                                                                                                                                          | Campbell Scientific CS135 ceilometer   |
 | [`da10`](../upload-file-types/da10.html)                                                                                                                                                                                            | Vaisala DIAL DA10 Atmospheric Profiler |
 | [`ld40`](../upload-file-types/vaisala-ceilometers.html), [`ct25k`](../upload-file-types/vaisala-ceilometers.html), [`cl31`](../upload-file-types/vaisala-ceilometers.html), [`cl51`](../upload-file-types/vaisala-ceilometers.html) | Vaisala ceilometers                    |
+| [`minimpl`](../upload-file-types/minimpl.html)                                                                                                                                                                                      | DMT MiniMPL lidar                      |
 | [`pollyxt`](../upload-file-types/pollyxt.html)                                                                                                                                                                                      | PollyXT Raman lidar                    |
 
 ### Microwave radiometers
@@ -43,7 +44,7 @@ get deleted.
 | -------------------------------------------------- | -------------------------------- |
 | [`parsivel`](../upload-file-types/parsivel.html)   | OTT Parsivel² disdrometer        |
 | [`thies-lnm`](../upload-file-types/thies-lnm.html) | Thies LPM a.k.a. LNM disdrometer |
-| `rd-80`                                            | Distromet RD-80 disdrometer      |
+| [`rd-80`](../upload-file-types/rd-80.html)         | Distromet RD-80 disdrometer      |
 
 ### Doppler lidars
 
@@ -66,7 +67,6 @@ get deleted.
 | ID                                                             | Instrument                                         |
 | -------------------------------------------------------------- | -------------------------------------------------- |
 | [`fd12`](../upload-file-types/fd12.html)                       | Vaisala FD12P present weather sensor               |
-| [`minimpl`](../upload-file-types/minimpl.html)                 | Droplet MiniMPL lidar                              |
 | [`mrr-pro`](../upload-file-types/mrr-pro.html)                 | METEK MRR-PRO rain radar                           |
 | [`weather-station`](../upload-file-types/weather-station.html) | Weather station data (temperature, humidity, etc.) |
-| `wibs-5`                                                       | WIBS-5/NEO bioaerosol sensor                       |
+| [`wibs-5`](../upload-file-types/wibs-5.html)                   | DMT WIBS-5/NEO bioaerosol sensor                   |

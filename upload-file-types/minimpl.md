@@ -1,8 +1,8 @@
 [Docs home](https://docs.cloudnet.fmi.fi) / [Data upload file types](../api/upload-file-types.md)
 
-# MiniMPL lidar
+# DMT MiniMPL lidar
 
-Droplet Mini Micro Pulse LiDAR (MiniMPL).
+Droplet Measurement Technologies (DMT) Mini Micro Pulse LiDAR (MiniMPL).
 
 Instrument ID: `minimpl`
 
