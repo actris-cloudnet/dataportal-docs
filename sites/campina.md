@@ -36,7 +36,7 @@ in the Amazon climate system.
 
 - Cecchini et al. (2025): The ATTO-Campina site: A new observatory for tropical
   convection and gas-aerosol-cloud-precipitation interactions in the Amazon.
-  Bull. Amer. Meteor. Soc., BAMS-D-24-0092.1,
+  _Bull. Amer. Meteor. Soc._, BAMS-D-24-0092.1,
   <https://doi.org/10.1175/BAMS-D-24-0092.1>, in press.
 
 ## Links
