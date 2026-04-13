@@ -65,7 +65,8 @@ tags           = ["cross"]
 
 ## Calibration
 
-| Field Name       | Type    | Unit    | Description                                                                                          |
-| ---------------- | ------- | ------- | ---------------------------------------------------------------------------------------------------- |
-| `time_offset`    | `int`   | min     | Time offset compared to UTC (positive values mean ahead of UTC, e.g. 120 for Finnish standard time). |
-| `azimuth_offset` | `float` | degrees | Offset value to be added to azimuth angles if instrument doesn't point to North.                     |
+| Field Name          | Type    | Unit    | Description                                                                                                                      |
+| ------------------- | ------- | ------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| `time_offset`       | `int`   | min     | Time offset compared to UTC (positive values mean ahead of UTC, e.g. 120 for Finnish standard time).                             |
+| `azimuth_offset`    | `float` | degrees | Offset value to be added to azimuth angles if instrument doesn't point to North.                                                 |
+| `noise_mask_method` | `str`   |         | Method used to mask noisy pixels in the stare product. One of `"intensity_and_velocity"` (default) or `"intensity_only"`.        |
