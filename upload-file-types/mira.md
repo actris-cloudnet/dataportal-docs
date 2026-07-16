@@ -2,16 +2,16 @@
 
 # MIRA cloud radars
 
-METEK MIRA-10 or MIRA-35 (formerly MIRA-36) cloud radar.
+METEK MIRA-10, MIRA-35 (formerly MIRA-36), MIRA-35S, and MIRA-35C cloud radars.
 
 Instrument ID: `mira-10` or `mira-35`
 
 ## Recommended files
 
-| File                      | Format | Description                                     |
-| ------------------------- | ------ | ----------------------------------------------- |
-| `*.znc.gz` or `*.znc`     | netCDF | Newer format, preferably compressed using gzip. |
-| `*.mmclx.gz` or `*.mmclx` | netCDF | Older format, preferably compressed using gzip. |
+| File                      | Format | Description                                                           |
+| ------------------------- | ------ | --------------------------------------------------------------------- |
+| `*.znc.gz` or `*.znc`     | netCDF | File with Doppler velocity spectra, preferably compressed using gzip. |
+| `*.mmclx.gz` or `*.mmclx` | netCDF | File with radar moments, preferably compressed using gzip.            |
 
 ## Example
 
