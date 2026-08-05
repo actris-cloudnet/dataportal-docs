@@ -29,7 +29,9 @@ path_fmt       = "/data/disdro/%Y%m%d/%Y%m%d.txt"
 
 ## Calibration
 
-| Field Name           | Type        | Unit | Description                                  |
-| -------------------- | ----------- | ---- | -------------------------------------------- |
-| `telegram`           | `list[int]` | -    | Data telegram if file doesn't have a header. |
-| `missing_timestamps` | `bool`      | -    | Indicates missing timestamps.                |
+| Field Name           | Type   | Unit | Description                                                                                                                                                                                           |
+| -------------------- | ------ | ---- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `telegram`           | `list` | -    | Data telegram if file doesn't have a header. Given as a list of measured variable numbers from Parsivel (e.g. `1` for rain intensity) and date format(s) from data logger (e.g. `%Y-%m-%d %H:%M:%S`). |
+| `field_separator`    | `str`  | -    | Field separator used in the telegram (default: `;`).                                                                                                                                                  |
+| `decimal_separator`  | `str`  | -    | Decimal separator used in the telegram (default: `.`).                                                                                                                                                |
+| `missing_timestamps` | `bool` | -    | Indicates missing timestamps.                                                                                                                                                                         |
