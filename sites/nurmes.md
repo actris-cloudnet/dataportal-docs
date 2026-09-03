@@ -1,6 +1,8 @@
 # Nurmes
 
-Nurmes is part of weather radar network of Finnish Meteorological Institute (FMI).
+Nurmes (NUR) is a weather radar site located on Riihivaara hill in the village
+of Mujejärvi, Nurmes, Eastern Finland. The site was established in 2019 as part
+of the weather radar network of the Finnish Meteorological Institute (FMI).
 
 ## Links
 

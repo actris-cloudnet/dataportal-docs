@@ -1,6 +1,8 @@
 # Vimpeli
 
-Vimpeli is part of weather radar network of Finnish Meteorological Institute (FMI).
+Vimpeli (VIM) is a weather radar site located on Lakeaharju hill in Vimpeli,
+Western Finland. The site was established in 2005 as part of the weather radar
+network of the Finnish Meteorological Institute (FMI).
 
 ## Links
 

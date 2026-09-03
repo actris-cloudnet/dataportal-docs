@@ -1,6 +1,8 @@
 # Petäjävesi
 
-Petäjävesi is part of weather radar network of Finnish Meteorological Institute (FMI).
+Petäjävesi (PET) is a weather radar site located near the village of Kintaus in
+Petäjävesi, Central Finland. The site was established in 2015 as part of the
+weather radar network of the Finnish Meteorological Institute (FMI).
 
 ## Links
 

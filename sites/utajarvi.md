@@ -1,6 +1,8 @@
 # Utajärvi
 
-Utajärvi is part of weather radar network of Finnish Meteorological Institute (FMI).
+Utajärvi (UTA) is a weather radar site located in Korkiakangas, Utajärvi,
+Northern Finland. The site was established in 1997 as part of the weather radar
+network of the Finnish Meteorological Institute (FMI).
 
 ## Links
 

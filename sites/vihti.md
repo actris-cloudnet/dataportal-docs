@@ -1,6 +1,8 @@
 # Vihti
 
-Vihti is part of weather radar network of Finnish Meteorological Institute (FMI).
+Vihti (VIH) is a weather radar site located near Ylimmäinen lake in Vihti,
+Southern Finland. The site was established in 2021 as part of the weather radar
+network of the Finnish Meteorological Institute (FMI).
 
 ## Links
 

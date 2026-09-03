@@ -1,6 +1,8 @@
 # Inari
 
-Inari is part of weather radar network of Finnish Meteorological Institute (FMI).
+Inari (KAU) is a weather radar site located near the peak of Kaunispää fell in
+Saariselkä, Northern Finland. The site was established in 2025 as part of the
+weather radar network of the Finnish Meteorological Institute (FMI).
 
 ## Links
 
