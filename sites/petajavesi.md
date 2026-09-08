@@ -1,8 +1,14 @@
 # Petäjävesi
 
-Petäjävesi (PET) is a weather radar site located near the village of Kintaus in
-Petäjävesi, Central Finland. The site was established in 2015 as part of the
-weather radar network of the Finnish Meteorological Institute (FMI).
+Petäjävesi (PET) is a weather radar site located in Kintaus, Petäjävesi,
+Central Finland. The site was established in 2015 as part of the weather radar
+network of the Finnish Meteorological Institute (FMI).
+
+Cloudnet only ingests weather radar data from vertical-pointing "birdbath"
+scans, which are done every 15 minutes to calibrate the differential
+reflectivity (ZDR). The conventional data from the weather radar, including
+composite from the radar network, are available from [FMI's open
+data](https://en.ilmatieteenlaitos.fi/open-data).
 
 ## Links
 
