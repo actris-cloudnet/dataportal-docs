@@ -27,8 +27,9 @@ path_fmt       = "/data/mira/%Y%m%d_*.mmclx.gz"
 
 ## Calibration
 
-| Field Name       | Type    | Unit    | Description                                           |
-| ---------------- | ------- | ------- | ----------------------------------------------------- |
-| `azimuth_offset` | `float` | degrees | Offset added to azimuth angle.                        |
-| `zenith_offset`  | `float` | degrees | Offset added to zenith angle.                         |
-| `snr_limit`      | `float` | 1       | Signal-to-noise ratio limit used for screening noise. |
+| Field Name       | Type    | Unit    | Description                                                                                                                   |
+| ---------------- | ------- | ------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `azimuth_offset` | `float` | degrees | Offset added to azimuth angle.                                                                                                |
+| `zenith_offset`  | `float` | degrees | Offset added to zenith angle.                                                                                                 |
+| `snr_limit`      | `float` | 1       | Signal-to-noise ratio limit used for screening noise.                                                                         |
+| `radar_constant` | `float` | dB      | Radar constant for calculating Z from SNR for old files with only `Ze` instead of `Zg` variable (e.g. Lindenberg 2007-06-16). |
